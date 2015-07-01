@@ -1,12 +1,12 @@
-require "bs_admin_settings/group_builder"
+require "bs_admin/settings/group_builder"
 
 class BsAdmin::Settings
   def self.create name, &block
-    yield GroupBuilder.new(name)
+    yield BsAdmin::Settings::GroupBuilder.new(name)
   end
 
   def self.setting group_key, key
-    group = SettingGroup.find_group group_key
+    group = BsAdmin::SettingGroup.find_group group_key
     setting = nil
     if group
       ["strings", "files", "texts", "booleans"].each do |t|
@@ -17,13 +17,14 @@ class BsAdmin::Settings
       if setting
         setting.value
       else
+        debugger
         raise "Setting '#{key}' not found in '#{group_key}' SettingGroup."
       end
     end
   end
 
   def self.image group_key, key, format=nil
-    group = SettingGroup.find_group group_key
+    group = BsAdmin::SettingGroup.find_group group_key
     if group
       setting = group.images.find_by_key(key)
       if setting
@@ -35,28 +36,28 @@ class BsAdmin::Settings
   end
 
   def self.destroy_all
-    StringSetting.destroy_all
-    BooleanSetting.destroy_all
-    TextSetting.destroy_all
-    SettingGroup.destroy_all
+    BsAdmin::StringSetting.destroy_all
+    BsAdmin::BooleanSetting.destroy_all
+    BsAdmin::TextSetting.destroy_all
+    BsAdmin::SettingGroup.destroy_all
   end
 
   def self.destroy main_group
-    SettingGroup.where("main_group = ?", main_group).each{ |g| g.destroy }
+    BsAdmin::SettingGroup.where("main_group = ?", main_group).each{ |g| g.destroy }
   end
 
   def self.destroy_group group_key
-    SettingGroup.find_by_key(group_key).destroy
+    BsAdmin::SettingGroup.find_by_key(group_key).destroy
   end
 
   def self.destroy_setting group_key, setting_key
-    SettingGroup.find_group(group_key).settings.each do |s|
+    BsAdmin::SettingGroup.find_group(group_key).settings.each do |s|
       s.destroy if s.key == setting_key
     end
   end
 
   def self.add_to_group key, &block
-    group = SettingGroup.find_by_key key
-    yield SettingBuilder.new(group)
+    group = BsAdmin::SettingGroup.find_by_key key
+    yield BsAdmin::SettingBuilder.new(group)
   end
 end

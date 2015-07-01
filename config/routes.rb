@@ -1,8 +1,8 @@
 # -*- encoding : utf-8 -*-
 BsAdmin::Engine.routes.draw do
-  match '/admin' => 'Admin::sessions#new', as: :admin
+  # match '/admin' => 'Admin::sessions#new', as: :admin
 
-  namespace :admin do
+  # namespace :admin do
     root :to => 'sessions#new'
 
     match 'login' => 'sessions#create', as: :login
@@ -41,5 +41,5 @@ BsAdmin::Engine.routes.draw do
     get     ':base_path/:base_id/:nested_path/images/all'      => 'meta_image_upload#all',      as: :meta_nested_images_all
     post    ':base_path/:base_id/:nested_path/images/create'   => 'meta_image_upload#create',   as: :meta_nested_images_create
     post    ':base_path/:base_id/:nested_path/images/destroy'  => 'meta_image_upload#destroy',  as: :meta_nested_images_destroy
-  end
+  # end
 end

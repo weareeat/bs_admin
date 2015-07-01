@@ -1,0 +1,11 @@
+.page-header
+  h1: a href="#{bs_admin.meta_index_url(@base_meta.base_path)}"= @base_meta.humanized_name_plural
+  .row: .col-md-12: ol.breadcrumb    
+    li: a href="#{bs_admin.meta_edit_path(@base_meta.base_path, @base_instance.id)}"= @base_instance.send(@base_meta.title_field)
+    li= @meta.humanized_name_plural
+
+-all_path = bs_admin.meta_nested_images_all_path(@base_meta.base_path, @base_instance.id, @relationship.nested_path)
+-destroy_path = bs_admin.meta_nested_images_create_path(@base_meta.base_path, @base_instance.id, @relationship.nested_path)
+-create_path = bs_admin.meta_nested_images_destroy_path(@base_meta.base_path, @base_instance.id, @relationship.nested_path)
+
+=bs_multiple_image_uploader "params[#{@meta.symbol}][image]", all_path, create_path, destroy_path

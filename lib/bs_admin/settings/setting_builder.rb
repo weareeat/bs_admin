@@ -4,7 +4,7 @@ class BsAdmin::Settings
       @group = group
     end
 
-    SettingGroup.types.each do |type|
+    BsAdmin::SettingGroup.types.each do |type|
       define_method("#{type}") do |*args|
         display_name, key, value, params = args
         default_params = { display_name: display_name, key: key, value: value }

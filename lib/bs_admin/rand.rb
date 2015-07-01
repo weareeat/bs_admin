@@ -1,4 +1,4 @@
-module UzRand
+module BsAdmin::Rand
   require 'faker'
 
   def rand_color
@@ -168,7 +168,9 @@ module UzRand
   def create_hash_from_meta meta
     result = {}
     meta.form_fields.each do |f|
-      result[f.name] = rand_value_for_field(f) unless [:tags, :placeholder].include? f.type
+      unless [:tags, :placeholder].include? f.type or [:created_at, :updated_at, :id].include? f.name
+        result[f.name] = rand_value_for_field(f)
+      end
     end
     result
   end

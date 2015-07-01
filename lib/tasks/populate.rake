@@ -2,8 +2,8 @@ require 'debugger'
 
 namespace :db do
   require 'faker'
-  require 'uz_rand'
-  include UzRand
+  require 'bs_admin/rand'
+  include BsAdmin::Rand
 
   desc "Erase and fill database with auto generated fake data"
   task :populate => :environment do

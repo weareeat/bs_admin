@@ -8,7 +8,7 @@ class BsAdmin::SettingGroup < ActiveRecord::Base
 
   self.types.each do |type|
     type_plural = type.pluralize
-    has_many type_plural.to_sym, class BsAdmin::_name: "#{type.capitalize}Setting", dependent: :destroy
+    has_many type_plural.to_sym, class_name: "BsAdmin::#{type.capitalize}Setting", dependent: :destroy
     accepts_nested_attributes_for type_plural.to_sym, allow_destroy: true
   end
 
@@ -38,7 +38,7 @@ class BsAdmin::SettingGroup < ActiveRecord::Base
   end
 
   def self.find_group group_key
-    g = SettingGroup.find_by_key(group_key)
+    g = BsAdmin::SettingGroup.find_by_key(group_key)
     raise "SettingGroup '#{group_key}' not found" unless g
     g
   end

@@ -1,25 +1,26 @@
 bs_admin
 ========
 
-**features**
+*features*
 
  - admin for rails based in high level types
  - multiple image upload interface
  - nested models
  - drag and drop sorting
  - store simple settings easily on the database
+ - auto populate models for testing
  
-**uses** 
+*uses* 
 
  - carrierwave
  - summernote
 
-**limitations**
+*limitations*
 
  - supports only rails 3.2.21
  - support only one level of nesting
 
-**getting started**
+*getting started*
 
 add to your gemfile:
 
@@ -60,7 +61,7 @@ add to each model that you will use with bs_admin the following
       end
     end
 
-**settings methods**
+*settings methods*
 
 to create the settings:
 

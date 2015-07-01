@@ -1,3 +1,107 @@
-= BsAdmin
+bs_admin
+========
 
-This project rocks and uses MIT-LICENSE.
+**features**
+
+ - admin for rails based in high level types
+ - multiple image upload interface
+ - nested models
+ - drag and drop sorting
+ - store simple settings easily on the database
+ 
+**uses** 
+
+ - carrierwave
+ - summernote
+
+**limitations**
+
+ - supports only rails 3.2.21
+ - support only one level of nesting
+
+**getting started**
+
+add to your gemfile:
+
+    gem 'bs_admin', git: 'https://github.com/leouz/bs_admin.git'
+
+create a config/initialize/bs_admin.rb file with:
+
+    BsAdmin.config do |c|
+      c.create_admin_for %w(BlogPost DailyBatchLog DailyBatchLogDetail Guide LiveEvent NewsletterEmailLog User Video)
+      c.auto_populate %w(BlogPost DailyBatchLog Guide LiveEvent NewsletterEmailLog User Video)
+    end
+
+add to config/routes.rb file:
+
+    mount BsAdmin::Engine => '/admin'
+
+run
+
+    rake bs_admin:install:migrations
+
+add to each model that you will use with bs_admin the following
+
+    class BlogPost < ActiveRecord::Base  
+      bs_admin do |c|
+        c.fields do |f|
+          f.string :title
+          f.permalink :permalink
+          f.image :cover_image
+          f.string :summary
+          f.wysi :content
+        end
+    
+        c.title_field :title
+        c.index_fields [:title, :permalink, :cover_image, :created_at]
+    
+        c.sort :created_at
+        c.populate_batch_count 5..20
+      end
+    end
+
+**settings methods**
+
+to create the settings:
+
+    BsAdmin::Settings.destroy_all
+    
+    BsAdmin::Settings.create "Main" do |m|
+      m.group :general, "General" do |g|
+        g.string "Website Title", :website_title, "AppName"
+      end
+    
+      m.group :seo, "SEO Meta Tags" do |g|
+        g.text "Meta Tag Description", :meta_tag_description, ""
+        g.text "Meta Tag Keywords", :meta_tag_keywords, ""
+      end
+    
+      m.group :google_analytics, "Google Analytics" do |g|
+        g.string "Tracker", :tracker, ""
+        g.string "Domain", :domain, ENV["APP_DOMAIN"]
+      end
+    end
+    
+    BsAdmin::Settings.create "App" do |m|
+      m.group :app_email, "E-mail" do |g|
+        g.string "Email Subject Prefix", :subject_prefix, "AppName -"
+        g.string "Email From", :from, "email@email.com"
+        g.string "Email Reply To", :reply_to, "email@email.com"    
+      end      
+    end
+
+to use settings in the views:
+
+    setting :group_key, :setting_key
+
+to use image settings in the views:
+
+    image_setting :group_key, :setting_key
+
+to use settings in the controllers and models:
+
+    BsAdmin::Settings.setting :group_key, :setting_key
+
+to use image settings in the controllers and models:
+
+    BsAdmin::Settings.image_setting :group_key, :setting_key

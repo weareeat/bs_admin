@@ -9,7 +9,7 @@ class BsAdmin::SessionsController < BsAdminControllerBase
 
     if admin?
       flash[:notice] = "Successfully logged in";
-      if BS_ADMIN_DASHBOARD
+      if BsAdmin.dashboard?
         redirect_to bs_admin.dashboard_path
       else
         redirect_to bs_admin.settings_group_path

@@ -1,6 +1,6 @@
 require "bs_admin/settings/group_builder"
 
-class BsAdmin::Settings
+module BsAdmin::Settings
   def self.create name, &block
     yield BsAdmin::Settings::GroupBuilder.new(name)
   end
@@ -16,8 +16,7 @@ class BsAdmin::Settings
 
       if setting
         setting.value
-      else
-        debugger
+      else        
         raise "Setting '#{key}' not found in '#{group_key}' SettingGroup."
       end
     end

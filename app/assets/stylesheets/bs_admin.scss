@@ -1,16 +1,12 @@
 $icon-font-path: "bootstrap-sass/assets/fonts/bootstrap/";
 @import "bootstrap-sass/assets/stylesheets/bootstrap-sprockets";
 @import "bootstrap-sass/assets/stylesheets/bootstrap";
+
 @import "font-awesome";
 @import "select2";
 @import "select2-bootstrap";
 @import "summernote";
 @import "jquery.ui.datepicker";
-@import "image-upload";
-@import "layout";
-@import "loading";
-@import "login";
-@import "summernote";
-@import "wysihtml5";
+@import "bs_admin/*";
 
 .full-width { width: 100%; }

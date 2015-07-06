@@ -15,3 +15,12 @@ gem "jquery-rails"
 
 # To use debugger
 # gem 'debugger'
+
+gem "slim"
+gem "slim-rails"
+# gem 'bootstrap-sass', '~> 3.1.1'
+gem 'sass', '3.2.10'
+gem 'sass-rails'
+
+# group :assets do
+# end

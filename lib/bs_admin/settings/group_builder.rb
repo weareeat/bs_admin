@@ -1,6 +1,6 @@
 require "bs_admin/settings/setting_builder"
 
-class BsAdmin::Settings
+module BsAdmin::Settings
   class GroupBuilder
     def initialize main_group
       @main_group = main_group

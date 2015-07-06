@@ -1,4 +1,4 @@
-class BsAdmin::Settings
+module BsAdmin::Settings
   class SettingBuilder
     def initialize group
       @group = group

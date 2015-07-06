@@ -1,9 +1,8 @@
 require 'debugger'
 
-namespace :db do
-  require 'faker'
-  require 'bs_admin/rand'
-  include BsAdmin::Rand
+namespace :bs_admin do  
+  require 'bs_admin/faker_wrapper'
+  include BsAdmin::FakerWrapper
 
   desc "Erase and fill database with auto generated fake data"
   task :populate => :environment do
@@ -28,9 +27,8 @@ namespace :db do
       print "\n" if print
     end
 
-    BS_ADMIN_POPULATE.each do |p|
-      meta = p.constantize.meta
-      populate_meta(meta, meta.populate_batch_count)
+    BsAdmin.metas.each do |m|      
+      populate_meta(m, m.populate_batch_count)
     end
   end
 end

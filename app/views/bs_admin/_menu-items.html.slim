@@ -1,5 +1,5 @@
 li.nav-header Content
--BsAdmin.all.each do |meta|
+-BsAdmin.metas.each do |meta|
   li
     a class="#{'active' if @action.include?(bs_admin.meta_index_url(meta.base_path))}" href="#{bs_admin.meta_index_url(meta.base_path)}"
       = "#{meta.humanized_name_plural} (#{meta.class.all.count})"

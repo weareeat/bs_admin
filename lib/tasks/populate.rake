@@ -1,5 +1,3 @@
-require 'debugger'
-
 namespace :bs_admin do  
   require 'bs_admin/faker_wrapper'
   include BsAdmin::FakerWrapper

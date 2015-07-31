@@ -15,7 +15,7 @@ module BsAdmin
         if hash[:options]
           @options = hash[:options]
           @title = hash[:options][:title] if hash[:options][:title]          
-        end        
+        end
       end
     end
   end

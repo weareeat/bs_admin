@@ -120,14 +120,17 @@ module BsAdmin::FakerWrapper
     rand_string(type)
   end
 
-  def rand_value_for_field(field)
+  def rand_value_for_field(field)    
     if [:string, :email, :permalink, :text, :wysi].include?(field.type)
       rand_string_value_for_field(field)
     elsif [:select, :radiogroup].include?(field.type)
-      if field.options[:options].is_a?(Hash)
-        rand_in_hash(field.options[:options]).key
+      options = field.options[:options]
+      options = field.options[:options].call if options.is_a?(Proc)
+      
+      if options.is_a?(Hash)
+        rand_in_hash(options).key
       else
-        rand_in_array(field.options[:options])[1]
+        rand_in_array(options)[1]
       end
     elsif [:date, :time, :datetime].include?(field.type)
       rand_time
@@ -156,7 +159,7 @@ module BsAdmin::FakerWrapper
       end
     end
   rescue
-    print "rand_value_for_field(#{field.name})"
+    print "rand_value_for_field(#{field.name}:#{field.type})"
     raise
   end
 

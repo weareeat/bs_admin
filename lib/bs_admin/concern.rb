@@ -40,7 +40,7 @@ module BsAdmin::Concern
   included do |base|
   end
 
-  module ClassMethods    
+  module ClassMethods
     def meta
       class_variable_get("@@meta")
     end

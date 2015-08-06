@@ -2,7 +2,7 @@
   h1 Settings
   p
     span.label.label-danger Watch Out!
-    | Changes in the Settings have effect directly on the website's behavior, so make sure you know what you're doing =]
+    | &nbsp;Changes in the Settings have effect directly on the website's behavior, so make sure you know what you're doing =]
   ol.breadcrumb
     li= @group.main_group
     li= @group.display_name
@@ -26,10 +26,10 @@ table.table.table-striped
     - @strings.each do |s|
       tr
         td= s.display_name
-        -if s.type == "ImageSetting"
+        -if s.type == "BsAdmin::ImageSetting"
           td= bs_display :image, { url: s.value_url, thumb: s.value_url(:thumb) }
           td= bs_display :links, { edit: bs_admin.edit_setting_path(@group.key, :image, s.key) }
-        -elsif s.type == "FileSetting"
+        -elsif s.type == "BsAdmin::FileSetting"
           td
             a href="#{s.value_url}" = s.value_url
           td= bs_display :links, { edit: bs_admin.edit_setting_path(@group.key, :file, s.key) }

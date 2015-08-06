@@ -4,7 +4,7 @@ html(lang="en")
     meta(charset="utf-8")
     meta(http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    title= setting(:general, :website_title) + "| Admin Area"
+    title= setting(:general, :title) + "| Admin Area"
     = csrf_meta_tags
     = stylesheet_link_tag "admin", :media => "all"
     = javascript_include_tag "admin"
@@ -13,25 +13,22 @@ html(lang="en")
       .navbar.navbar-inverse.navbar-fixed-top role="navigation" 
         .container-fluid
           .navbar-header
-            a.navbar-brand href="#{bs_admin.root_path}"= setting(:general, :website_title) + " - Admin Area"
+            a.navbar-brand href="#{bs_admin.root_path}"= setting(:general, :title) + " - Admin Area"
           .navbar-collapse
             ul.nav.navbar-nav.navbar-right
-              li
-                a  href="#{bs_admin.logout_path}" Logout
+              li: a  href="#{bs_admin.logout_path}" Logout
       .container-fluid
         .row
           .col-sm-3.col-md-2.sidebar
             ul.nav.nav-sidebar
               -if BsAdmin.dashboard?
-                li
-                  a  class=(('active' if @action.include?('dashboard'))) href=("/admin/dashboard" )  Dashboard                          
+                li: a class=(('active' if @action.include?('dashboard'))) href="/admin/dashboard" Dashboard                          
               = render :partial => "bs_admin/menu-items", :formats => [:html]
               -BsAdmin::SettingGroup.all.group_by{|i| i.main_group}.each do |k, v|
                 li.nav-header= k
                 -v.each do |g|
-                  li
-                    a  class=(('active' if @action.include?(g.key))) href=("#{bs_admin.settings_group_path(g.key)}" ) 
-                      = g.display_name
+                  li: a class=(('active' if @action.include?(g.key))) href=("#{bs_admin.settings_group_path(g.key)}" ) 
+                    = g.display_name
           .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main class="#{@meta.css_wrapper_class if @meta}"            
             = yield
             hr

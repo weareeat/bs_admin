@@ -15,7 +15,7 @@ BsAdmin::Engine.routes.draw do
   post '/assets/destroy' => 'assets#destroy', :as => :assets_destroy
   get '/assets/get(/:group)' => 'assets#get', :as => :assets_get
 
-  get '/dashboard' => 'dashboard#index',     as: :dashboard
+  get '/dashboard' => 'dashboard#index', as: :dashboard
 
   resources :assets, :only => [:index, :create]
 

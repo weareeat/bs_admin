@@ -46,7 +46,7 @@ module BsAdmin::FakerWrapper
   end
 
   def rand_in_hash(a)
-    a.to_a[rand_int(0, a.length)][0].to_s
+    a.to_a[rand_int(0, a.length)].to_s
   end
 
   def rand_tag
@@ -120,17 +120,18 @@ module BsAdmin::FakerWrapper
     rand_string(type)
   end
 
-  def rand_value_for_field(field)    
+  def rand_value_for_field(field)
     if [:string, :email, :permalink, :text, :wysi].include?(field.type)
       rand_string_value_for_field(field)
-    elsif [:select, :radiogroup].include?(field.type)
+    elsif [:select, :radiogroup].include?(field.type)      
       options = field.options[:options]
       options = field.options[:options].call if options.is_a?(Proc)
       
       if options.is_a?(Hash)
-        rand_in_hash(options).key
+        rand_in_hash(options)
       else
-        rand_in_array(options)[1]
+        r = rand_in_array(options)        
+        r.is_a?(Array) ? r[1] : r
       end
     elsif [:date, :time, :datetime].include?(field.type)
       rand_time

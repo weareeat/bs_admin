@@ -1,5 +1,4 @@
 class BsAdmin::DashboardController < BsAdminLoggedControllerBase  
-  def index
-    render "/admin/dashboard/index"
+  def index  
   end
 end

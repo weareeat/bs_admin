@@ -25,7 +25,7 @@ namespace :bs_admin do
       print "\n" if print
     end
 
-    BsAdmin.metas.each do |m|      
+    BsAdmin.auto_populate_metas.each do |m|
       populate_meta(m, m.populate_batch_count)
     end
   end

@@ -24,6 +24,19 @@ module BsAdmin
     @@config.classes.map{ |m| m }
   end
 
+
+  def self.auto_populate_metas
+    self.auto_populate_classes.map{ |m| m.meta }
+  end
+
+  def self.auto_populate_classes
+    self.auto_populate_classes_as_string.map{ |m| m.constantize }
+  end
+
+  def self.auto_populate_classes_as_string
+    @@config.auto_populate_classes.map{ |m| m }
+  end
+
   def self.config &block
     @@config = ConfigBuilder.new
     yield(@@config)

@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 class BsAdmin::SettingGroup < ActiveRecord::Base
-  attr_accessible :display_name, :main_group, :key
+  attr_accessible :display_name, :main_group, :key, :hint
 
   def self.types
     ["string", "image", "file", "text", "boolean"]

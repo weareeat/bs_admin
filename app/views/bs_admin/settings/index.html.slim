@@ -2,12 +2,16 @@
   h1 Settings
   p
     span.label.label-danger Watch Out!
-    | &nbsp;Changes in the Settings have effect directly on the website's behavior, so make sure you know what you're doing =]
+    | &nbsp;Changes in the Settings have effect directly on the website's behavior, so make sure you know what you're doing =]  
   ol.breadcrumb
     li= @group.main_group
     li= @group.display_name
-table.table.table-striped
+br
+-if @group.hint
+  blockquote: h6== @group.hint
+br
 
+table.table.table-striped
   thead
     tr
       th Setting
@@ -16,7 +20,11 @@ table.table.table-striped
   tbody
     - @booleans.each do |s|
       tr
-        td= s.display_name
+        td.first-td
+          = s.display_name
+          - if s.hint
+            br
+            h5: small== "-#{s.hint}"
         td
           -if s.value
             span.glyphicon.glyphicon-ok
@@ -25,7 +33,12 @@ table.table.table-striped
         td= bs_display :links, { edit: bs_admin.edit_setting_path(@group.key, :boolean, s.key) }
     - @strings.each do |s|
       tr
-        td= s.display_name
+        td.first-td
+          = s.display_name
+          - if s.hint
+            br
+            h5: small== "-#{s.hint}"
+
         -if s.type == "BsAdmin::ImageSetting"
           td= bs_display :image, { url: s.value_url, thumb: s.value_url(:thumb) }
           td= bs_display :links, { edit: bs_admin.edit_setting_path(@group.key, :image, s.key) }
@@ -38,7 +51,11 @@ table.table.table-striped
           td= bs_display :links, { edit: bs_admin.edit_setting_path(@group.key, :string, s.key) }
     - @texts.each do |s|
       tr
-        td= s.display_name
+        td.first-td
+          = s.display_name
+          - if s.hint
+            br
+            h5: small== "-#{s.hint}"
         td= s.value
         td= bs_display :links, { edit: bs_admin.edit_setting_path(@group.key, :text, s.key) }
     

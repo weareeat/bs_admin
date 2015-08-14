@@ -4,6 +4,11 @@ module BsAdmin::Settings
       @group = group
     end
 
+    def hint input
+      @group.hint = input
+      @group.save
+    end    
+
     BsAdmin::SettingGroup.types.each do |type|
       define_method("#{type}") do |*args|
         display_name, key, value, params = args

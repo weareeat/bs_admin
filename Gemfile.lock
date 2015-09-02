@@ -1,8 +1,8 @@
 PATH
   remote: .
   specs:
-    bs_admin (0.0.4)
-      bower-rails (~> 0.9.1)
+    bs_admin (0.0.8)
+      bower-rails (~> 0.10.0)
       carrierwave
       faker
       kaminari
@@ -50,7 +50,7 @@ GEM
       erubis (>= 2.6.6)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bower-rails (0.9.2)
+    bower-rails (0.10.0)
     builder (3.0.4)
     capybara (2.4.4)
       mime-types (>= 1.16)
@@ -82,7 +82,7 @@ GEM
     factory_girl_rails (4.5.0)
       factory_girl (~> 4.5.0)
       railties (>= 3.0.0)
-    faker (1.4.3)
+    faker (1.5.0)
       i18n (~> 0.5)
     ffi (1.9.10)
     figaro (1.1.1)
@@ -205,7 +205,7 @@ GEM
       ffi (>= 0.5.0)
     rdoc (3.12.2)
       json (~> 1.4)
-    rmagick (2.15.2)
+    rmagick (2.15.4)
     rspec (3.3.0)
       rspec-core (~> 3.3.0)
       rspec-expectations (~> 3.3.0)

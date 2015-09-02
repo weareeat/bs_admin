@@ -34,8 +34,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'sass', '3.2.10'
   s.add_dependency 'sass-rails'
 
-  # # assets libraries =========================================
-  s.add_dependency 'bower-rails', '~> 0.9.1'
+  # # assets libraries =========================================  
   # s.add_dependency "jquery-rails"
   # s.add_dependency 'underscore-rails'
   # s.add_dependency 'jquery-fileupload-rails'

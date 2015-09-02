@@ -15,12 +15,12 @@ class BsAdmin::MetaNestedController < BsAdminLoggedControllerBase
 
   def new
     @model = @relationship_collection.new
-    @url = bs_admin.bsadmin_nested_create_url(@base_meta.base_path, @base_instance.id, @relationship.nested_path)
+    @url = bs_admin.meta_nested_create_url(@base_meta.base_path, @base_instance.id, @relationship.nested_path)
   end
 
   def edit
     @model = @relationship_collection.find(params[:nested_id])
-    @url = bs_admin.bsadmin_nested_update_url(@base_meta.base_path, @base_instance.id, @relationship.nested_path, params[:nested_id])
+    @url = bs_admin.meta_nested_update_url(@base_meta.base_path, @base_instance.id, @relationship.nested_path, params[:nested_id])
   end
 
   def view
@@ -85,6 +85,6 @@ class BsAdmin::MetaNestedController < BsAdminLoggedControllerBase
   end
 
   def index_url
-    bs_admin.bsadmin_nested_index_url(@base_meta.base_path, @base_instance.id)
+    bs_admin.meta_nested_index_url(@base_meta.base_path, @base_instance.id)
   end
 end

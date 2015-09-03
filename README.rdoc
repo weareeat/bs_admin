@@ -41,6 +41,10 @@ run
 
     rake bs_admin:install:migrations
 
+add to your bower dependices (use of bower-rails gem recomended): 
+    
+    asset "bootstrap-sass", "~3.3.5"
+
 add to each model that you will use with bs_admin the following
 
     class BlogPost < ActiveRecord::Base  

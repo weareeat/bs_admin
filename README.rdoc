@@ -43,7 +43,9 @@ run
 
 add to your bower dependices (use of bower-rails gem recomended): 
     
+    # bs_admin
     asset "bootstrap-sass", "~3.3.5"
+    asset "mjolnic-bootstrap-colorpicker"
 
 add to each model that you will use with bs_admin the following
 

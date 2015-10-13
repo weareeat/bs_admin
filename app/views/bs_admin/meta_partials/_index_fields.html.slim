@@ -11,4 +11,8 @@
       -else
         td= bs_display(field.type, m.send(field.name))
     -else
-      td= bs_display(:string, m.send(f))
+      -value = m.send(f)
+      -if value and %w(png jpg jpeg gif).any?{ |i| value.ends_with?(i) }
+        td= bs_display(:image, { url: value, thumb: value })
+      -else
+        td= bs_display(:string, value)

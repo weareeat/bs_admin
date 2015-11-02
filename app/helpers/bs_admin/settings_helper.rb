@@ -1,4 +1,4 @@
-module BsAdmin::SettingsHelper
+module BsAdmin::SettingsHelper  
   def setting group_key, key
     BsAdmin::Settings.setting(group_key, key)
   end

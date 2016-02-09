@@ -13,7 +13,7 @@ module BsAdmin
 
         if hash[:options]
           @target = hash[:options][:target] if hash[:options][:target]
-          @layout = hash[:options][:layout] if hash[:options][:layout]
+          @layout = hash[:options][:layout] if hash[:options][:layout] == false
           @title = hash[:options][:title] if hash[:options][:title]                
           @nested_path = hash[:options][:nested_path].to_s if hash[:options][:nested_path]        
         end

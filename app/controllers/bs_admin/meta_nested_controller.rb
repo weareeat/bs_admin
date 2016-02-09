@@ -9,6 +9,7 @@ class BsAdmin::MetaNestedController < BsAdminLoggedControllerBase
     else
       @meta = @base_meta
       @instance = @base_instance
+      
       render template: "bs_admin/#{@meta.base_path}/#{@custom_page.template}", layout: @custom_page.layout
     end
   end

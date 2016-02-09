@@ -123,7 +123,7 @@ module BsAdmin::FakerWrapper
   def rand_value_for_field(field)
     if [:string, :email, :permalink, :text, :wysi].include?(field.type)
       rand_string_value_for_field(field)
-    elsif [:select, :radiogroup].include?(field.type)      
+    elsif [:select, :radiogroup].include?(field.type)              
       options = field.options[:options]
       options = field.options[:options].call if options.is_a?(Proc)
       
@@ -178,22 +178,22 @@ module BsAdmin::FakerWrapper
     result
   end
 
-  def create_object_from_meta meta, hash, parent=nil
+  def create_object_from_meta meta, hash, parent=nil, relationship_field_on_parent=nil
     if parent != nil
-      parent.create(hash)
+      parent.send(relationship_field_on_parent.to_sym).create(hash)
     else
       meta.class.create(hash)
     end
   end
 
-  def populate_model class_, count, parent=nil
-    result = []
-    hash = create_hash class_
-    if parent != nil
-      result << parent.create(hash)
-    else
-      result << meta.class.create(hash)
-    end
-    result
-  end
+  # def populate_model class_, count, parent=nil, relationship_field_on_parent=nil
+  #   result = []
+  #   hash = create_hash class_
+  #   if parent != nil
+  #     result << parent.create(hash)
+  #   else
+  #     result << meta.class.create(hash)
+  #   end
+  #   result
+  # end
 end

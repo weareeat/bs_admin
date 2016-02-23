@@ -1,21 +1,38 @@
 ENV["RAILS_ENV"] ||= 'test'
-require File.expand_path("../../config/environment", __FILE__)
+require File.expand_path("../dummy/config/environment", __FILE__)
 require 'rspec/rails'
-require 'capybara/rspec'
+
 require 'debugger'
-require 'formulaic'
+require 'json-schema'
 
-# require 'support/api_schema_matcher'
-# require 'support/factories'
-# require 'support/test_helper'
+# capybara
+# require 'capybara/rspec'
+# require 'capybara/webkit'
+# require 'capybara/poltergeist'
+# require 'support/wait_for_ajax'
+# require 'formulaic'
+# Capybara.javascript_driver = :poltergeist
+# Capybara.javascript_driver = :webkit
+# Capybara.default_max_wait_time = 5
 
+# require 'factory_girl'
+
+app_base_path = Gem.loaded_specs['app_base'].full_gem_path
+Dir["#{app_base_path}/lib/support/matchers/**/*.rb"].sort.each { |f| require f }
+Dir["#{app_base_path}/lib/support/examples/**/*.rb"].sort.each { |f| require f }
+
+require 'support/test_helper'
 require 'bs_admin/faker_wrapper'
+
 
 RSpec.configure do |config|
   config.include Rails.application.routes.url_helpers
-  config.include Capybara::DSL
-  config.include Formulaic::Dsl
+  # config.include FactoryGirl::Syntax::Methods  
   config.include BsAdmin::FakerWrapper
+  config.include TestHelper
+  # config.include Capybara::DSL, type: :feature
+  # config.include Formulaic::Dsl, type: :feature
+  # config.include WaitForAjax, type: :feature
   # config.include Sorcery::TestHelpers::Rails::Controller
   # config.include Sorcery::TestHelpers::Rails::Integration
 
@@ -41,6 +58,21 @@ RSpec.configure do |config|
     # a real object. This is generally recommended, and will default to
     # `true` in RSpec 4.
     mocks.verify_partial_doubles = true
+  end
+
+  config.order = :defined
+
+  config.before(:all) do    
+    clear_database
+    ActionMailer::Base.delivery_method = :test
+    ActionMailer::Base.perform_deliveries = true
+    ActionMailer::Base.deliveries.clear
+  end
+  
+  config.use_transactional_fixtures = false
+
+  config.after :each do
+    ActionMailer::Base.deliveries.clear    
   end
 
 # The settings below are suggested to provide a good initial experience
@@ -88,3 +120,52 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 =end
 end
+
+# MandrillDm.configure do |config|
+#   config.api_key = ENV['MANDRILL_APIKEY']
+# end
+
+# Capybara::Webkit.configure do |config|
+#   # Enable debug mode. Prints a log of everything the driver is doing.
+#   config.debug = true
+
+#   # By default, requests to outside domains (anything besides localhost) will
+#   # result in a warning. Several methods allow you to change this behavior.
+
+#   # Silently return an empty 200 response for any requests to unknown URLs.
+#   config.block_unknown_urls
+
+#   # Allow pages to make requests to any URL without issuing a warning.
+#   config.allow_unknown_urls
+
+#   # Allow a specifc domain without issuing a warning.
+#   config.allow_url("example.com")
+
+#   # Allow a specifc URL and path without issuing a warning.
+#   config.allow_url("example.com/some/path")
+
+#   # Wildcards are allowed in URL expressions.
+#   config.allow_url("*.example.com")
+
+#   # Silently return an empty 200 response for any requests to the given URL.
+#   config.block_url("example.com")
+
+#   # Timeout if requests take longer than 5 seconds
+#   config.timeout = 5
+
+#   # Don't raise errors when SSL certificates can't be validated
+#   config.ignore_ssl_errors
+
+#   # Don't load images
+#   config.skip_image_loading
+
+#   # Use a proxy
+#   config.use_proxy(
+#     host: "example.com",
+#     port: 1234,
+#     user: "proxy",
+#     pass: "secret"
+#   )
+# end
+
+

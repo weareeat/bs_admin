@@ -53,11 +53,14 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'better_errors', '1.1.0'
   s.add_development_dependency 'jazz_hands'
   s.add_development_dependency 'pry-alias'
-  s.add_development_dependency 'binding_of_caller'
-  s.add_development_dependency 'rspec-rails'
-  s.add_development_dependency 'factory_girl_rails'
+  s.add_development_dependency 'binding_of_caller'  
   s.add_development_dependency 'capybara'
   s.add_development_dependency 'formulaic'
-  s.add_development_dependency 'guard-rspec'
   s.add_development_dependency 'figaro'
+
+  s.add_development_dependency 'guard-rspec'
+  s.add_development_dependency 'launchy' 
+  s.add_development_dependency 'rspec-rails', '3.3.3'  
+  s.add_development_dependency 'json-schema'
+  s.add_development_dependency 'jasmine'
 end

@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "properties": {        
+    "email": { "type": "string" },
+    "name": { "type": ["string", "null"] },
+    "has_confirmed_email": { "type": "boolean" },
+    "has_filled_personal_info": { "type": "boolean" },
+    "has_accepted_terms": { "type": "boolean" }        
+  }
+}
+
+

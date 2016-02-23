@@ -1,0 +1,13 @@
+{
+  "type": "object",
+  "properties": {        
+    "id": { "type": "integer" },
+    "folder_id": { "type": "integer" },    
+    "name": { "type": "string" },
+    "width": { "type": "integer" },
+    "height": { "type": "integer" },
+    "is_retina": { "type": "boolean" },
+    "url": { "type": "string" },
+    "retina_url": { "type": "string" }
+  }
+}

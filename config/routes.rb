@@ -7,37 +7,62 @@ BsAdmin::Engine.routes.draw do
   match 'login' => 'sessions#create', as: :login
   match 'logout' => 'sessions#destroy', as: :logout
 
-  match 'settings-group(/:key)' => 'settings#index', as: :settings_group
-  match 'edit-setting/:group_key/:type/:key' => 'settings#edit', as: :edit_setting
-  put 'update-setting' => 'settings#update', as: :update_setting
+  namespace :bs_admin_api, defaults: { format: :json } do
+    scope "/entity/:entity" do
+      get '/' => 'entity#index'
+      post '/' => 'entity#create'
+      scope '/:entity_id' do
+        get '/' => 'entity#show'    
+        put '/' => 'entity#update'
+        delete '/' => 'entity#destroy'
+      end
+    end
 
-  post '/assets/summernote-upload' => 'assets#summernote_upload'
-  post '/assets/destroy' => 'assets#destroy', :as => :assets_destroy
-  get '/assets/get(/:group)' => 'assets#get', :as => :assets_get
+    namespace :settings do 
+      scope "/setting/" do
+        get '/' => 'group#index'
+        scope "/:group_id" do
+          get '/' => 'setting#index'
+          scope '/:setting_id' do
+            get '/' => 'setting#show'    
+            put '/' => 'setting#update'            
+          end
+        end
+      end
+    end
+  end
 
-  get '/dashboard' => 'dashboard#index', as: :dashboard
+  # match 'settings-group(/:key)' => 'settings#index', as: :settings_group
+  # match 'edit-setting/:group_key/:type/:key' => 'settings#edit', as: :edit_setting
+  # put 'update-setting' => 'settings#update', as: :update_setting
 
-  resources :assets, :only => [:index, :create]
+  # post '/assets/summernote-upload' => 'assets#summernote_upload'
+  # post '/assets/destroy' => 'assets#destroy', :as => :assets_destroy
+  # get '/assets/get(/:group)' => 'assets#get', :as => :assets_get
 
-  get     ':base_path/new'      => 'meta#new',     as: :meta_new
-  post    ':base_path'          => 'meta#create',  as: :meta_create
-  put     ':base_path/:id'      => 'meta#update',  as: :meta_update
-  get     ':base_path'          => 'meta#index',   as: :meta_index
-  get     ':base_path/:id/edit' => 'meta#edit',    as: :meta_edit
-  get     ':base_path/:id/view' => 'meta#view',    as: :meta_view
-  delete  ':base_path/:id'      => 'meta#destroy', as: :meta_destroy
-  post    ':base_path/sort'     => 'meta#sort',    as: :meta_sort
+  # get '/dashboard' => 'dashboard#index', as: :dashboard
 
-  get     ':base_path/:base_id/:nested_path/new'             => 'meta_nested#new',     as: :meta_nested_new
-  post    ':base_path/:base_id/:nested_path'                 => 'meta_nested#create',  as: :meta_nested_create
-  put     ':base_path/:base_id/:nested_path/:nested_id'      => 'meta_nested#update',  as: :meta_nested_update
-  get     ':base_path/:base_id/:nested_path'                 => 'meta_nested#index',   as: :meta_nested_index
-  get     ':base_path/:base_id/:nested_path/:nested_id/edit' => 'meta_nested#edit',    as: :meta_nested_edit
-  get     ':base_path/:base_id/:nested_path/:nested_id/view' => 'meta_nested#view',    as: :meta_nested_view
-  delete  ':base_path/:base_id/:nested_path/:nested_id'      => 'meta_nested#destroy', as: :meta_nested_destroy
-  post    ':base_path/:base_id/:nested_path/sort'            => 'meta_nested#sort',    as: :meta_nested_sort
+  # resources :assets, :only => [:index, :create]
 
-  get     ':base_path/:base_id/:nested_path/images/all'      => 'meta_image_upload#all',      as: :meta_nested_images_all
-  post    ':base_path/:base_id/:nested_path/images/create'   => 'meta_image_upload#create',   as: :meta_nested_images_create
-  post    ':base_path/:base_id/:nested_path/images/destroy'  => 'meta_image_upload#destroy',  as: :meta_nested_images_destroy  
+  # get     ':base_path/new'      => 'meta#new',     as: :meta_new
+  # post    ':base_path'          => 'meta#create',  as: :meta_create
+  # put     ':base_path/:id'      => 'meta#update',  as: :meta_update
+  # get     ':base_path'          => 'meta#index',   as: :meta_index
+  # get     ':base_path/:id/edit' => 'meta#edit',    as: :meta_edit
+  # get     ':base_path/:id/view' => 'meta#view',    as: :meta_view
+  # delete  ':base_path/:id'      => 'meta#destroy', as: :meta_destroy
+  # post    ':base_path/sort'     => 'meta#sort',    as: :meta_sort
+
+  # get     ':base_path/:base_id/:nested_path/new'             => 'meta_nested#new',     as: :meta_nested_new
+  # post    ':base_path/:base_id/:nested_path'                 => 'meta_nested#create',  as: :meta_nested_create
+  # put     ':base_path/:base_id/:nested_path/:nested_id'      => 'meta_nested#update',  as: :meta_nested_update
+  # get     ':base_path/:base_id/:nested_path'                 => 'meta_nested#index',   as: :meta_nested_index
+  # get     ':base_path/:base_id/:nested_path/:nested_id/edit' => 'meta_nested#edit',    as: :meta_nested_edit
+  # get     ':base_path/:base_id/:nested_path/:nested_id/view' => 'meta_nested#view',    as: :meta_nested_view
+  # delete  ':base_path/:base_id/:nested_path/:nested_id'      => 'meta_nested#destroy', as: :meta_nested_destroy
+  # post    ':base_path/:base_id/:nested_path/sort'            => 'meta_nested#sort',    as: :meta_nested_sort
+
+  # get     ':base_path/:base_id/:nested_path/images/all'      => 'meta_image_upload#all',      as: :meta_nested_images_all
+  # post    ':base_path/:base_id/:nested_path/images/create'   => 'meta_image_upload#create',   as: :meta_nested_images_create
+  # post    ':base_path/:base_id/:nested_path/images/destroy'  => 'meta_image_upload#destroy',  as: :meta_nested_images_destroy  
 end

@@ -1,0 +1,585 @@
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Started GET "/admin" for 127.0.0.1 at 2015-07-01 19:05:34 -0300
+Processing by BsAdmin::SessionsController#new as HTML
+Redirected to http://www.example.com/admin/settings-group
+Completed 302 Found in 2.6ms (ActiveRecord: 0.0ms)
+Started GET "/admin/settings-group" for 127.0.0.1 at 2015-07-01 19:05:34 -0300
+Processing by BsAdmin::SettingsController#index as HTML
+Completed 500 Internal Server Error in 1.0ms
+Started GET "/admin" for 127.0.0.1 at 2015-07-01 19:05:34 -0300
+Processing by BsAdmin::SessionsController#new as HTML
+Redirected to http://www.example.com/admin/settings-group
+Completed 302 Found in 0.3ms (ActiveRecord: 0.0ms)
+Started GET "/admin/settings-group" for 127.0.0.1 at 2015-07-01 19:05:34 -0300
+Processing by BsAdmin::SettingsController#index as HTML
+Completed 500 Internal Server Error in 0.4ms
+Started GET "/admin" for 127.0.0.1 at 2015-07-01 19:05:34 -0300
+Processing by BsAdmin::SessionsController#new as HTML
+Redirected to http://www.example.com/admin/settings-group
+Completed 302 Found in 0.3ms (ActiveRecord: 0.0ms)
+Started GET "/admin/settings-group" for 127.0.0.1 at 2015-07-01 19:05:34 -0300
+Processing by BsAdmin::SettingsController#index as HTML
+Completed 500 Internal Server Error in 0.4ms
+Started GET "/admin" for 127.0.0.1 at 2015-07-01 19:05:34 -0300
+Processing by BsAdmin::SessionsController#new as HTML
+Redirected to http://www.example.com/admin/settings-group
+Completed 302 Found in 0.3ms (ActiveRecord: 0.0ms)
+Started GET "/admin/settings-group" for 127.0.0.1 at 2015-07-01 19:05:34 -0300
+Processing by BsAdmin::SettingsController#index as HTML
+Completed 500 Internal Server Error in 0.4ms
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (0.9ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (0.7ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (2.9ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Migrating to CreatePosts (20150701214525)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "posts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "content" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20150701214525')[0m
+  [1m[35m (0.5ms)[0m  commit transaction
+Migrating to CreateComments (20150701214611)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "content" text, "post_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20150701214611')[0m
+  [1m[35m (0.5ms)[0m  commit transaction
+Migrating to CreateBsAdmin (20150701214842)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "bs_admin_assets" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "type" varchar(255), "group" varchar(255), "file" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "bs_admin_setting_groups" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "key" varchar(255), "display_name" varchar(255), "main_group" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "bs_admin_string_settings" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "type" varchar(255), "setting_group_id" integer, "key" varchar(255), "display_name" varchar(255), "hint" varchar(255), "has_user_changed" boolean DEFAULT 'f', "value" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "bs_admin_text_settings" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "type" varchar(255), "setting_group_id" integer, "key" varchar(255), "display_name" varchar(255), "hint" varchar(255), "has_user_changed" boolean DEFAULT 'f', "value" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "bs_admin_boolean_settings" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "type" varchar(255), "setting_group_id" integer, "key" varchar(255), "display_name" varchar(255), "hint" varchar(255), "has_user_changed" boolean DEFAULT 'f', "value" boolean, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20150701214842')[0m
+  [1m[35m (0.7ms)[0m  commit transaction
+Migrating to SeedMainBsAdminSettings (20150701214958)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (1.4ms)[0m  INSERT INTO "bs_admin_setting_groups" ("created_at", "display_name", "key", "main_group", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Wed, 01 Jul 2015 22:06:01 UTC +00:00], ["display_name", "General"], ["key", :general], ["main_group", "Main"], ["updated_at", Wed, 01 Jul 2015 22:06:01 UTC +00:00]]
+  [1m[36mBsAdmin::StringSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "bs_admin_string_settings" ("created_at", "display_name", "has_user_changed", "hint", "key", "setting_group_id", "type", "updated_at", "value") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)  [["created_at", Wed, 01 Jul 2015 22:06:01 UTC +00:00], ["display_name", "Website Title"], ["has_user_changed", false], ["hint", nil], ["key", :website_title], ["setting_group_id", 1], ["type", nil], ["updated_at", Wed, 01 Jul 2015 22:06:01 UTC +00:00], ["value", "Dummy"]]
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20150701214958')[0m
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Connecting to database specified by database.yml
+Started GET "/admin" for 127.0.0.1 at 2015-07-01 19:06:07 -0300
+Processing by BsAdmin::SessionsController#new as HTML
+Redirected to http://www.example.com/admin/settings-group
+Completed 302 Found in 23.2ms (ActiveRecord: 0.0ms)
+Started GET "/admin/settings-group" for 127.0.0.1 at 2015-07-01 19:06:07 -0300
+Processing by BsAdmin::SettingsController#index as HTML
+  [1m[36mBsAdmin::SettingGroup Load (0.1ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" LIMIT 1[0m
+  [1m[35mBsAdmin::SettingGroup Load (0.1ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+Completed 500 Internal Server Error in 67.1ms
+Started GET "/admin" for 127.0.0.1 at 2015-07-01 19:06:07 -0300
+Processing by BsAdmin::SessionsController#new as HTML
+Redirected to http://www.example.com/admin/settings-group
+Completed 302 Found in 0.4ms (ActiveRecord: 0.0ms)
+Started GET "/admin/settings-group" for 127.0.0.1 at 2015-07-01 19:06:07 -0300
+Processing by BsAdmin::SettingsController#index as HTML
+  [1m[36mBsAdmin::SettingGroup Load (0.1ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" LIMIT 1[0m
+  [1m[35mBsAdmin::SettingGroup Load (0.1ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+Completed 500 Internal Server Error in 2.3ms
+Started GET "/admin" for 127.0.0.1 at 2015-07-01 19:06:07 -0300
+Processing by BsAdmin::SessionsController#new as HTML
+Redirected to http://www.example.com/admin/settings-group
+Completed 302 Found in 0.3ms (ActiveRecord: 0.0ms)
+Started GET "/admin/settings-group" for 127.0.0.1 at 2015-07-01 19:06:07 -0300
+Processing by BsAdmin::SettingsController#index as HTML
+  [1m[36mBsAdmin::SettingGroup Load (0.1ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" LIMIT 1[0m
+  [1m[35mBsAdmin::SettingGroup Load (0.1ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+Completed 500 Internal Server Error in 2.1ms
+Started GET "/admin" for 127.0.0.1 at 2015-07-01 19:06:07 -0300
+Processing by BsAdmin::SessionsController#new as HTML
+Redirected to http://www.example.com/admin/settings-group
+Completed 302 Found in 0.3ms (ActiveRecord: 0.0ms)
+Started GET "/admin/settings-group" for 127.0.0.1 at 2015-07-01 19:06:07 -0300
+Processing by BsAdmin::SettingsController#index as HTML
+  [1m[36mBsAdmin::SettingGroup Load (0.1ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" LIMIT 1[0m
+  [1m[35mBsAdmin::SettingGroup Load (0.1ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+Completed 500 Internal Server Error in 1.9ms
+Connecting to database specified by database.yml
+Started GET "/admin" for 127.0.0.1 at 2015-07-01 19:08:08 -0300
+Processing by BsAdmin::SessionsController#new as HTML
+Redirected to http://www.example.com/admin/settings-group
+Completed 302 Found in 2.1ms (ActiveRecord: 0.0ms)
+Started GET "/admin/settings-group" for 127.0.0.1 at 2015-07-01 19:08:08 -0300
+Processing by BsAdmin::SettingsController#index as HTML
+  [1m[36mBsAdmin::SettingGroup Load (0.1ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" LIMIT 1[0m
+  [1m[35mBsAdmin::SettingGroup Load (0.1ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+Completed 500 Internal Server Error in 83.2ms
+Started GET "/admin" for 127.0.0.1 at 2015-07-01 19:08:08 -0300
+Processing by BsAdmin::SessionsController#new as HTML
+Redirected to http://www.example.com/admin/settings-group
+Completed 302 Found in 0.3ms (ActiveRecord: 0.0ms)
+Started GET "/admin/settings-group" for 127.0.0.1 at 2015-07-01 19:08:08 -0300
+Processing by BsAdmin::SettingsController#index as HTML
+  [1m[36mBsAdmin::SettingGroup Load (0.1ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" LIMIT 1[0m
+  [1m[35mBsAdmin::SettingGroup Load (0.1ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+Completed 500 Internal Server Error in 2.3ms
+Started GET "/admin" for 127.0.0.1 at 2015-07-01 19:08:08 -0300
+Processing by BsAdmin::SessionsController#new as HTML
+Redirected to http://www.example.com/admin/settings-group
+Completed 302 Found in 0.3ms (ActiveRecord: 0.0ms)
+Started GET "/admin/settings-group" for 127.0.0.1 at 2015-07-01 19:08:08 -0300
+Processing by BsAdmin::SettingsController#index as HTML
+  [1m[36mBsAdmin::SettingGroup Load (0.1ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" LIMIT 1[0m
+  [1m[35mBsAdmin::SettingGroup Load (0.1ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+Completed 500 Internal Server Error in 2.0ms
+Started GET "/admin" for 127.0.0.1 at 2015-07-01 19:08:08 -0300
+Processing by BsAdmin::SessionsController#new as HTML
+Redirected to http://www.example.com/admin/settings-group
+Completed 302 Found in 0.3ms (ActiveRecord: 0.0ms)
+Started GET "/admin/settings-group" for 127.0.0.1 at 2015-07-01 19:08:08 -0300
+Processing by BsAdmin::SettingsController#index as HTML
+  [1m[36mBsAdmin::SettingGroup Load (0.1ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" LIMIT 1[0m
+  [1m[35mBsAdmin::SettingGroup Load (0.1ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+Completed 500 Internal Server Error in 2.0ms
+Connecting to database specified by database.yml
+Started GET "/admin" for 127.0.0.1 at 2015-07-01 19:09:01 -0300
+Processing by BsAdmin::SessionsController#new as HTML
+Redirected to http://www.example.com/admin/settings-group
+Completed 302 Found in 2.8ms (ActiveRecord: 0.0ms)
+Started GET "/admin/settings-group" for 127.0.0.1 at 2015-07-01 19:09:01 -0300
+Processing by BsAdmin::SettingsController#index as HTML
+  [1m[36mBsAdmin::SettingGroup Load (0.1ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" LIMIT 1[0m
+  [1m[35mBsAdmin::SettingGroup Load (0.1ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+Completed 500 Internal Server Error in 67.3ms
+Started GET "/admin" for 127.0.0.1 at 2015-07-01 19:09:01 -0300
+Processing by BsAdmin::SessionsController#new as HTML
+Redirected to http://www.example.com/admin/settings-group
+Completed 302 Found in 0.3ms (ActiveRecord: 0.0ms)
+Started GET "/admin/settings-group" for 127.0.0.1 at 2015-07-01 19:09:01 -0300
+Processing by BsAdmin::SettingsController#index as HTML
+  [1m[36mBsAdmin::SettingGroup Load (0.2ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" LIMIT 1[0m
+  [1m[35mBsAdmin::SettingGroup Load (0.1ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+Completed 500 Internal Server Error in 2.9ms
+Started GET "/admin" for 127.0.0.1 at 2015-07-01 19:09:01 -0300
+Processing by BsAdmin::SessionsController#new as HTML
+Redirected to http://www.example.com/admin/settings-group
+Completed 302 Found in 0.4ms (ActiveRecord: 0.0ms)
+Started GET "/admin/settings-group" for 127.0.0.1 at 2015-07-01 19:09:01 -0300
+Processing by BsAdmin::SettingsController#index as HTML
+  [1m[36mBsAdmin::SettingGroup Load (0.3ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" LIMIT 1[0m
+  [1m[35mBsAdmin::SettingGroup Load (0.2ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+Completed 500 Internal Server Error in 4.2ms
+Started GET "/admin" for 127.0.0.1 at 2015-07-01 19:09:01 -0300
+Processing by BsAdmin::SessionsController#new as HTML
+Redirected to http://www.example.com/admin/settings-group
+Completed 302 Found in 0.3ms (ActiveRecord: 0.0ms)
+Started GET "/admin/settings-group" for 127.0.0.1 at 2015-07-01 19:09:01 -0300
+Processing by BsAdmin::SettingsController#index as HTML
+  [1m[36mBsAdmin::SettingGroup Load (0.1ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" LIMIT 1[0m
+  [1m[35mBsAdmin::SettingGroup Load (0.1ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+Completed 500 Internal Server Error in 2.1ms
+Connecting to database specified by database.yml
+Started GET "/admin" for 127.0.0.1 at 2015-07-01 19:10:49 -0300
+Processing by BsAdmin::SessionsController#new as HTML
+Redirected to http://www.example.com/admin/settings-group
+Completed 302 Found in 2.0ms (ActiveRecord: 0.0ms)
+Started GET "/admin/settings-group" for 127.0.0.1 at 2015-07-01 19:10:49 -0300
+Processing by BsAdmin::SettingsController#index as HTML
+  [1m[36mBsAdmin::SettingGroup Load (0.1ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" LIMIT 1[0m
+  [1m[35mBsAdmin::SettingGroup Load (0.1ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+  [1m[36mBsAdmin::BooleanSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_boolean_settings".* FROM "bs_admin_boolean_settings" WHERE "bs_admin_boolean_settings"."setting_group_id" = 1 ORDER BY display_name[0m
+  [1m[35mBsAdmin::StringSetting Load (0.1ms)[0m  SELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 ORDER BY display_name
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/fields/display/_links.html.slim (2.3ms)
+  [1m[36mBsAdmin::TextSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_text_settings".* FROM "bs_admin_text_settings" WHERE "bs_admin_text_settings"."setting_group_id" = 1 ORDER BY display_name[0m
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/settings/index.html.slim within layouts/bs_admin (52.3ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+  [1m[36mBsAdmin::StringSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1[0m
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/_menu-items.html.slim (7.1ms)
+Completed 500 Internal Server Error in 131.5ms
+Started GET "/admin" for 127.0.0.1 at 2015-07-01 19:10:49 -0300
+Processing by BsAdmin::SessionsController#new as HTML
+Redirected to http://www.example.com/admin/settings-group
+Completed 302 Found in 0.3ms (ActiveRecord: 0.0ms)
+Started GET "/admin/settings-group" for 127.0.0.1 at 2015-07-01 19:10:49 -0300
+Processing by BsAdmin::SettingsController#index as HTML
+  [1m[35mBsAdmin::SettingGroup Load (0.1ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" LIMIT 1
+  [1m[36mBsAdmin::SettingGroup Load (0.1ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1[0m
+  [1m[35mBsAdmin::BooleanSetting Load (0.1ms)[0m  SELECT "bs_admin_boolean_settings".* FROM "bs_admin_boolean_settings" WHERE "bs_admin_boolean_settings"."setting_group_id" = 1 ORDER BY display_name
+  [1m[36mBsAdmin::StringSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 ORDER BY display_name[0m
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/fields/display/_links.html.slim (0.1ms)
+  [1m[35mBsAdmin::TextSetting Load (0.1ms)[0m  SELECT "bs_admin_text_settings".* FROM "bs_admin_text_settings" WHERE "bs_admin_text_settings"."setting_group_id" = 1 ORDER BY display_name
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1[0m
+  [1m[35mBsAdmin::StringSetting Load (0.1ms)[0m  SELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/_menu-items.html.slim (0.6ms)
+Completed 500 Internal Server Error in 6.8ms
+Started GET "/admin" for 127.0.0.1 at 2015-07-01 19:10:49 -0300
+Processing by BsAdmin::SessionsController#new as HTML
+Redirected to http://www.example.com/admin/settings-group
+Completed 302 Found in 0.3ms (ActiveRecord: 0.0ms)
+Started GET "/admin/settings-group" for 127.0.0.1 at 2015-07-01 19:10:49 -0300
+Processing by BsAdmin::SettingsController#index as HTML
+  [1m[36mBsAdmin::SettingGroup Load (0.1ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" LIMIT 1[0m
+  [1m[35mBsAdmin::SettingGroup Load (0.1ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+  [1m[36mBsAdmin::BooleanSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_boolean_settings".* FROM "bs_admin_boolean_settings" WHERE "bs_admin_boolean_settings"."setting_group_id" = 1 ORDER BY display_name[0m
+  [1m[35mBsAdmin::StringSetting Load (0.1ms)[0m  SELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 ORDER BY display_name
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/fields/display/_links.html.slim (0.1ms)
+  [1m[36mBsAdmin::TextSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_text_settings".* FROM "bs_admin_text_settings" WHERE "bs_admin_text_settings"."setting_group_id" = 1 ORDER BY display_name[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+  [1m[36mBsAdmin::StringSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1[0m
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/_menu-items.html.slim (0.6ms)
+Completed 500 Internal Server Error in 6.5ms
+Started GET "/admin" for 127.0.0.1 at 2015-07-01 19:10:49 -0300
+Processing by BsAdmin::SessionsController#new as HTML
+Redirected to http://www.example.com/admin/settings-group
+Completed 302 Found in 0.3ms (ActiveRecord: 0.0ms)
+Started GET "/admin/settings-group" for 127.0.0.1 at 2015-07-01 19:10:49 -0300
+Processing by BsAdmin::SettingsController#index as HTML
+  [1m[35mBsAdmin::SettingGroup Load (0.1ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" LIMIT 1
+  [1m[36mBsAdmin::SettingGroup Load (0.1ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1[0m
+  [1m[35mBsAdmin::BooleanSetting Load (0.1ms)[0m  SELECT "bs_admin_boolean_settings".* FROM "bs_admin_boolean_settings" WHERE "bs_admin_boolean_settings"."setting_group_id" = 1 ORDER BY display_name
+  [1m[36mBsAdmin::StringSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 ORDER BY display_name[0m
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/fields/display/_links.html.slim (0.1ms)
+  [1m[35mBsAdmin::TextSetting Load (0.1ms)[0m  SELECT "bs_admin_text_settings".* FROM "bs_admin_text_settings" WHERE "bs_admin_text_settings"."setting_group_id" = 1 ORDER BY display_name
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1[0m
+  [1m[35mBsAdmin::StringSetting Load (0.1ms)[0m  SELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/_menu-items.html.slim (0.6ms)
+Completed 500 Internal Server Error in 6.7ms
+Connecting to database specified by database.yml
+Started GET "/admin" for 127.0.0.1 at 2015-07-01 19:11:12 -0300
+Processing by BsAdmin::SessionsController#new as HTML
+Redirected to http://www.example.com/admin/settings-group
+Completed 302 Found in 2.8ms (ActiveRecord: 0.0ms)
+Started GET "/admin/settings-group" for 127.0.0.1 at 2015-07-01 19:11:12 -0300
+Processing by BsAdmin::SettingsController#index as HTML
+  [1m[36mBsAdmin::SettingGroup Load (0.1ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" LIMIT 1[0m
+  [1m[35mBsAdmin::SettingGroup Load (0.1ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+  [1m[36mBsAdmin::BooleanSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_boolean_settings".* FROM "bs_admin_boolean_settings" WHERE "bs_admin_boolean_settings"."setting_group_id" = 1 ORDER BY display_name[0m
+  [1m[35mBsAdmin::StringSetting Load (0.1ms)[0m  SELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 ORDER BY display_name
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/fields/display/_links.html.slim (2.6ms)
+  [1m[36mBsAdmin::TextSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_text_settings".* FROM "bs_admin_text_settings" WHERE "bs_admin_text_settings"."setting_group_id" = 1 ORDER BY display_name[0m
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/settings/index.html.slim within layouts/bs_admin (46.7ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+  [1m[36mBsAdmin::StringSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1[0m
+  [1m[35mPost Load (0.1ms)[0m  SELECT "posts".* FROM "posts" 
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/_menu-items.html.slim (3.3ms)
+  [1m[36mBsAdmin::SettingGroup Load (0.1ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" [0m
+Completed 200 OK in 115.9ms (Views: 71.4ms | ActiveRecord: 1.5ms)
+Started GET "/admin" for 127.0.0.1 at 2015-07-01 19:11:12 -0300
+Processing by BsAdmin::SessionsController#new as HTML
+Redirected to http://www.example.com/admin/settings-group
+Completed 302 Found in 0.5ms (ActiveRecord: 0.0ms)
+Started GET "/admin/settings-group" for 127.0.0.1 at 2015-07-01 19:11:12 -0300
+Processing by BsAdmin::SettingsController#index as HTML
+  [1m[35mBsAdmin::SettingGroup Load (0.1ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" LIMIT 1
+  [1m[36mBsAdmin::SettingGroup Load (0.1ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1[0m
+  [1m[35mBsAdmin::BooleanSetting Load (0.1ms)[0m  SELECT "bs_admin_boolean_settings".* FROM "bs_admin_boolean_settings" WHERE "bs_admin_boolean_settings"."setting_group_id" = 1 ORDER BY display_name
+  [1m[36mBsAdmin::StringSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 ORDER BY display_name[0m
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/fields/display/_links.html.slim (0.1ms)
+  [1m[35mBsAdmin::TextSetting Load (0.1ms)[0m  SELECT "bs_admin_text_settings".* FROM "bs_admin_text_settings" WHERE "bs_admin_text_settings"."setting_group_id" = 1 ORDER BY display_name
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1[0m
+  [1m[35mBsAdmin::StringSetting Load (0.1ms)[0m  SELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1
+  [1m[36mPost Load (0.1ms)[0m  [1mSELECT "posts".* FROM "posts" [0m
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/_menu-items.html.slim (0.5ms)
+  [1m[35mBsAdmin::SettingGroup Load (0.1ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" 
+Completed 200 OK in 8.0ms (Views: 5.5ms | ActiveRecord: 0.7ms)
+Started GET "/admin" for 127.0.0.1 at 2015-07-01 19:11:12 -0300
+Processing by BsAdmin::SessionsController#new as HTML
+Redirected to http://www.example.com/admin/settings-group
+Completed 302 Found in 0.3ms (ActiveRecord: 0.0ms)
+Started GET "/admin/settings-group" for 127.0.0.1 at 2015-07-01 19:11:12 -0300
+Processing by BsAdmin::SettingsController#index as HTML
+  [1m[36mBsAdmin::SettingGroup Load (0.1ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" LIMIT 1[0m
+  [1m[35mBsAdmin::SettingGroup Load (0.1ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+  [1m[36mBsAdmin::BooleanSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_boolean_settings".* FROM "bs_admin_boolean_settings" WHERE "bs_admin_boolean_settings"."setting_group_id" = 1 ORDER BY display_name[0m
+  [1m[35mBsAdmin::StringSetting Load (0.1ms)[0m  SELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 ORDER BY display_name
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/fields/display/_links.html.slim (0.1ms)
+  [1m[36mBsAdmin::TextSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_text_settings".* FROM "bs_admin_text_settings" WHERE "bs_admin_text_settings"."setting_group_id" = 1 ORDER BY display_name[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+  [1m[36mBsAdmin::StringSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1[0m
+  [1m[35mPost Load (0.1ms)[0m  SELECT "posts".* FROM "posts" 
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/_menu-items.html.slim (0.5ms)
+  [1m[36mBsAdmin::SettingGroup Load (0.1ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" [0m
+Completed 200 OK in 6.8ms (Views: 4.9ms | ActiveRecord: 0.6ms)
+Started GET "/admin" for 127.0.0.1 at 2015-07-01 19:11:12 -0300
+Processing by BsAdmin::SessionsController#new as HTML
+Redirected to http://www.example.com/admin/settings-group
+Completed 302 Found in 0.3ms (ActiveRecord: 0.0ms)
+Started GET "/admin/settings-group" for 127.0.0.1 at 2015-07-01 19:11:12 -0300
+Processing by BsAdmin::SettingsController#index as HTML
+  [1m[35mBsAdmin::SettingGroup Load (0.1ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" LIMIT 1
+  [1m[36mBsAdmin::SettingGroup Load (0.1ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1[0m
+  [1m[35mBsAdmin::BooleanSetting Load (0.1ms)[0m  SELECT "bs_admin_boolean_settings".* FROM "bs_admin_boolean_settings" WHERE "bs_admin_boolean_settings"."setting_group_id" = 1 ORDER BY display_name
+  [1m[36mBsAdmin::StringSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 ORDER BY display_name[0m
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/fields/display/_links.html.slim (0.1ms)
+  [1m[35mBsAdmin::TextSetting Load (0.1ms)[0m  SELECT "bs_admin_text_settings".* FROM "bs_admin_text_settings" WHERE "bs_admin_text_settings"."setting_group_id" = 1 ORDER BY display_name
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1[0m
+  [1m[35mBsAdmin::StringSetting Load (0.1ms)[0m  SELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1
+  [1m[36mPost Load (0.1ms)[0m  [1mSELECT "posts".* FROM "posts" [0m
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/_menu-items.html.slim (0.5ms)
+  [1m[35mBsAdmin::SettingGroup Load (0.1ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" 
+Completed 200 OK in 7.0ms (Views: 5.0ms | ActiveRecord: 0.6ms)
+Connecting to database specified by database.yml
+Started GET "/admin" for 127.0.0.1 at 2015-07-01 19:12:52 -0300
+Processing by BsAdmin::SessionsController#new as HTML
+Redirected to http://www.example.com/admin/settings-group
+Completed 302 Found in 3.5ms (ActiveRecord: 0.0ms)
+Started GET "/admin/settings-group" for 127.0.0.1 at 2015-07-01 19:12:53 -0300
+Processing by BsAdmin::SettingsController#index as HTML
+  [1m[36mBsAdmin::SettingGroup Load (0.1ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" LIMIT 1[0m
+  [1m[35mBsAdmin::SettingGroup Load (0.1ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+  [1m[36mBsAdmin::BooleanSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_boolean_settings".* FROM "bs_admin_boolean_settings" WHERE "bs_admin_boolean_settings"."setting_group_id" = 1 ORDER BY display_name[0m
+  [1m[35mBsAdmin::StringSetting Load (0.1ms)[0m  SELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 ORDER BY display_name
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/fields/display/_links.html.slim (2.3ms)
+  [1m[36mBsAdmin::TextSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_text_settings".* FROM "bs_admin_text_settings" WHERE "bs_admin_text_settings"."setting_group_id" = 1 ORDER BY display_name[0m
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/settings/index.html.slim within layouts/bs_admin (48.9ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+  [1m[36mBsAdmin::StringSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1[0m
+  [1m[35mPost Load (0.1ms)[0m  SELECT "posts".* FROM "posts" 
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/_menu-items.html.slim (3.4ms)
+  [1m[36mBsAdmin::SettingGroup Load (0.1ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" [0m
+Completed 200 OK in 120.8ms (Views: 75.5ms | ActiveRecord: 1.7ms)
+Started GET "/admin" for 127.0.0.1 at 2015-07-01 19:12:53 -0300
+Processing by BsAdmin::SessionsController#new as HTML
+Redirected to http://www.example.com/admin/settings-group
+Completed 302 Found in 0.3ms (ActiveRecord: 0.0ms)
+Started GET "/admin/settings-group" for 127.0.0.1 at 2015-07-01 19:12:53 -0300
+Processing by BsAdmin::SettingsController#index as HTML
+  [1m[35mBsAdmin::SettingGroup Load (0.1ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" LIMIT 1
+  [1m[36mBsAdmin::SettingGroup Load (0.1ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1[0m
+  [1m[35mBsAdmin::BooleanSetting Load (0.2ms)[0m  SELECT "bs_admin_boolean_settings".* FROM "bs_admin_boolean_settings" WHERE "bs_admin_boolean_settings"."setting_group_id" = 1 ORDER BY display_name
+  [1m[36mBsAdmin::StringSetting Load (0.2ms)[0m  [1mSELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 ORDER BY display_name[0m
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/fields/display/_links.html.slim (0.1ms)
+  [1m[35mBsAdmin::TextSetting Load (0.1ms)[0m  SELECT "bs_admin_text_settings".* FROM "bs_admin_text_settings" WHERE "bs_admin_text_settings"."setting_group_id" = 1 ORDER BY display_name
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1[0m
+  [1m[35mBsAdmin::StringSetting Load (0.1ms)[0m  SELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1
+  [1m[36mPost Load (0.1ms)[0m  [1mSELECT "posts".* FROM "posts" [0m
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/_menu-items.html.slim (0.5ms)
+  [1m[35mBsAdmin::SettingGroup Load (0.1ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" 
+Completed 200 OK in 9.7ms (Views: 7.4ms | ActiveRecord: 0.9ms)
+Started GET "/admin" for 127.0.0.1 at 2015-07-01 19:12:53 -0300
+Processing by BsAdmin::SessionsController#new as HTML
+Redirected to http://www.example.com/admin/settings-group
+Completed 302 Found in 0.3ms (ActiveRecord: 0.0ms)
+Started GET "/admin/settings-group" for 127.0.0.1 at 2015-07-01 19:12:53 -0300
+Processing by BsAdmin::SettingsController#index as HTML
+  [1m[36mBsAdmin::SettingGroup Load (0.1ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" LIMIT 1[0m
+  [1m[35mBsAdmin::SettingGroup Load (0.1ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+  [1m[36mBsAdmin::BooleanSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_boolean_settings".* FROM "bs_admin_boolean_settings" WHERE "bs_admin_boolean_settings"."setting_group_id" = 1 ORDER BY display_name[0m
+  [1m[35mBsAdmin::StringSetting Load (0.1ms)[0m  SELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 ORDER BY display_name
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/fields/display/_links.html.slim (0.1ms)
+  [1m[36mBsAdmin::TextSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_text_settings".* FROM "bs_admin_text_settings" WHERE "bs_admin_text_settings"."setting_group_id" = 1 ORDER BY display_name[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+  [1m[36mBsAdmin::StringSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1[0m
+  [1m[35mPost Load (0.1ms)[0m  SELECT "posts".* FROM "posts" 
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/_menu-items.html.slim (0.5ms)
+  [1m[36mBsAdmin::SettingGroup Load (0.1ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" [0m
+Completed 200 OK in 7.5ms (Views: 5.3ms | ActiveRecord: 0.6ms)
+Started GET "/admin" for 127.0.0.1 at 2015-07-01 19:12:53 -0300
+Processing by BsAdmin::SessionsController#new as HTML
+Redirected to http://www.example.com/admin/settings-group
+Completed 302 Found in 0.3ms (ActiveRecord: 0.0ms)
+Started GET "/admin/settings-group" for 127.0.0.1 at 2015-07-01 19:12:53 -0300
+Processing by BsAdmin::SettingsController#index as HTML
+  [1m[35mBsAdmin::SettingGroup Load (0.1ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" LIMIT 1
+  [1m[36mBsAdmin::SettingGroup Load (0.1ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1[0m
+  [1m[35mBsAdmin::BooleanSetting Load (0.1ms)[0m  SELECT "bs_admin_boolean_settings".* FROM "bs_admin_boolean_settings" WHERE "bs_admin_boolean_settings"."setting_group_id" = 1 ORDER BY display_name
+  [1m[36mBsAdmin::StringSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 ORDER BY display_name[0m
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/fields/display/_links.html.slim (0.1ms)
+  [1m[35mBsAdmin::TextSetting Load (0.1ms)[0m  SELECT "bs_admin_text_settings".* FROM "bs_admin_text_settings" WHERE "bs_admin_text_settings"."setting_group_id" = 1 ORDER BY display_name
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1[0m
+  [1m[35mBsAdmin::StringSetting Load (0.1ms)[0m  SELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1
+  [1m[36mPost Load (0.1ms)[0m  [1mSELECT "posts".* FROM "posts" [0m
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/_menu-items.html.slim (0.5ms)
+  [1m[35mBsAdmin::SettingGroup Load (0.1ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" 
+Completed 200 OK in 8.2ms (Views: 6.0ms | ActiveRecord: 0.7ms)
+Connecting to database specified by database.yml
+Started GET "/admin" for 127.0.0.1 at 2015-07-01 19:17:24 -0300
+Processing by BsAdmin::SessionsController#new as HTML
+Redirected to http://www.example.com/admin/settings-group
+Completed 302 Found in 3.3ms (ActiveRecord: 0.0ms)
+Started GET "/admin/settings-group" for 127.0.0.1 at 2015-07-01 19:17:24 -0300
+Processing by BsAdmin::SettingsController#index as HTML
+  [1m[36mBsAdmin::SettingGroup Load (0.1ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" LIMIT 1[0m
+  [1m[35mBsAdmin::SettingGroup Load (0.1ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+  [1m[36mBsAdmin::BooleanSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_boolean_settings".* FROM "bs_admin_boolean_settings" WHERE "bs_admin_boolean_settings"."setting_group_id" = 1 ORDER BY display_name[0m
+  [1m[35mBsAdmin::StringSetting Load (0.1ms)[0m  SELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 ORDER BY display_name
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/fields/display/_links.html.slim (2.3ms)
+  [1m[36mBsAdmin::TextSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_text_settings".* FROM "bs_admin_text_settings" WHERE "bs_admin_text_settings"."setting_group_id" = 1 ORDER BY display_name[0m
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/settings/index.html.slim within layouts/bs_admin (27.6ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+  [1m[36mBsAdmin::StringSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1[0m
+  [1m[35mPost Load (0.1ms)[0m  SELECT "posts".* FROM "posts" 
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/_menu-items.html.slim (3.6ms)
+  [1m[36mBsAdmin::SettingGroup Load (0.1ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" [0m
+Completed 200 OK in 134.8ms (Views: 80.1ms | ActiveRecord: 1.7ms)
+Started GET "/admin" for 127.0.0.1 at 2015-07-01 19:17:24 -0300
+Processing by BsAdmin::SessionsController#new as HTML
+Redirected to http://www.example.com/admin/settings-group
+Completed 302 Found in 0.3ms (ActiveRecord: 0.0ms)
+Started GET "/admin/settings-group" for 127.0.0.1 at 2015-07-01 19:17:24 -0300
+Processing by BsAdmin::SettingsController#index as HTML
+  [1m[35mBsAdmin::SettingGroup Load (0.1ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" LIMIT 1
+  [1m[36mBsAdmin::SettingGroup Load (0.1ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1[0m
+  [1m[35mBsAdmin::BooleanSetting Load (0.1ms)[0m  SELECT "bs_admin_boolean_settings".* FROM "bs_admin_boolean_settings" WHERE "bs_admin_boolean_settings"."setting_group_id" = 1 ORDER BY display_name
+  [1m[36mBsAdmin::StringSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 ORDER BY display_name[0m
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/fields/display/_links.html.slim (0.1ms)
+  [1m[35mBsAdmin::TextSetting Load (0.1ms)[0m  SELECT "bs_admin_text_settings".* FROM "bs_admin_text_settings" WHERE "bs_admin_text_settings"."setting_group_id" = 1 ORDER BY display_name
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1[0m
+  [1m[35mBsAdmin::StringSetting Load (0.1ms)[0m  SELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1
+  [1m[36mPost Load (0.1ms)[0m  [1mSELECT "posts".* FROM "posts" [0m
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/_menu-items.html.slim (0.5ms)
+  [1m[35mBsAdmin::SettingGroup Load (0.1ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" 
+Completed 200 OK in 8.8ms (Views: 6.2ms | ActiveRecord: 0.7ms)
+Started GET "/admin" for 127.0.0.1 at 2015-07-01 19:17:24 -0300
+Processing by BsAdmin::SessionsController#new as HTML
+Redirected to http://www.example.com/admin/settings-group
+Completed 302 Found in 0.2ms (ActiveRecord: 0.0ms)
+Started GET "/admin/settings-group" for 127.0.0.1 at 2015-07-01 19:17:24 -0300
+Processing by BsAdmin::SettingsController#index as HTML
+  [1m[36mBsAdmin::SettingGroup Load (0.1ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" LIMIT 1[0m
+  [1m[35mBsAdmin::SettingGroup Load (0.1ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+  [1m[36mBsAdmin::BooleanSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_boolean_settings".* FROM "bs_admin_boolean_settings" WHERE "bs_admin_boolean_settings"."setting_group_id" = 1 ORDER BY display_name[0m
+  [1m[35mBsAdmin::StringSetting Load (0.1ms)[0m  SELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 ORDER BY display_name
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/fields/display/_links.html.slim (0.1ms)
+  [1m[36mBsAdmin::TextSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_text_settings".* FROM "bs_admin_text_settings" WHERE "bs_admin_text_settings"."setting_group_id" = 1 ORDER BY display_name[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+  [1m[36mBsAdmin::StringSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1[0m
+  [1m[35mPost Load (0.1ms)[0m  SELECT "posts".* FROM "posts" 
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/_menu-items.html.slim (0.6ms)
+  [1m[36mBsAdmin::SettingGroup Load (0.1ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" [0m
+Completed 200 OK in 8.6ms (Views: 6.6ms | ActiveRecord: 0.6ms)
+Started GET "/admin" for 127.0.0.1 at 2015-07-01 19:17:24 -0300
+Processing by BsAdmin::SessionsController#new as HTML
+Redirected to http://www.example.com/admin/settings-group
+Completed 302 Found in 0.3ms (ActiveRecord: 0.0ms)
+Started GET "/admin/settings-group" for 127.0.0.1 at 2015-07-01 19:17:24 -0300
+Processing by BsAdmin::SettingsController#index as HTML
+  [1m[35mBsAdmin::SettingGroup Load (0.1ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" LIMIT 1
+  [1m[36mBsAdmin::SettingGroup Load (0.1ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1[0m
+  [1m[35mBsAdmin::BooleanSetting Load (0.1ms)[0m  SELECT "bs_admin_boolean_settings".* FROM "bs_admin_boolean_settings" WHERE "bs_admin_boolean_settings"."setting_group_id" = 1 ORDER BY display_name
+  [1m[36mBsAdmin::StringSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 ORDER BY display_name[0m
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/fields/display/_links.html.slim (0.1ms)
+  [1m[35mBsAdmin::TextSetting Load (0.1ms)[0m  SELECT "bs_admin_text_settings".* FROM "bs_admin_text_settings" WHERE "bs_admin_text_settings"."setting_group_id" = 1 ORDER BY display_name
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1[0m
+  [1m[35mBsAdmin::StringSetting Load (0.1ms)[0m  SELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1
+  [1m[36mPost Load (0.1ms)[0m  [1mSELECT "posts".* FROM "posts" [0m
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/_menu-items.html.slim (0.9ms)
+  [1m[35mBsAdmin::SettingGroup Load (0.1ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" 
+Completed 200 OK in 9.0ms (Views: 6.9ms | ActiveRecord: 0.7ms)
+Connecting to database specified by database.yml
+Started GET "/admin" for 127.0.0.1 at 2015-07-01 19:26:45 -0300
+Processing by BsAdmin::SessionsController#new as HTML
+Redirected to http://www.example.com/admin/settings-group
+Completed 302 Found in 2.2ms (ActiveRecord: 0.0ms)
+Started GET "/admin/settings-group" for 127.0.0.1 at 2015-07-01 19:26:45 -0300
+Processing by BsAdmin::SettingsController#index as HTML
+  [1m[36mBsAdmin::SettingGroup Load (0.1ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" LIMIT 1[0m
+  [1m[35mBsAdmin::SettingGroup Load (0.1ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+  [1m[36mBsAdmin::BooleanSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_boolean_settings".* FROM "bs_admin_boolean_settings" WHERE "bs_admin_boolean_settings"."setting_group_id" = 1 ORDER BY display_name[0m
+  [1m[35mBsAdmin::StringSetting Load (0.1ms)[0m  SELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 ORDER BY display_name
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/fields/display/_links.html.slim (4.0ms)
+  [1m[36mBsAdmin::TextSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_text_settings".* FROM "bs_admin_text_settings" WHERE "bs_admin_text_settings"."setting_group_id" = 1 ORDER BY display_name[0m
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/settings/index.html.slim within layouts/bs_admin (58.4ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+  [1m[36mBsAdmin::StringSetting Load (0.2ms)[0m  [1mSELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1[0m
+  [1m[35mPost Load (0.1ms)[0m  SELECT "posts".* FROM "posts" 
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/_menu-items.html.slim (4.5ms)
+  [1m[36mBsAdmin::SettingGroup Load (0.1ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" [0m
+Completed 200 OK in 140.0ms (Views: 91.9ms | ActiveRecord: 1.9ms)
+Started GET "/admin" for 127.0.0.1 at 2015-07-01 19:26:46 -0300
+Processing by BsAdmin::SessionsController#new as HTML
+Redirected to http://www.example.com/admin/settings-group
+Completed 302 Found in 0.3ms (ActiveRecord: 0.0ms)
+Started GET "/admin/settings-group" for 127.0.0.1 at 2015-07-01 19:26:46 -0300
+Processing by BsAdmin::SettingsController#index as HTML
+  [1m[35mBsAdmin::SettingGroup Load (0.1ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" LIMIT 1
+  [1m[36mBsAdmin::SettingGroup Load (0.1ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1[0m
+  [1m[35mBsAdmin::BooleanSetting Load (0.1ms)[0m  SELECT "bs_admin_boolean_settings".* FROM "bs_admin_boolean_settings" WHERE "bs_admin_boolean_settings"."setting_group_id" = 1 ORDER BY display_name
+  [1m[36mBsAdmin::StringSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 ORDER BY display_name[0m
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/fields/display/_links.html.slim (0.1ms)
+  [1m[35mBsAdmin::TextSetting Load (0.1ms)[0m  SELECT "bs_admin_text_settings".* FROM "bs_admin_text_settings" WHERE "bs_admin_text_settings"."setting_group_id" = 1 ORDER BY display_name
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1[0m
+  [1m[35mBsAdmin::StringSetting Load (0.1ms)[0m  SELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1
+  [1m[36mPost Load (0.1ms)[0m  [1mSELECT "posts".* FROM "posts" [0m
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/_menu-items.html.slim (0.6ms)
+  [1m[35mBsAdmin::SettingGroup Load (0.1ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" 
+Completed 200 OK in 8.1ms (Views: 5.8ms | ActiveRecord: 0.7ms)
+Started GET "/admin" for 127.0.0.1 at 2015-07-01 19:26:46 -0300
+Processing by BsAdmin::SessionsController#new as HTML
+Redirected to http://www.example.com/admin/settings-group
+Completed 302 Found in 0.5ms (ActiveRecord: 0.0ms)
+Started GET "/admin/settings-group" for 127.0.0.1 at 2015-07-01 19:26:46 -0300
+Processing by BsAdmin::SettingsController#index as HTML
+  [1m[36mBsAdmin::SettingGroup Load (0.2ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" LIMIT 1[0m
+  [1m[35mBsAdmin::SettingGroup Load (0.1ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+  [1m[36mBsAdmin::BooleanSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_boolean_settings".* FROM "bs_admin_boolean_settings" WHERE "bs_admin_boolean_settings"."setting_group_id" = 1 ORDER BY display_name[0m
+  [1m[35mBsAdmin::StringSetting Load (0.1ms)[0m  SELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 ORDER BY display_name
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/fields/display/_links.html.slim (0.1ms)
+  [1m[36mBsAdmin::TextSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_text_settings".* FROM "bs_admin_text_settings" WHERE "bs_admin_text_settings"."setting_group_id" = 1 ORDER BY display_name[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+  [1m[36mBsAdmin::StringSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1[0m
+  [1m[35mPost Load (0.1ms)[0m  SELECT "posts".* FROM "posts" 
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/_menu-items.html.slim (1.0ms)
+  [1m[36mBsAdmin::SettingGroup Load (0.1ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" [0m
+Completed 200 OK in 11.0ms (Views: 7.5ms | ActiveRecord: 1.0ms)
+Started GET "/admin" for 127.0.0.1 at 2015-07-01 19:26:46 -0300
+Processing by BsAdmin::SessionsController#new as HTML
+Redirected to http://www.example.com/admin/settings-group
+Completed 302 Found in 0.3ms (ActiveRecord: 0.0ms)
+Started GET "/admin/settings-group" for 127.0.0.1 at 2015-07-01 19:26:46 -0300
+Processing by BsAdmin::SettingsController#index as HTML
+  [1m[35mBsAdmin::SettingGroup Load (0.1ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" LIMIT 1
+  [1m[36mBsAdmin::SettingGroup Load (0.1ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1[0m
+  [1m[35mBsAdmin::BooleanSetting Load (0.1ms)[0m  SELECT "bs_admin_boolean_settings".* FROM "bs_admin_boolean_settings" WHERE "bs_admin_boolean_settings"."setting_group_id" = 1 ORDER BY display_name
+  [1m[36mBsAdmin::StringSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 ORDER BY display_name[0m
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/fields/display/_links.html.slim (0.3ms)
+  [1m[35mBsAdmin::TextSetting Load (0.2ms)[0m  SELECT "bs_admin_text_settings".* FROM "bs_admin_text_settings" WHERE "bs_admin_text_settings"."setting_group_id" = 1 ORDER BY display_name
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1[0m
+  [1m[35mBsAdmin::StringSetting Load (0.1ms)[0m  SELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1
+  [1m[36mPost Load (0.1ms)[0m  [1mSELECT "posts".* FROM "posts" [0m
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/_menu-items.html.slim (0.8ms)
+  [1m[35mBsAdmin::SettingGroup Load (0.1ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" 
+Completed 200 OK in 11.9ms (Views: 9.4ms | ActiveRecord: 0.9ms)
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml

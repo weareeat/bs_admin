@@ -1,0 +1,1798 @@
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (1.6ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (1.6ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (3.0ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Migrating to CreatePosts (20150701214525)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "posts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "content" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20150701214525')[0m
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to CreateComments (20150701214611)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "content" text, "post_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20150701214611')[0m
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Connecting to database specified by database.yml
+
+
+Started GET "/" for 127.0.0.1 at 2015-07-01 18:48:18 -0300
+
+ActionController::RoutingError (No route matches [GET] "/"):
+  actionpack (3.2.17) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.17) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.17) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.17) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.17) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.17) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.17) lib/rails/engine.rb:484:in `call'
+  railties (3.2.17) lib/rails/application.rb:231:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.17) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/gems/1.9.1/gems/actionpack-3.2.17/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (20.2ms)
+
+
+Started GET "/admin" for 127.0.0.1 at 2015-07-01 18:48:26 -0300
+Processing by BsAdmin::SessionsController#new as HTML
+Redirected to http://localhost:3000/admin/settings-group
+Completed 302 Found in 2.1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/admin/settings-group" for 127.0.0.1 at 2015-07-01 18:48:26 -0300
+Processing by BsAdmin::SettingsController#index as HTML
+Completed 500 Internal Server Error in 30.9ms
+
+ActiveRecord::StatementInvalid (Could not find table 'bs_admin_setting_groups'):
+  activerecord (3.2.17) lib/active_record/connection_adapters/sqlite_adapter.rb:472:in `table_structure'
+  activerecord (3.2.17) lib/active_record/connection_adapters/sqlite_adapter.rb:346:in `columns'
+  activerecord (3.2.17) lib/active_record/connection_adapters/schema_cache.rb:12:in `block in initialize'
+  activerecord (3.2.17) lib/active_record/model_schema.rb:229:in `yield'
+  activerecord (3.2.17) lib/active_record/model_schema.rb:229:in `default'
+  activerecord (3.2.17) lib/active_record/model_schema.rb:229:in `columns'
+  activerecord (3.2.17) lib/active_record/model_schema.rb:238:in `columns_hash'
+  activerecord (3.2.17) lib/active_record/locking/optimistic.rb:131:in `locking_enabled?'
+  activerecord (3.2.17) lib/active_record/relation.rb:170:in `exec_queries'
+  activerecord (3.2.17) lib/active_record/relation.rb:160:in `block in to_a'
+  activerecord (3.2.17) lib/active_record/explain.rb:34:in `logging_query_plan'
+  activerecord (3.2.17) lib/active_record/relation.rb:159:in `to_a'
+  activerecord (3.2.17) lib/active_record/relation/finder_methods.rb:381:in `find_first'
+  activerecord (3.2.17) lib/active_record/relation/finder_methods.rb:122:in `first'
+  activerecord (3.2.17) lib/active_record/querying.rb:5:in `first'
+  /Users/uzon/dev-projects/bs_admin/app/controllers/bs_admin/settings_controller.rb:4:in `index'
+  actionpack (3.2.17) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (3.2.17) lib/abstract_controller/base.rb:167:in `process_action'
+  actionpack (3.2.17) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (3.2.17) lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:425:in `_run__2199125817314558238__process_action__273103742300855808__callbacks'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:385:in `_run_process_action_callbacks'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.17) lib/abstract_controller/callbacks.rb:17:in `process_action'
+  actionpack (3.2.17) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (3.2.17) lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+  activesupport (3.2.17) lib/active_support/notifications.rb:123:in `block in instrument'
+  activesupport (3.2.17) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (3.2.17) lib/active_support/notifications.rb:123:in `instrument'
+  actionpack (3.2.17) lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+  actionpack (3.2.17) lib/action_controller/metal/params_wrapper.rb:207:in `process_action'
+  activerecord (3.2.17) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (3.2.17) lib/abstract_controller/base.rb:121:in `process'
+  actionpack (3.2.17) lib/abstract_controller/rendering.rb:45:in `process'
+  actionpack (3.2.17) lib/action_controller/metal.rb:203:in `dispatch'
+  actionpack (3.2.17) lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+  actionpack (3.2.17) lib/action_controller/metal.rb:246:in `block in action'
+  actionpack (3.2.17) lib/action_dispatch/routing/route_set.rb:73:in `call'
+  actionpack (3.2.17) lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+  actionpack (3.2.17) lib/action_dispatch/routing/route_set.rb:36:in `call'
+  journey (1.0.4) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.4) lib/journey/router.rb:56:in `each'
+  journey (1.0.4) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.17) lib/action_dispatch/routing/route_set.rb:608:in `call'
+  railties (3.2.17) lib/rails/engine.rb:484:in `call'
+  railties (3.2.17) lib/rails/railtie/configurable.rb:30:in `method_missing'
+  journey (1.0.4) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.4) lib/journey/router.rb:56:in `each'
+  journey (1.0.4) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.17) lib/action_dispatch/routing/route_set.rb:608:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.5) lib/rack/etag.rb:23:in `call'
+  rack (1.4.5) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.5) lib/rack/session/abstract/id.rb:210:in `context'
+  rack (1.4.5) lib/rack/session/abstract/id.rb:205:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/cookies.rb:341:in `call'
+  activerecord (3.2.17) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.17) lib/active_record/connection_adapters/abstract/connection_pool.rb:479:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:405:in `_run__76330170756219250__call__3697075916056387358__callbacks'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.17) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.17) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.17) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.17) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.17) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.17) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.17) lib/rails/engine.rb:484:in `call'
+  railties (3.2.17) lib/rails/application.rb:231:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.17) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/gems/1.9.1/gems/actionpack-3.2.17/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+  Rendered /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/gems/1.9.1/gems/actionpack-3.2.17/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.5ms)
+  Rendered /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/gems/1.9.1/gems/actionpack-3.2.17/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (5.2ms)
+Connecting to database specified by database.yml
+  [1m[36m (0.9ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreatePosts (20150701214525)
+Migrating to CreateComments (20150701214611)
+Migrating to CreateBsAdmin (20150701214842)
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.7ms)[0m  CREATE TABLE "bs_admin_assets" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "type" varchar(255), "group" varchar(255), "file" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.2ms)[0m  [1mCREATE TABLE "bs_admin_setting_groups" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "key" varchar(255), "display_name" varchar(255), "main_group" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "bs_admin_string_settings" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "type" varchar(255), "setting_group_id" integer, "key" varchar(255), "display_name" varchar(255), "hint" varchar(255), "has_user_changed" boolean DEFAULT 'f', "value" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "bs_admin_text_settings" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "type" varchar(255), "setting_group_id" integer, "key" varchar(255), "display_name" varchar(255), "hint" varchar(255), "has_user_changed" boolean DEFAULT 'f', "value" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "bs_admin_boolean_settings" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "type" varchar(255), "setting_group_id" integer, "key" varchar(255), "display_name" varchar(255), "hint" varchar(255), "has_user_changed" boolean DEFAULT 'f', "value" boolean, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20150701214842')[0m
+  [1m[35m (1.3ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+
+
+Started GET "/admin" for 127.0.0.1 at 2015-07-01 19:14:42 -0300
+Processing by BsAdmin::SessionsController#new as HTML
+Redirected to http://localhost:3000/admin/settings-group
+Completed 302 Found in 2.1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/admin/settings-group" for 127.0.0.1 at 2015-07-01 19:14:42 -0300
+Processing by BsAdmin::SettingsController#index as HTML
+  [1m[36mBsAdmin::SettingGroup Load (0.1ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" LIMIT 1[0m
+Completed 500 Internal Server Error in 57.3ms
+
+NoMethodError - undefined method `key' for nil:NilClass:
+  /Users/uzon/dev-projects/bs_admin/app/controllers/bs_admin/settings_controller.rb:4:in `index'
+  actionpack (3.2.17) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (3.2.17) lib/abstract_controller/base.rb:167:in `process_action'
+  actionpack (3.2.17) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (3.2.17) lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:425:in `_run__2724903580251208538__process_action__4196072174645116813__callbacks'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:385:in `_run_process_action_callbacks'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.17) lib/abstract_controller/callbacks.rb:17:in `process_action'
+  actionpack (3.2.17) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (3.2.17) lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+  activesupport (3.2.17) lib/active_support/notifications.rb:123:in `block in instrument'
+  activesupport (3.2.17) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (3.2.17) lib/active_support/notifications.rb:123:in `instrument'
+  actionpack (3.2.17) lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+  actionpack (3.2.17) lib/action_controller/metal/params_wrapper.rb:207:in `process_action'
+  activerecord (3.2.17) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (3.2.17) lib/abstract_controller/base.rb:121:in `process'
+  actionpack (3.2.17) lib/abstract_controller/rendering.rb:45:in `process'
+  actionpack (3.2.17) lib/action_controller/metal.rb:203:in `dispatch'
+  actionpack (3.2.17) lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+  actionpack (3.2.17) lib/action_controller/metal.rb:246:in `block in action'
+  actionpack (3.2.17) lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+  actionpack (3.2.17) lib/action_dispatch/routing/route_set.rb:36:in `call'
+  journey (1.0.4) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.4) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.17) lib/action_dispatch/routing/route_set.rb:608:in `call'
+  railties (3.2.17) lib/rails/engine.rb:484:in `call'
+  railties (3.2.17) lib/rails/railtie/configurable.rb:30:in `method_missing'
+  journey (1.0.4) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.4) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.17) lib/action_dispatch/routing/route_set.rb:608:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.5) lib/rack/etag.rb:23:in `call'
+  rack (1.4.5) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.5) lib/rack/session/abstract/id.rb:210:in `context'
+  rack (1.4.5) lib/rack/session/abstract/id.rb:205:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/cookies.rb:341:in `call'
+  activerecord (3.2.17) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.17) lib/active_record/connection_adapters/abstract/connection_pool.rb:479:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:405:in `_run__2779854774732642140__call__3059368156969923100__callbacks'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.17) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  better_errors (1.1.0) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (1.1.0) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (1.1.0) lib/better_errors/middleware.rb:56:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.17) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.17) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.17) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.17) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.17) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.17) lib/rails/engine.rb:484:in `call'
+  railties (3.2.17) lib/rails/application.rb:231:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.17) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+
+Started POST "/admin/__better_errors/70198708129760/variables" for 127.0.0.1 at 2015-07-01 19:14:42 -0300
+
+
+Started POST "/admin/__better_errors/70198708129760/eval" for 127.0.0.1 at 2015-07-01 19:14:56 -0300
+
+
+Started POST "/admin/__better_errors/70198708129760/eval" for 127.0.0.1 at 2015-07-01 19:15:58 -0300
+  [1m[35mBsAdmin::SettingGroup Load (2.9ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" LIMIT 1
+
+
+Started POST "/admin/__better_errors/70198708129760/eval" for 127.0.0.1 at 2015-07-01 19:16:00 -0300
+  [1m[36mBsAdmin::SettingGroup Load (0.2ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" LIMIT 1[0m
+Connecting to database specified by database.yml
+  [1m[36m (1.3ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreatePosts (20150701214525)
+Migrating to CreateComments (20150701214611)
+Migrating to CreateBsAdmin (20150701214842)
+Migrating to SeedMainBsAdminSettings (20150701214958)
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (4.0ms)[0m  INSERT INTO "bs_admin_setting_groups" ("created_at", "display_name", "key", "main_group", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Wed, 01 Jul 2015 22:16:10 UTC +00:00], ["display_name", "General"], ["key", :general], ["main_group", "Main"], ["updated_at", Wed, 01 Jul 2015 22:16:10 UTC +00:00]]
+  [1m[36mBsAdmin::StringSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "bs_admin_string_settings" ("created_at", "display_name", "has_user_changed", "hint", "key", "setting_group_id", "type", "updated_at", "value") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)  [["created_at", Wed, 01 Jul 2015 22:16:11 UTC +00:00], ["display_name", "Website Title"], ["has_user_changed", false], ["hint", nil], ["key", :website_title], ["setting_group_id", 1], ["type", nil], ["updated_at", Wed, 01 Jul 2015 22:16:11 UTC +00:00], ["value", "Dummy"]]
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20150701214958')[0m
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Connecting to database specified by database.yml
+
+
+Started GET "/admin" for 127.0.0.1 at 2015-07-01 19:16:30 -0300
+Processing by BsAdmin::SessionsController#new as HTML
+Redirected to http://localhost:3000/admin/settings-group
+Completed 302 Found in 2.4ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/admin/settings-group" for 127.0.0.1 at 2015-07-01 19:16:30 -0300
+Processing by BsAdmin::SettingsController#index as HTML
+  [1m[36mBsAdmin::SettingGroup Load (0.1ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" LIMIT 1[0m
+  [1m[35mBsAdmin::SettingGroup Load (0.1ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+  [1m[36mBsAdmin::BooleanSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_boolean_settings".* FROM "bs_admin_boolean_settings" WHERE "bs_admin_boolean_settings"."setting_group_id" = 1 ORDER BY display_name[0m
+  [1m[35mBsAdmin::StringSetting Load (0.1ms)[0m  SELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 ORDER BY display_name
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/fields/display/_links.html.slim (2.6ms)
+  [1m[36mBsAdmin::TextSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_text_settings".* FROM "bs_admin_text_settings" WHERE "bs_admin_text_settings"."setting_group_id" = 1 ORDER BY display_name[0m
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/settings/index.html.slim within layouts/bs_admin (68.1ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+  [1m[36mBsAdmin::StringSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1[0m
+  [1m[35mPost Load (0.1ms)[0m  SELECT "posts".* FROM "posts" 
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/_menu-items.html.slim (13.1ms)
+  [1m[36mBsAdmin::SettingGroup Load (0.1ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" [0m
+Completed 200 OK in 249.3ms (Views: 107.9ms | ActiveRecord: 3.4ms)
+
+
+Started GET "/assets/admin.css" for 127.0.0.1 at 2015-07-01 19:16:30 -0300
+Served asset /admin.css - 404 Not Found (2ms)
+
+ActionController::RoutingError (No route matches [GET] "/assets/admin.css"):
+  actionpack (3.2.17) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.17) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.17) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.17) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.17) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.17) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.17) lib/rails/engine.rb:484:in `call'
+  railties (3.2.17) lib/rails/application.rb:231:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.17) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/gems/1.9.1/gems/actionpack-3.2.17/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (3.1ms)
+
+
+Started GET "/assets/admin.js" for 127.0.0.1 at 2015-07-01 19:16:30 -0300
+Served asset /admin.js - 404 Not Found (41ms)
+
+ActionController::RoutingError (No route matches [GET] "/assets/admin.js"):
+  actionpack (3.2.17) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.17) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.17) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.17) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.17) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.17) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.17) lib/rails/engine.rb:484:in `call'
+  railties (3.2.17) lib/rails/application.rb:231:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.17) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/gems/1.9.1/gems/actionpack-3.2.17/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.4ms)
+Connecting to database specified by database.yml
+
+
+Started GET "/" for 127.0.0.1 at 2015-07-01 19:17:36 -0300
+
+ActionController::RoutingError (No route matches [GET] "/"):
+  actionpack (3.2.17) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.17) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.17) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.17) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.17) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.17) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.17) lib/rails/engine.rb:484:in `call'
+  railties (3.2.17) lib/rails/application.rb:231:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.17) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/gems/1.9.1/gems/actionpack-3.2.17/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (3.4ms)
+
+
+Started GET "/admin" for 127.0.0.1 at 2015-07-01 19:17:41 -0300
+Processing by BsAdmin::SessionsController#new as HTML
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/sessions/new.html.slim within layouts/bs_admin (13.4ms)
+  [1m[36mBsAdmin::SettingGroup Load (0.1ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1[0m
+  [1m[35mBsAdmin::StringSetting Load (0.1ms)[0m  SELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1
+Completed 200 OK in 156.7ms (Views: 154.2ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/assets/admin.css" for 127.0.0.1 at 2015-07-01 19:17:41 -0300
+Served asset /admin.css - 404 Not Found (1ms)
+
+ActionController::RoutingError (No route matches [GET] "/assets/admin.css"):
+  actionpack (3.2.17) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.17) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.17) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.17) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.17) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.17) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.17) lib/rails/engine.rb:484:in `call'
+  railties (3.2.17) lib/rails/application.rb:231:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.17) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/gems/1.9.1/gems/actionpack-3.2.17/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.4ms)
+
+
+Started GET "/assets/admin.js" for 127.0.0.1 at 2015-07-01 19:17:41 -0300
+Served asset /admin.js - 404 Not Found (1ms)
+
+ActionController::RoutingError (No route matches [GET] "/assets/admin.js"):
+  actionpack (3.2.17) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.17) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.17) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.17) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.17) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.17) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.17) lib/rails/engine.rb:484:in `call'
+  railties (3.2.17) lib/rails/application.rb:231:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.17) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/gems/1.9.1/gems/actionpack-3.2.17/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.4ms)
+
+
+Started POST "/admin/login" for 127.0.0.1 at 2015-07-01 19:17:47 -0300
+Processing by BsAdmin::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"h6bHM1h5AwIHanx+/BpNr+lIv/ER1XluxEuDYkOMDMQ=", "password"=>"[FILTERED]"}
+Redirected to http://localhost:3000/admin/settings-group
+Completed 302 Found in 0.7ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/admin/settings-group" for 127.0.0.1 at 2015-07-01 19:17:47 -0300
+Processing by BsAdmin::SettingsController#index as HTML
+  [1m[36mBsAdmin::SettingGroup Load (0.1ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" LIMIT 1[0m
+  [1m[35mBsAdmin::SettingGroup Load (0.1ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+  [1m[36mBsAdmin::BooleanSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_boolean_settings".* FROM "bs_admin_boolean_settings" WHERE "bs_admin_boolean_settings"."setting_group_id" = 1 ORDER BY display_name[0m
+  [1m[35mBsAdmin::StringSetting Load (0.1ms)[0m  SELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 ORDER BY display_name
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/fields/display/_links.html.slim (2.6ms)
+  [1m[36mBsAdmin::TextSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_text_settings".* FROM "bs_admin_text_settings" WHERE "bs_admin_text_settings"."setting_group_id" = 1 ORDER BY display_name[0m
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/settings/index.html.slim within layouts/bs_admin (14.2ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+  [1m[36mBsAdmin::StringSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1[0m
+  [1m[35mPost Load (0.1ms)[0m  SELECT "posts".* FROM "posts" 
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/_menu-items.html.slim (13.5ms)
+  [1m[36mBsAdmin::SettingGroup Load (0.1ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" [0m
+Completed 200 OK in 94.2ms (Views: 37.7ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/assets/admin.css" for 127.0.0.1 at 2015-07-01 19:17:47 -0300
+Served asset /admin.css - 404 Not Found (2ms)
+
+ActionController::RoutingError (No route matches [GET] "/assets/admin.css"):
+  actionpack (3.2.17) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.17) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.17) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.17) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.17) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.17) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.17) lib/rails/engine.rb:484:in `call'
+  railties (3.2.17) lib/rails/application.rb:231:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.17) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/gems/1.9.1/gems/actionpack-3.2.17/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.4ms)
+
+
+Started GET "/assets/admin.js" for 127.0.0.1 at 2015-07-01 19:17:47 -0300
+Served asset /admin.js - 404 Not Found (1ms)
+
+ActionController::RoutingError (No route matches [GET] "/assets/admin.js"):
+  actionpack (3.2.17) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.17) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.17) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.17) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.17) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.17) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.17) lib/rails/engine.rb:484:in `call'
+  railties (3.2.17) lib/rails/application.rb:231:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.17) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/gems/1.9.1/gems/actionpack-3.2.17/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.3ms)
+
+
+Started GET "/admin/settings-group" for 127.0.0.1 at 2015-07-01 19:19:38 -0300
+Processing by BsAdmin::SettingsController#index as HTML
+  [1m[35mBsAdmin::SettingGroup Load (0.1ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" LIMIT 1
+  [1m[36mBsAdmin::SettingGroup Load (0.1ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1[0m
+  [1m[35mBsAdmin::BooleanSetting Load (0.1ms)[0m  SELECT "bs_admin_boolean_settings".* FROM "bs_admin_boolean_settings" WHERE "bs_admin_boolean_settings"."setting_group_id" = 1 ORDER BY display_name
+  [1m[36mBsAdmin::StringSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 ORDER BY display_name[0m
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/fields/display/_links.html.slim (0.2ms)
+  [1m[35mBsAdmin::TextSetting Load (0.1ms)[0m  SELECT "bs_admin_text_settings".* FROM "bs_admin_text_settings" WHERE "bs_admin_text_settings"."setting_group_id" = 1 ORDER BY display_name
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/settings/index.html.slim within layouts/bs_admin (2.6ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1[0m
+  [1m[35mBsAdmin::StringSetting Load (0.1ms)[0m  SELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1
+Completed 500 Internal Server Error in 23.8ms
+
+LoadError - cannot load such file -- sass
+  (in /Users/uzon/dev-projects/bs_admin/app/assets/stylesheets/admin.scss):
+  activesupport (3.2.17) lib/active_support/dependencies.rb:251:in `block in require'
+  activesupport (3.2.17) lib/active_support/dependencies.rb:236:in `load_dependency'
+  activesupport (3.2.17) lib/active_support/dependencies.rb:251:in `require'
+  tilt (1.4.1) lib/tilt/template.rb:144:in `require_template_library'
+  tilt (1.4.1) lib/tilt/css.rb:16:in `initialize_engine'
+  tilt (1.4.1) lib/tilt/template.rb:56:in `initialize'
+  sprockets (2.2.2) lib/sprockets/context.rb:192:in `block in evaluate'
+  sprockets (2.2.2) lib/sprockets/context.rb:190:in `evaluate'
+  sprockets (2.2.2) lib/sprockets/processed_asset.rb:12:in `initialize'
+  sprockets (2.2.2) lib/sprockets/base.rb:249:in `block in build_asset'
+  sprockets (2.2.2) lib/sprockets/base.rb:270:in `circular_call_protection'
+  sprockets (2.2.2) lib/sprockets/base.rb:248:in `build_asset'
+  sprockets (2.2.2) lib/sprockets/index.rb:93:in `block in build_asset'
+  sprockets (2.2.2) lib/sprockets/caching.rb:19:in `cache_asset'
+  sprockets (2.2.2) lib/sprockets/index.rb:92:in `build_asset'
+  sprockets (2.2.2) lib/sprockets/base.rb:169:in `find_asset'
+  sprockets (2.2.2) lib/sprockets/index.rb:60:in `find_asset'
+  sprockets (2.2.2) lib/sprockets/bundled_asset.rb:16:in `initialize'
+  sprockets (2.2.2) lib/sprockets/base.rb:252:in `build_asset'
+  sprockets (2.2.2) lib/sprockets/index.rb:93:in `block in build_asset'
+  sprockets (2.2.2) lib/sprockets/caching.rb:19:in `cache_asset'
+  sprockets (2.2.2) lib/sprockets/index.rb:92:in `build_asset'
+  sprockets (2.2.2) lib/sprockets/base.rb:169:in `find_asset'
+  sprockets (2.2.2) lib/sprockets/index.rb:60:in `find_asset'
+  sprockets (2.2.2) lib/sprockets/environment.rb:78:in `find_asset'
+  sprockets (2.2.2) lib/sprockets/base.rb:177:in `[]'
+  actionpack (3.2.17) lib/sprockets/helpers/rails_helper.rb:126:in `asset_for'
+  actionpack (3.2.17) lib/sprockets/helpers/rails_helper.rb:44:in `block in stylesheet_link_tag'
+  actionpack (3.2.17) lib/sprockets/helpers/rails_helper.rb:43:in `stylesheet_link_tag'
+  /Users/uzon/dev-projects/bs_admin/app/views/layouts/bs_admin.html.slim:9:in `___sers_uzon_dev_projects_bs_admin_app_views_layouts_bs_admin_html_slim___1923283760234326386_70125985445700'
+  actionpack (3.2.17) lib/action_view/template.rb:145:in `block in render'
+  activesupport (3.2.17) lib/active_support/notifications.rb:125:in `instrument'
+  actionpack (3.2.17) lib/action_view/template.rb:143:in `render'
+  actionpack (3.2.17) lib/action_view/renderer/template_renderer.rb:59:in `render_with_layout'
+  actionpack (3.2.17) lib/action_view/renderer/template_renderer.rb:45:in `render_template'
+  actionpack (3.2.17) lib/action_view/renderer/template_renderer.rb:18:in `render'
+  actionpack (3.2.17) lib/action_view/renderer/renderer.rb:36:in `render_template'
+  actionpack (3.2.17) lib/action_view/renderer/renderer.rb:17:in `render'
+  actionpack (3.2.17) lib/abstract_controller/rendering.rb:110:in `_render_template'
+  actionpack (3.2.17) lib/action_controller/metal/streaming.rb:225:in `_render_template'
+  actionpack (3.2.17) lib/abstract_controller/rendering.rb:103:in `render_to_body'
+  actionpack (3.2.17) lib/action_controller/metal/renderers.rb:28:in `render_to_body'
+  actionpack (3.2.17) lib/action_controller/metal/compatibility.rb:50:in `render_to_body'
+  actionpack (3.2.17) lib/abstract_controller/rendering.rb:88:in `render'
+  actionpack (3.2.17) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (3.2.17) lib/action_controller/metal/instrumentation.rb:40:in `block (2 levels) in render'
+  activesupport (3.2.17) lib/active_support/core_ext/benchmark.rb:5:in `block in ms'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/benchmark.rb:295:in `realtime'
+  activesupport (3.2.17) lib/active_support/core_ext/benchmark.rb:5:in `ms'
+  actionpack (3.2.17) lib/action_controller/metal/instrumentation.rb:40:in `block in render'
+  actionpack (3.2.17) lib/action_controller/metal/instrumentation.rb:83:in `cleanup_view_runtime'
+  activerecord (3.2.17) lib/active_record/railties/controller_runtime.rb:24:in `cleanup_view_runtime'
+  actionpack (3.2.17) lib/action_controller/metal/instrumentation.rb:39:in `render'
+  actionpack (3.2.17) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (3.2.17) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (3.2.17) lib/abstract_controller/base.rb:167:in `process_action'
+  actionpack (3.2.17) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (3.2.17) lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:425:in `_run__1619672916577378849__process_action__1110060480766099210__callbacks'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:385:in `_run_process_action_callbacks'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.17) lib/abstract_controller/callbacks.rb:17:in `process_action'
+  actionpack (3.2.17) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (3.2.17) lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+  activesupport (3.2.17) lib/active_support/notifications.rb:123:in `block in instrument'
+  activesupport (3.2.17) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (3.2.17) lib/active_support/notifications.rb:123:in `instrument'
+  actionpack (3.2.17) lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+  actionpack (3.2.17) lib/action_controller/metal/params_wrapper.rb:207:in `process_action'
+  activerecord (3.2.17) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (3.2.17) lib/abstract_controller/base.rb:121:in `process'
+  actionpack (3.2.17) lib/abstract_controller/rendering.rb:45:in `process'
+  actionpack (3.2.17) lib/action_controller/metal.rb:203:in `dispatch'
+  actionpack (3.2.17) lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+  actionpack (3.2.17) lib/action_controller/metal.rb:246:in `block in action'
+  actionpack (3.2.17) lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+  actionpack (3.2.17) lib/action_dispatch/routing/route_set.rb:36:in `call'
+  journey (1.0.4) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.4) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.17) lib/action_dispatch/routing/route_set.rb:608:in `call'
+  railties (3.2.17) lib/rails/engine.rb:484:in `call'
+  railties (3.2.17) lib/rails/railtie/configurable.rb:30:in `method_missing'
+  journey (1.0.4) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.4) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.17) lib/action_dispatch/routing/route_set.rb:608:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.5) lib/rack/etag.rb:23:in `call'
+  rack (1.4.5) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.5) lib/rack/session/abstract/id.rb:210:in `context'
+  rack (1.4.5) lib/rack/session/abstract/id.rb:205:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/cookies.rb:341:in `call'
+  activerecord (3.2.17) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.17) lib/active_record/connection_adapters/abstract/connection_pool.rb:479:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:405:in `_run__2624171448218940701__call__3195731231031129721__callbacks'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.17) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  better_errors (1.1.0) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (1.1.0) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (1.1.0) lib/better_errors/middleware.rb:56:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.17) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.17) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.17) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.17) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.17) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.17) lib/rails/engine.rb:484:in `call'
+  railties (3.2.17) lib/rails/application.rb:231:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.17) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+
+Started POST "/admin/__better_errors/70125938857680/variables" for 127.0.0.1 at 2015-07-01 19:19:38 -0300
+Connecting to database specified by database.yml
+
+
+Started GET "/admin/settings-group" for 127.0.0.1 at 2015-07-01 19:21:45 -0300
+Processing by BsAdmin::SettingsController#index as HTML
+  [1m[36mBsAdmin::SettingGroup Load (0.1ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" LIMIT 1[0m
+  [1m[35mBsAdmin::SettingGroup Load (0.1ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+  [1m[36mBsAdmin::BooleanSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_boolean_settings".* FROM "bs_admin_boolean_settings" WHERE "bs_admin_boolean_settings"."setting_group_id" = 1 ORDER BY display_name[0m
+  [1m[35mBsAdmin::StringSetting Load (0.1ms)[0m  SELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 ORDER BY display_name
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/fields/display/_links.html.slim (2.3ms)
+  [1m[36mBsAdmin::TextSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_text_settings".* FROM "bs_admin_text_settings" WHERE "bs_admin_text_settings"."setting_group_id" = 1 ORDER BY display_name[0m
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/settings/index.html.slim within layouts/bs_admin (64.5ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+  [1m[36mBsAdmin::StringSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1[0m
+Completed 500 Internal Server Error in 496.5ms
+
+Sass::SyntaxError - File to import not found or unreadable: bootstrap-sass/assets/stylesheets/bootstrap-sprockets.
+Load path: /Users/uzon/dev-projects/bs_admin/test/dummy
+  (in /Users/uzon/dev-projects/bs_admin/app/assets/stylesheets/admin.scss):
+  sass (3.2.10) lib/sass/tree/import_node.rb:67:in `rescue in import'
+  sass (3.2.10) lib/sass/tree/import_node.rb:45:in `import'
+  sass (3.2.10) lib/sass/tree/import_node.rb:28:in `imported_file'
+  sass (3.2.10) lib/sass/tree/import_node.rb:37:in `css_import?'
+  sass (3.2.10) lib/sass/tree/visitors/perform.rb:217:in `visit_import'
+  sass (3.2.10) lib/sass/tree/visitors/base.rb:37:in `visit'
+  sass (3.2.10) lib/sass/tree/visitors/perform.rb:100:in `visit'
+  sass (3.2.10) lib/sass/tree/visitors/perform.rb:227:in `block in visit_import'
+  sass (3.2.10) lib/sass/tree/visitors/perform.rb:227:in `visit_import'
+  sass (3.2.10) lib/sass/tree/visitors/base.rb:37:in `visit'
+  sass (3.2.10) lib/sass/tree/visitors/perform.rb:100:in `visit'
+  sass (3.2.10) lib/sass/tree/visitors/base.rb:53:in `block in visit_children'
+  sass (3.2.10) lib/sass/tree/visitors/base.rb:53:in `visit_children'
+  sass (3.2.10) lib/sass/tree/visitors/perform.rb:109:in `block in visit_children'
+  sass (3.2.10) lib/sass/tree/visitors/perform.rb:121:in `with_environment'
+  sass (3.2.10) lib/sass/tree/visitors/perform.rb:108:in `visit_children'
+  sass (3.2.10) lib/sass/tree/visitors/base.rb:37:in `block in visit'
+  sass (3.2.10) lib/sass/tree/visitors/perform.rb:128:in `visit_root'
+  sass (3.2.10) lib/sass/tree/visitors/base.rb:37:in `visit'
+  sass (3.2.10) lib/sass/tree/visitors/perform.rb:100:in `visit'
+  sass (3.2.10) lib/sass/tree/visitors/perform.rb:7:in `visit'
+  sass (3.2.10) lib/sass/tree/root_node.rb:20:in `render'
+  sass (3.2.10) lib/sass/engine.rb:315:in `_render'
+  sass (3.2.10) lib/sass/engine.rb:262:in `render'
+  tilt (1.4.1) lib/tilt/css.rb:24:in `evaluate'
+  tilt (1.4.1) lib/tilt/template.rb:103:in `render'
+  sprockets (2.2.2) lib/sprockets/context.rb:193:in `block in evaluate'
+  sprockets (2.2.2) lib/sprockets/context.rb:190:in `evaluate'
+  sprockets (2.2.2) lib/sprockets/processed_asset.rb:12:in `initialize'
+  sprockets (2.2.2) lib/sprockets/base.rb:249:in `block in build_asset'
+  sprockets (2.2.2) lib/sprockets/base.rb:270:in `circular_call_protection'
+  sprockets (2.2.2) lib/sprockets/base.rb:248:in `build_asset'
+  sprockets (2.2.2) lib/sprockets/index.rb:93:in `block in build_asset'
+  sprockets (2.2.2) lib/sprockets/caching.rb:19:in `cache_asset'
+  sprockets (2.2.2) lib/sprockets/index.rb:92:in `build_asset'
+  sprockets (2.2.2) lib/sprockets/base.rb:169:in `find_asset'
+  sprockets (2.2.2) lib/sprockets/index.rb:60:in `find_asset'
+  sprockets (2.2.2) lib/sprockets/bundled_asset.rb:16:in `initialize'
+  sprockets (2.2.2) lib/sprockets/base.rb:252:in `build_asset'
+  sprockets (2.2.2) lib/sprockets/index.rb:93:in `block in build_asset'
+  sprockets (2.2.2) lib/sprockets/caching.rb:19:in `cache_asset'
+  sprockets (2.2.2) lib/sprockets/index.rb:92:in `build_asset'
+  sprockets (2.2.2) lib/sprockets/base.rb:169:in `find_asset'
+  sprockets (2.2.2) lib/sprockets/index.rb:60:in `find_asset'
+  sprockets (2.2.2) lib/sprockets/environment.rb:78:in `find_asset'
+  sprockets (2.2.2) lib/sprockets/base.rb:177:in `[]'
+  actionpack (3.2.17) lib/sprockets/helpers/rails_helper.rb:126:in `asset_for'
+  actionpack (3.2.17) lib/sprockets/helpers/rails_helper.rb:44:in `block in stylesheet_link_tag'
+  actionpack (3.2.17) lib/sprockets/helpers/rails_helper.rb:43:in `stylesheet_link_tag'
+  /Users/uzon/dev-projects/bs_admin/app/views/layouts/bs_admin.html.slim:9:in `___sers_uzon_dev_projects_bs_admin_app_views_layouts_bs_admin_html_slim__3278333046010739718_70289831727620'
+  actionpack (3.2.17) lib/action_view/template.rb:145:in `block in render'
+  activesupport (3.2.17) lib/active_support/notifications.rb:125:in `instrument'
+  actionpack (3.2.17) lib/action_view/template.rb:143:in `render'
+  actionpack (3.2.17) lib/action_view/renderer/template_renderer.rb:59:in `render_with_layout'
+  actionpack (3.2.17) lib/action_view/renderer/template_renderer.rb:45:in `render_template'
+  actionpack (3.2.17) lib/action_view/renderer/template_renderer.rb:18:in `render'
+  actionpack (3.2.17) lib/action_view/renderer/renderer.rb:36:in `render_template'
+  actionpack (3.2.17) lib/action_view/renderer/renderer.rb:17:in `render'
+  actionpack (3.2.17) lib/abstract_controller/rendering.rb:110:in `_render_template'
+  actionpack (3.2.17) lib/action_controller/metal/streaming.rb:225:in `_render_template'
+  actionpack (3.2.17) lib/abstract_controller/rendering.rb:103:in `render_to_body'
+  actionpack (3.2.17) lib/action_controller/metal/renderers.rb:28:in `render_to_body'
+  actionpack (3.2.17) lib/action_controller/metal/compatibility.rb:50:in `render_to_body'
+  actionpack (3.2.17) lib/abstract_controller/rendering.rb:88:in `render'
+  actionpack (3.2.17) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (3.2.17) lib/action_controller/metal/instrumentation.rb:40:in `block (2 levels) in render'
+  activesupport (3.2.17) lib/active_support/core_ext/benchmark.rb:5:in `block in ms'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/benchmark.rb:295:in `realtime'
+  activesupport (3.2.17) lib/active_support/core_ext/benchmark.rb:5:in `ms'
+  actionpack (3.2.17) lib/action_controller/metal/instrumentation.rb:40:in `block in render'
+  actionpack (3.2.17) lib/action_controller/metal/instrumentation.rb:83:in `cleanup_view_runtime'
+  activerecord (3.2.17) lib/active_record/railties/controller_runtime.rb:24:in `cleanup_view_runtime'
+  actionpack (3.2.17) lib/action_controller/metal/instrumentation.rb:39:in `render'
+  actionpack (3.2.17) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (3.2.17) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (3.2.17) lib/abstract_controller/base.rb:167:in `process_action'
+  actionpack (3.2.17) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (3.2.17) lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:425:in `_run__3297376606271760719__process_action__3628254597981823787__callbacks'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:385:in `_run_process_action_callbacks'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.17) lib/abstract_controller/callbacks.rb:17:in `process_action'
+  actionpack (3.2.17) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (3.2.17) lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+  activesupport (3.2.17) lib/active_support/notifications.rb:123:in `block in instrument'
+  activesupport (3.2.17) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (3.2.17) lib/active_support/notifications.rb:123:in `instrument'
+  actionpack (3.2.17) lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+  actionpack (3.2.17) lib/action_controller/metal/params_wrapper.rb:207:in `process_action'
+  activerecord (3.2.17) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (3.2.17) lib/abstract_controller/base.rb:121:in `process'
+  actionpack (3.2.17) lib/abstract_controller/rendering.rb:45:in `process'
+  actionpack (3.2.17) lib/action_controller/metal.rb:203:in `dispatch'
+  actionpack (3.2.17) lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+  actionpack (3.2.17) lib/action_controller/metal.rb:246:in `block in action'
+  actionpack (3.2.17) lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+  actionpack (3.2.17) lib/action_dispatch/routing/route_set.rb:36:in `call'
+  journey (1.0.4) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.4) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.17) lib/action_dispatch/routing/route_set.rb:608:in `call'
+  railties (3.2.17) lib/rails/engine.rb:484:in `call'
+  railties (3.2.17) lib/rails/railtie/configurable.rb:30:in `method_missing'
+  journey (1.0.4) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.4) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.17) lib/action_dispatch/routing/route_set.rb:608:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.5) lib/rack/etag.rb:23:in `call'
+  rack (1.4.5) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.5) lib/rack/session/abstract/id.rb:210:in `context'
+  rack (1.4.5) lib/rack/session/abstract/id.rb:205:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/cookies.rb:341:in `call'
+  activerecord (3.2.17) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.17) lib/active_record/connection_adapters/abstract/connection_pool.rb:479:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:405:in `_run__4461094651547864085__call__3549569999767741521__callbacks'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.17) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  better_errors (1.1.0) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (1.1.0) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (1.1.0) lib/better_errors/middleware.rb:56:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.17) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.17) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.17) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.17) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.17) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.17) lib/rails/engine.rb:484:in `call'
+  railties (3.2.17) lib/rails/application.rb:231:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.17) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+
+Started POST "/admin/__better_errors/70289791776040/variables" for 127.0.0.1 at 2015-07-01 19:21:46 -0300
+Connecting to database specified by database.yml
+
+
+Started GET "/admin/settings-group" for 127.0.0.1 at 2015-07-01 19:22:48 -0300
+Processing by BsAdmin::SettingsController#index as HTML
+  [1m[36mBsAdmin::SettingGroup Load (0.1ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" LIMIT 1[0m
+  [1m[35mBsAdmin::SettingGroup Load (0.1ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+  [1m[36mBsAdmin::BooleanSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_boolean_settings".* FROM "bs_admin_boolean_settings" WHERE "bs_admin_boolean_settings"."setting_group_id" = 1 ORDER BY display_name[0m
+  [1m[35mBsAdmin::StringSetting Load (0.1ms)[0m  SELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 ORDER BY display_name
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/fields/display/_links.html.slim (2.5ms)
+  [1m[36mBsAdmin::TextSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_text_settings".* FROM "bs_admin_text_settings" WHERE "bs_admin_text_settings"."setting_group_id" = 1 ORDER BY display_name[0m
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/settings/index.html.slim within layouts/bs_admin (70.2ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+  [1m[36mBsAdmin::StringSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1[0m
+Completed 500 Internal Server Error in 485.9ms
+
+Sass::SyntaxError - File to import not found or unreadable: bootstrap-sass/assets/stylesheets/bootstrap-sprockets.
+Load path: /Users/uzon/dev-projects/bs_admin/test/dummy
+  (in /Users/uzon/dev-projects/bs_admin/app/assets/stylesheets/admin.scss):
+  sass (3.2.10) lib/sass/tree/import_node.rb:67:in `rescue in import'
+  sass (3.2.10) lib/sass/tree/import_node.rb:45:in `import'
+  sass (3.2.10) lib/sass/tree/import_node.rb:28:in `imported_file'
+  sass (3.2.10) lib/sass/tree/import_node.rb:37:in `css_import?'
+  sass (3.2.10) lib/sass/tree/visitors/perform.rb:217:in `visit_import'
+  sass (3.2.10) lib/sass/tree/visitors/base.rb:37:in `visit'
+  sass (3.2.10) lib/sass/tree/visitors/perform.rb:100:in `visit'
+  sass (3.2.10) lib/sass/tree/visitors/perform.rb:227:in `block in visit_import'
+  sass (3.2.10) lib/sass/tree/visitors/perform.rb:227:in `visit_import'
+  sass (3.2.10) lib/sass/tree/visitors/base.rb:37:in `visit'
+  sass (3.2.10) lib/sass/tree/visitors/perform.rb:100:in `visit'
+  sass (3.2.10) lib/sass/tree/visitors/base.rb:53:in `block in visit_children'
+  sass (3.2.10) lib/sass/tree/visitors/base.rb:53:in `visit_children'
+  sass (3.2.10) lib/sass/tree/visitors/perform.rb:109:in `block in visit_children'
+  sass (3.2.10) lib/sass/tree/visitors/perform.rb:121:in `with_environment'
+  sass (3.2.10) lib/sass/tree/visitors/perform.rb:108:in `visit_children'
+  sass (3.2.10) lib/sass/tree/visitors/base.rb:37:in `block in visit'
+  sass (3.2.10) lib/sass/tree/visitors/perform.rb:128:in `visit_root'
+  sass (3.2.10) lib/sass/tree/visitors/base.rb:37:in `visit'
+  sass (3.2.10) lib/sass/tree/visitors/perform.rb:100:in `visit'
+  sass (3.2.10) lib/sass/tree/visitors/perform.rb:7:in `visit'
+  sass (3.2.10) lib/sass/tree/root_node.rb:20:in `render'
+  sass (3.2.10) lib/sass/engine.rb:315:in `_render'
+  sass (3.2.10) lib/sass/engine.rb:262:in `render'
+  tilt (1.4.1) lib/tilt/css.rb:24:in `evaluate'
+  tilt (1.4.1) lib/tilt/template.rb:103:in `render'
+  sprockets (2.2.2) lib/sprockets/context.rb:193:in `block in evaluate'
+  sprockets (2.2.2) lib/sprockets/context.rb:190:in `evaluate'
+  sprockets (2.2.2) lib/sprockets/processed_asset.rb:12:in `initialize'
+  sprockets (2.2.2) lib/sprockets/base.rb:249:in `block in build_asset'
+  sprockets (2.2.2) lib/sprockets/base.rb:270:in `circular_call_protection'
+  sprockets (2.2.2) lib/sprockets/base.rb:248:in `build_asset'
+  sprockets (2.2.2) lib/sprockets/index.rb:93:in `block in build_asset'
+  sprockets (2.2.2) lib/sprockets/caching.rb:19:in `cache_asset'
+  sprockets (2.2.2) lib/sprockets/index.rb:92:in `build_asset'
+  sprockets (2.2.2) lib/sprockets/base.rb:169:in `find_asset'
+  sprockets (2.2.2) lib/sprockets/index.rb:60:in `find_asset'
+  sprockets (2.2.2) lib/sprockets/bundled_asset.rb:16:in `initialize'
+  sprockets (2.2.2) lib/sprockets/base.rb:252:in `build_asset'
+  sprockets (2.2.2) lib/sprockets/index.rb:93:in `block in build_asset'
+  sprockets (2.2.2) lib/sprockets/caching.rb:19:in `cache_asset'
+  sprockets (2.2.2) lib/sprockets/index.rb:92:in `build_asset'
+  sprockets (2.2.2) lib/sprockets/base.rb:169:in `find_asset'
+  sprockets (2.2.2) lib/sprockets/index.rb:60:in `find_asset'
+  sprockets (2.2.2) lib/sprockets/environment.rb:78:in `find_asset'
+  sprockets (2.2.2) lib/sprockets/base.rb:177:in `[]'
+  actionpack (3.2.17) lib/sprockets/helpers/rails_helper.rb:126:in `asset_for'
+  actionpack (3.2.17) lib/sprockets/helpers/rails_helper.rb:44:in `block in stylesheet_link_tag'
+  actionpack (3.2.17) lib/sprockets/helpers/rails_helper.rb:43:in `stylesheet_link_tag'
+  /Users/uzon/dev-projects/bs_admin/app/views/layouts/bs_admin.html.slim:9:in `___sers_uzon_dev_projects_bs_admin_app_views_layouts_bs_admin_html_slim___2685275286042662609_70365061057580'
+  actionpack (3.2.17) lib/action_view/template.rb:145:in `block in render'
+  activesupport (3.2.17) lib/active_support/notifications.rb:125:in `instrument'
+  actionpack (3.2.17) lib/action_view/template.rb:143:in `render'
+  actionpack (3.2.17) lib/action_view/renderer/template_renderer.rb:59:in `render_with_layout'
+  actionpack (3.2.17) lib/action_view/renderer/template_renderer.rb:45:in `render_template'
+  actionpack (3.2.17) lib/action_view/renderer/template_renderer.rb:18:in `render'
+  actionpack (3.2.17) lib/action_view/renderer/renderer.rb:36:in `render_template'
+  actionpack (3.2.17) lib/action_view/renderer/renderer.rb:17:in `render'
+  actionpack (3.2.17) lib/abstract_controller/rendering.rb:110:in `_render_template'
+  actionpack (3.2.17) lib/action_controller/metal/streaming.rb:225:in `_render_template'
+  actionpack (3.2.17) lib/abstract_controller/rendering.rb:103:in `render_to_body'
+  actionpack (3.2.17) lib/action_controller/metal/renderers.rb:28:in `render_to_body'
+  actionpack (3.2.17) lib/action_controller/metal/compatibility.rb:50:in `render_to_body'
+  actionpack (3.2.17) lib/abstract_controller/rendering.rb:88:in `render'
+  actionpack (3.2.17) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (3.2.17) lib/action_controller/metal/instrumentation.rb:40:in `block (2 levels) in render'
+  activesupport (3.2.17) lib/active_support/core_ext/benchmark.rb:5:in `block in ms'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/benchmark.rb:295:in `realtime'
+  activesupport (3.2.17) lib/active_support/core_ext/benchmark.rb:5:in `ms'
+  actionpack (3.2.17) lib/action_controller/metal/instrumentation.rb:40:in `block in render'
+  actionpack (3.2.17) lib/action_controller/metal/instrumentation.rb:83:in `cleanup_view_runtime'
+  activerecord (3.2.17) lib/active_record/railties/controller_runtime.rb:24:in `cleanup_view_runtime'
+  actionpack (3.2.17) lib/action_controller/metal/instrumentation.rb:39:in `render'
+  actionpack (3.2.17) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (3.2.17) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (3.2.17) lib/abstract_controller/base.rb:167:in `process_action'
+  actionpack (3.2.17) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (3.2.17) lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:425:in `_run__1902692675297905627__process_action__2926294362363877592__callbacks'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:385:in `_run_process_action_callbacks'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.17) lib/abstract_controller/callbacks.rb:17:in `process_action'
+  actionpack (3.2.17) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (3.2.17) lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+  activesupport (3.2.17) lib/active_support/notifications.rb:123:in `block in instrument'
+  activesupport (3.2.17) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (3.2.17) lib/active_support/notifications.rb:123:in `instrument'
+  actionpack (3.2.17) lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+  actionpack (3.2.17) lib/action_controller/metal/params_wrapper.rb:207:in `process_action'
+  activerecord (3.2.17) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (3.2.17) lib/abstract_controller/base.rb:121:in `process'
+  actionpack (3.2.17) lib/abstract_controller/rendering.rb:45:in `process'
+  actionpack (3.2.17) lib/action_controller/metal.rb:203:in `dispatch'
+  actionpack (3.2.17) lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+  actionpack (3.2.17) lib/action_controller/metal.rb:246:in `block in action'
+  actionpack (3.2.17) lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+  actionpack (3.2.17) lib/action_dispatch/routing/route_set.rb:36:in `call'
+  journey (1.0.4) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.4) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.17) lib/action_dispatch/routing/route_set.rb:608:in `call'
+  railties (3.2.17) lib/rails/engine.rb:484:in `call'
+  railties (3.2.17) lib/rails/railtie/configurable.rb:30:in `method_missing'
+  journey (1.0.4) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.4) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.17) lib/action_dispatch/routing/route_set.rb:608:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.5) lib/rack/etag.rb:23:in `call'
+  rack (1.4.5) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.5) lib/rack/session/abstract/id.rb:210:in `context'
+  rack (1.4.5) lib/rack/session/abstract/id.rb:205:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/cookies.rb:341:in `call'
+  activerecord (3.2.17) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.17) lib/active_record/connection_adapters/abstract/connection_pool.rb:479:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:405:in `_run__3534801026153162762__call__132481415975119030__callbacks'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.17) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  better_errors (1.1.0) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (1.1.0) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (1.1.0) lib/better_errors/middleware.rb:56:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.17) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.17) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.17) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.17) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.17) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.17) lib/rails/engine.rb:484:in `call'
+  railties (3.2.17) lib/rails/application.rb:231:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.17) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+
+Started POST "/admin/__better_errors/70365061162280/variables" for 127.0.0.1 at 2015-07-01 19:22:49 -0300
+Connecting to database specified by database.yml
+
+
+Started GET "/admin/settings-group" for 127.0.0.1 at 2015-07-01 19:24:12 -0300
+Processing by BsAdmin::SettingsController#index as HTML
+  [1m[36mBsAdmin::SettingGroup Load (0.1ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" LIMIT 1[0m
+  [1m[35mBsAdmin::SettingGroup Load (0.2ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+  [1m[36mBsAdmin::BooleanSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_boolean_settings".* FROM "bs_admin_boolean_settings" WHERE "bs_admin_boolean_settings"."setting_group_id" = 1 ORDER BY display_name[0m
+  [1m[35mBsAdmin::StringSetting Load (0.1ms)[0m  SELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 ORDER BY display_name
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/fields/display/_links.html.slim (3.0ms)
+  [1m[36mBsAdmin::TextSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_text_settings".* FROM "bs_admin_text_settings" WHERE "bs_admin_text_settings"."setting_group_id" = 1 ORDER BY display_name[0m
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/settings/index.html.slim within layouts/bs_admin (33.4ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1
+  [1m[36mBsAdmin::StringSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1[0m
+Completed 500 Internal Server Error in 241.3ms
+
+Sass::SyntaxError - File to import not found or unreadable: bootstrap-sass/assets/stylesheets/bootstrap-sprockets.
+Load paths:
+  /Users/uzon/dev-projects/bs_admin/test/dummy
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/gems/1.9.1/gems/bootstrap-sass-3.1.1.1/vendor/assets/stylesheets
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/gems/1.9.1/gems/bootstrap-sass-3.1.1.1/vendor/assets/stylesheets
+  (in /Users/uzon/dev-projects/bs_admin/app/assets/stylesheets/admin.scss):
+  sass (3.2.10) lib/sass/tree/import_node.rb:67:in `rescue in import'
+  sass (3.2.10) lib/sass/tree/import_node.rb:45:in `import'
+  sass (3.2.10) lib/sass/tree/import_node.rb:28:in `imported_file'
+  sass (3.2.10) lib/sass/tree/import_node.rb:37:in `css_import?'
+  sass (3.2.10) lib/sass/tree/visitors/perform.rb:217:in `visit_import'
+  sass (3.2.10) lib/sass/tree/visitors/base.rb:37:in `visit'
+  sass (3.2.10) lib/sass/tree/visitors/perform.rb:100:in `visit'
+  sass (3.2.10) lib/sass/tree/visitors/perform.rb:227:in `block in visit_import'
+  sass (3.2.10) lib/sass/tree/visitors/perform.rb:227:in `visit_import'
+  sass (3.2.10) lib/sass/tree/visitors/base.rb:37:in `visit'
+  sass (3.2.10) lib/sass/tree/visitors/perform.rb:100:in `visit'
+  sass (3.2.10) lib/sass/tree/visitors/base.rb:53:in `block in visit_children'
+  sass (3.2.10) lib/sass/tree/visitors/base.rb:53:in `visit_children'
+  sass (3.2.10) lib/sass/tree/visitors/perform.rb:109:in `block in visit_children'
+  sass (3.2.10) lib/sass/tree/visitors/perform.rb:121:in `with_environment'
+  sass (3.2.10) lib/sass/tree/visitors/perform.rb:108:in `visit_children'
+  sass (3.2.10) lib/sass/tree/visitors/base.rb:37:in `block in visit'
+  sass (3.2.10) lib/sass/tree/visitors/perform.rb:128:in `visit_root'
+  sass (3.2.10) lib/sass/tree/visitors/base.rb:37:in `visit'
+  sass (3.2.10) lib/sass/tree/visitors/perform.rb:100:in `visit'
+  sass (3.2.10) lib/sass/tree/visitors/perform.rb:7:in `visit'
+  sass (3.2.10) lib/sass/tree/root_node.rb:20:in `render'
+  sass (3.2.10) lib/sass/engine.rb:315:in `_render'
+  sass (3.2.10) lib/sass/engine.rb:262:in `render'
+  tilt (1.4.1) lib/tilt/css.rb:24:in `evaluate'
+  tilt (1.4.1) lib/tilt/template.rb:103:in `render'
+  sprockets (2.2.2) lib/sprockets/context.rb:193:in `block in evaluate'
+  sprockets (2.2.2) lib/sprockets/context.rb:190:in `evaluate'
+  sprockets (2.2.2) lib/sprockets/processed_asset.rb:12:in `initialize'
+  sprockets (2.2.2) lib/sprockets/base.rb:249:in `block in build_asset'
+  sprockets (2.2.2) lib/sprockets/base.rb:270:in `circular_call_protection'
+  sprockets (2.2.2) lib/sprockets/base.rb:248:in `build_asset'
+  sprockets (2.2.2) lib/sprockets/index.rb:93:in `block in build_asset'
+  sprockets (2.2.2) lib/sprockets/caching.rb:19:in `cache_asset'
+  sprockets (2.2.2) lib/sprockets/index.rb:92:in `build_asset'
+  sprockets (2.2.2) lib/sprockets/base.rb:169:in `find_asset'
+  sprockets (2.2.2) lib/sprockets/index.rb:60:in `find_asset'
+  sprockets (2.2.2) lib/sprockets/bundled_asset.rb:16:in `initialize'
+  sprockets (2.2.2) lib/sprockets/base.rb:252:in `build_asset'
+  sprockets (2.2.2) lib/sprockets/index.rb:93:in `block in build_asset'
+  sprockets (2.2.2) lib/sprockets/caching.rb:19:in `cache_asset'
+  sprockets (2.2.2) lib/sprockets/index.rb:92:in `build_asset'
+  sprockets (2.2.2) lib/sprockets/base.rb:169:in `find_asset'
+  sprockets (2.2.2) lib/sprockets/index.rb:60:in `find_asset'
+  sprockets (2.2.2) lib/sprockets/environment.rb:78:in `find_asset'
+  sprockets (2.2.2) lib/sprockets/base.rb:177:in `[]'
+  actionpack (3.2.17) lib/sprockets/helpers/rails_helper.rb:126:in `asset_for'
+  actionpack (3.2.17) lib/sprockets/helpers/rails_helper.rb:44:in `block in stylesheet_link_tag'
+  actionpack (3.2.17) lib/sprockets/helpers/rails_helper.rb:43:in `stylesheet_link_tag'
+  /Users/uzon/dev-projects/bs_admin/app/views/layouts/bs_admin.html.slim:9:in `___sers_uzon_dev_projects_bs_admin_app_views_layouts_bs_admin_html_slim__3059595598124250734_70207819401580'
+  actionpack (3.2.17) lib/action_view/template.rb:145:in `block in render'
+  activesupport (3.2.17) lib/active_support/notifications.rb:125:in `instrument'
+  actionpack (3.2.17) lib/action_view/template.rb:143:in `render'
+  actionpack (3.2.17) lib/action_view/renderer/template_renderer.rb:59:in `render_with_layout'
+  actionpack (3.2.17) lib/action_view/renderer/template_renderer.rb:45:in `render_template'
+  actionpack (3.2.17) lib/action_view/renderer/template_renderer.rb:18:in `render'
+  actionpack (3.2.17) lib/action_view/renderer/renderer.rb:36:in `render_template'
+  actionpack (3.2.17) lib/action_view/renderer/renderer.rb:17:in `render'
+  actionpack (3.2.17) lib/abstract_controller/rendering.rb:110:in `_render_template'
+  actionpack (3.2.17) lib/action_controller/metal/streaming.rb:225:in `_render_template'
+  actionpack (3.2.17) lib/abstract_controller/rendering.rb:103:in `render_to_body'
+  actionpack (3.2.17) lib/action_controller/metal/renderers.rb:28:in `render_to_body'
+  actionpack (3.2.17) lib/action_controller/metal/compatibility.rb:50:in `render_to_body'
+  actionpack (3.2.17) lib/abstract_controller/rendering.rb:88:in `render'
+  actionpack (3.2.17) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (3.2.17) lib/action_controller/metal/instrumentation.rb:40:in `block (2 levels) in render'
+  activesupport (3.2.17) lib/active_support/core_ext/benchmark.rb:5:in `block in ms'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/benchmark.rb:295:in `realtime'
+  activesupport (3.2.17) lib/active_support/core_ext/benchmark.rb:5:in `ms'
+  actionpack (3.2.17) lib/action_controller/metal/instrumentation.rb:40:in `block in render'
+  actionpack (3.2.17) lib/action_controller/metal/instrumentation.rb:83:in `cleanup_view_runtime'
+  activerecord (3.2.17) lib/active_record/railties/controller_runtime.rb:24:in `cleanup_view_runtime'
+  actionpack (3.2.17) lib/action_controller/metal/instrumentation.rb:39:in `render'
+  actionpack (3.2.17) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (3.2.17) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (3.2.17) lib/abstract_controller/base.rb:167:in `process_action'
+  actionpack (3.2.17) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (3.2.17) lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:425:in `_run__3925719504815414984__process_action__3811380403574121220__callbacks'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:385:in `_run_process_action_callbacks'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.17) lib/abstract_controller/callbacks.rb:17:in `process_action'
+  actionpack (3.2.17) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (3.2.17) lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+  activesupport (3.2.17) lib/active_support/notifications.rb:123:in `block in instrument'
+  activesupport (3.2.17) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (3.2.17) lib/active_support/notifications.rb:123:in `instrument'
+  actionpack (3.2.17) lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+  actionpack (3.2.17) lib/action_controller/metal/params_wrapper.rb:207:in `process_action'
+  activerecord (3.2.17) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (3.2.17) lib/abstract_controller/base.rb:121:in `process'
+  actionpack (3.2.17) lib/abstract_controller/rendering.rb:45:in `process'
+  actionpack (3.2.17) lib/action_controller/metal.rb:203:in `dispatch'
+  actionpack (3.2.17) lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+  actionpack (3.2.17) lib/action_controller/metal.rb:246:in `block in action'
+  actionpack (3.2.17) lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+  actionpack (3.2.17) lib/action_dispatch/routing/route_set.rb:36:in `call'
+  journey (1.0.4) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.4) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.17) lib/action_dispatch/routing/route_set.rb:608:in `call'
+  railties (3.2.17) lib/rails/engine.rb:484:in `call'
+  railties (3.2.17) lib/rails/railtie/configurable.rb:30:in `method_missing'
+  journey (1.0.4) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.4) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.17) lib/action_dispatch/routing/route_set.rb:608:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.5) lib/rack/etag.rb:23:in `call'
+  rack (1.4.5) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.5) lib/rack/session/abstract/id.rb:210:in `context'
+  rack (1.4.5) lib/rack/session/abstract/id.rb:205:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/cookies.rb:341:in `call'
+  activerecord (3.2.17) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.17) lib/active_record/connection_adapters/abstract/connection_pool.rb:479:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:405:in `_run__3123365020878413253__call__3076609640093214043__callbacks'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.17) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  better_errors (1.1.0) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (1.1.0) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (1.1.0) lib/better_errors/middleware.rb:56:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.17) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.17) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.17) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.17) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.17) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.17) lib/rails/engine.rb:484:in `call'
+  railties (3.2.17) lib/rails/application.rb:231:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.17) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+
+Started POST "/admin/__better_errors/70207842201420/variables" for 127.0.0.1 at 2015-07-01 19:24:12 -0300
+
+
+Started GET "/admin/settings-group" for 127.0.0.1 at 2015-07-01 19:26:08 -0300
+Processing by BsAdmin::SettingsController#index as HTML
+  [1m[35mBsAdmin::SettingGroup Load (0.1ms)[0m  SELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" LIMIT 1
+  [1m[36mBsAdmin::SettingGroup Load (0.1ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1[0m
+  [1m[35mBsAdmin::BooleanSetting Load (0.1ms)[0m  SELECT "bs_admin_boolean_settings".* FROM "bs_admin_boolean_settings" WHERE "bs_admin_boolean_settings"."setting_group_id" = 1 ORDER BY display_name
+  [1m[36mBsAdmin::StringSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 ORDER BY display_name[0m
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/fields/display/_links.html.slim (0.1ms)
+  [1m[35mBsAdmin::TextSetting Load (0.1ms)[0m  SELECT "bs_admin_text_settings".* FROM "bs_admin_text_settings" WHERE "bs_admin_text_settings"."setting_group_id" = 1 ORDER BY display_name
+  Rendered /Users/uzon/dev-projects/bs_admin/app/views/bs_admin/settings/index.html.slim within layouts/bs_admin (1.9ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "bs_admin_setting_groups".* FROM "bs_admin_setting_groups" WHERE "bs_admin_setting_groups"."key" = 'general' LIMIT 1[0m
+  [1m[35mBsAdmin::StringSetting Load (0.1ms)[0m  SELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1
+Completed 500 Internal Server Error in 17.1ms
+
+Sass::SyntaxError - File to import not found or unreadable: bootstrap-sprockets.
+Load paths:
+  /Users/uzon/dev-projects/bs_admin/test/dummy
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/gems/1.9.1/gems/bootstrap-sass-3.1.1.1/vendor/assets/stylesheets
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/gems/1.9.1/gems/bootstrap-sass-3.1.1.1/vendor/assets/stylesheets
+  (in /Users/uzon/dev-projects/bs_admin/app/assets/stylesheets/admin.scss):
+  sass (3.2.10) lib/sass/tree/import_node.rb:67:in `rescue in import'
+  sass (3.2.10) lib/sass/tree/import_node.rb:45:in `import'
+  sass (3.2.10) lib/sass/tree/import_node.rb:28:in `imported_file'
+  sass (3.2.10) lib/sass/tree/import_node.rb:37:in `css_import?'
+  sass (3.2.10) lib/sass/tree/visitors/perform.rb:217:in `visit_import'
+  sass (3.2.10) lib/sass/tree/visitors/base.rb:37:in `visit'
+  sass (3.2.10) lib/sass/tree/visitors/perform.rb:100:in `visit'
+  sass (3.2.10) lib/sass/tree/visitors/perform.rb:227:in `block in visit_import'
+  sass (3.2.10) lib/sass/tree/visitors/perform.rb:227:in `visit_import'
+  sass (3.2.10) lib/sass/tree/visitors/base.rb:37:in `visit'
+  sass (3.2.10) lib/sass/tree/visitors/perform.rb:100:in `visit'
+  sass (3.2.10) lib/sass/tree/visitors/base.rb:53:in `block in visit_children'
+  sass (3.2.10) lib/sass/tree/visitors/base.rb:53:in `visit_children'
+  sass (3.2.10) lib/sass/tree/visitors/perform.rb:109:in `block in visit_children'
+  sass (3.2.10) lib/sass/tree/visitors/perform.rb:121:in `with_environment'
+  sass (3.2.10) lib/sass/tree/visitors/perform.rb:108:in `visit_children'
+  sass (3.2.10) lib/sass/tree/visitors/base.rb:37:in `block in visit'
+  sass (3.2.10) lib/sass/tree/visitors/perform.rb:128:in `visit_root'
+  sass (3.2.10) lib/sass/tree/visitors/base.rb:37:in `visit'
+  sass (3.2.10) lib/sass/tree/visitors/perform.rb:100:in `visit'
+  sass (3.2.10) lib/sass/tree/visitors/perform.rb:7:in `visit'
+  sass (3.2.10) lib/sass/tree/root_node.rb:20:in `render'
+  sass (3.2.10) lib/sass/engine.rb:315:in `_render'
+  sass (3.2.10) lib/sass/engine.rb:262:in `render'
+  tilt (1.4.1) lib/tilt/css.rb:24:in `evaluate'
+  tilt (1.4.1) lib/tilt/template.rb:103:in `render'
+  sprockets (2.2.2) lib/sprockets/context.rb:193:in `block in evaluate'
+  sprockets (2.2.2) lib/sprockets/context.rb:190:in `evaluate'
+  sprockets (2.2.2) lib/sprockets/processed_asset.rb:12:in `initialize'
+  sprockets (2.2.2) lib/sprockets/base.rb:249:in `block in build_asset'
+  sprockets (2.2.2) lib/sprockets/base.rb:270:in `circular_call_protection'
+  sprockets (2.2.2) lib/sprockets/base.rb:248:in `build_asset'
+  sprockets (2.2.2) lib/sprockets/index.rb:93:in `block in build_asset'
+  sprockets (2.2.2) lib/sprockets/caching.rb:19:in `cache_asset'
+  sprockets (2.2.2) lib/sprockets/index.rb:92:in `build_asset'
+  sprockets (2.2.2) lib/sprockets/base.rb:169:in `find_asset'
+  sprockets (2.2.2) lib/sprockets/index.rb:60:in `find_asset'
+  sprockets (2.2.2) lib/sprockets/bundled_asset.rb:16:in `initialize'
+  sprockets (2.2.2) lib/sprockets/base.rb:252:in `build_asset'
+  sprockets (2.2.2) lib/sprockets/index.rb:93:in `block in build_asset'
+  sprockets (2.2.2) lib/sprockets/caching.rb:19:in `cache_asset'
+  sprockets (2.2.2) lib/sprockets/index.rb:92:in `build_asset'
+  sprockets (2.2.2) lib/sprockets/base.rb:169:in `find_asset'
+  sprockets (2.2.2) lib/sprockets/index.rb:60:in `find_asset'
+  sprockets (2.2.2) lib/sprockets/environment.rb:78:in `find_asset'
+  sprockets (2.2.2) lib/sprockets/base.rb:177:in `[]'
+  actionpack (3.2.17) lib/sprockets/helpers/rails_helper.rb:126:in `asset_for'
+  actionpack (3.2.17) lib/sprockets/helpers/rails_helper.rb:44:in `block in stylesheet_link_tag'
+  actionpack (3.2.17) lib/sprockets/helpers/rails_helper.rb:43:in `stylesheet_link_tag'
+  /Users/uzon/dev-projects/bs_admin/app/views/layouts/bs_admin.html.slim:9:in `___sers_uzon_dev_projects_bs_admin_app_views_layouts_bs_admin_html_slim__3059595598124250734_70207819401580'
+  actionpack (3.2.17) lib/action_view/template.rb:145:in `block in render'
+  activesupport (3.2.17) lib/active_support/notifications.rb:125:in `instrument'
+  actionpack (3.2.17) lib/action_view/template.rb:143:in `render'
+  actionpack (3.2.17) lib/action_view/renderer/template_renderer.rb:59:in `render_with_layout'
+  actionpack (3.2.17) lib/action_view/renderer/template_renderer.rb:45:in `render_template'
+  actionpack (3.2.17) lib/action_view/renderer/template_renderer.rb:18:in `render'
+  actionpack (3.2.17) lib/action_view/renderer/renderer.rb:36:in `render_template'
+  actionpack (3.2.17) lib/action_view/renderer/renderer.rb:17:in `render'
+  actionpack (3.2.17) lib/abstract_controller/rendering.rb:110:in `_render_template'
+  actionpack (3.2.17) lib/action_controller/metal/streaming.rb:225:in `_render_template'
+  actionpack (3.2.17) lib/abstract_controller/rendering.rb:103:in `render_to_body'
+  actionpack (3.2.17) lib/action_controller/metal/renderers.rb:28:in `render_to_body'
+  actionpack (3.2.17) lib/action_controller/metal/compatibility.rb:50:in `render_to_body'
+  actionpack (3.2.17) lib/abstract_controller/rendering.rb:88:in `render'
+  actionpack (3.2.17) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (3.2.17) lib/action_controller/metal/instrumentation.rb:40:in `block (2 levels) in render'
+  activesupport (3.2.17) lib/active_support/core_ext/benchmark.rb:5:in `block in ms'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/benchmark.rb:295:in `realtime'
+  activesupport (3.2.17) lib/active_support/core_ext/benchmark.rb:5:in `ms'
+  actionpack (3.2.17) lib/action_controller/metal/instrumentation.rb:40:in `block in render'
+  actionpack (3.2.17) lib/action_controller/metal/instrumentation.rb:83:in `cleanup_view_runtime'
+  activerecord (3.2.17) lib/active_record/railties/controller_runtime.rb:24:in `cleanup_view_runtime'
+  actionpack (3.2.17) lib/action_controller/metal/instrumentation.rb:39:in `render'
+  actionpack (3.2.17) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (3.2.17) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (3.2.17) lib/abstract_controller/base.rb:167:in `process_action'
+  actionpack (3.2.17) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (3.2.17) lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:425:in `_run__3925719504815414984__process_action__3811380403574121220__callbacks'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:385:in `_run_process_action_callbacks'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.17) lib/abstract_controller/callbacks.rb:17:in `process_action'
+  actionpack (3.2.17) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (3.2.17) lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+  activesupport (3.2.17) lib/active_support/notifications.rb:123:in `block in instrument'
+  activesupport (3.2.17) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (3.2.17) lib/active_support/notifications.rb:123:in `instrument'
+  actionpack (3.2.17) lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+  actionpack (3.2.17) lib/action_controller/metal/params_wrapper.rb:207:in `process_action'
+  activerecord (3.2.17) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (3.2.17) lib/abstract_controller/base.rb:121:in `process'
+  actionpack (3.2.17) lib/abstract_controller/rendering.rb:45:in `process'
+  actionpack (3.2.17) lib/action_controller/metal.rb:203:in `dispatch'
+  actionpack (3.2.17) lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+  actionpack (3.2.17) lib/action_controller/metal.rb:246:in `block in action'
+  actionpack (3.2.17) lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+  actionpack (3.2.17) lib/action_dispatch/routing/route_set.rb:36:in `call'
+  journey (1.0.4) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.4) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.17) lib/action_dispatch/routing/route_set.rb:608:in `call'
+  railties (3.2.17) lib/rails/engine.rb:484:in `call'
+  railties (3.2.17) lib/rails/railtie/configurable.rb:30:in `method_missing'
+  journey (1.0.4) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.4) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.17) lib/action_dispatch/routing/route_set.rb:608:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.5) lib/rack/etag.rb:23:in `call'
+  rack (1.4.5) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.5) lib/rack/session/abstract/id.rb:210:in `context'
+  rack (1.4.5) lib/rack/session/abstract/id.rb:205:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/cookies.rb:341:in `call'
+  activerecord (3.2.17) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.17) lib/active_record/connection_adapters/abstract/connection_pool.rb:479:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:405:in `_run__3123365020878413253__call__3076609640093214043__callbacks'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.17) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  better_errors (1.1.0) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (1.1.0) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (1.1.0) lib/better_errors/middleware.rb:56:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.17) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.17) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.17) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.17) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.17) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.17) lib/rails/engine.rb:484:in `call'
+  railties (3.2.17) lib/rails/application.rb:231:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.17) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+
+Started POST "/admin/__better_errors/70207819899080/variables" for 127.0.0.1 at 2015-07-01 19:26:08 -0300
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.6ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (1.4ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (1.1ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (4.3ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Migrating to CreatePosts (20150701214525)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  CREATE TABLE "posts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "content" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20150701214525')[0m
+  [1m[35m (0.8ms)[0m  commit transaction
+Migrating to CreateComments (20150701214611)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "content" text, "post_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20150701214611')[0m
+  [1m[35m (0.7ms)[0m  commit transaction
+Migrating to CreateBsAdmin (20150701214842)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "bs_admin_assets" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "type" varchar(255), "group" varchar(255), "file" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "bs_admin_setting_groups" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "key" varchar(255), "display_name" varchar(255), "main_group" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "bs_admin_string_settings" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "type" varchar(255), "setting_group_id" integer, "key" varchar(255), "display_name" varchar(255), "hint" varchar(255), "has_user_changed" boolean DEFAULT 'f', "value" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.2ms)[0m  [1mCREATE TABLE "bs_admin_text_settings" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "type" varchar(255), "setting_group_id" integer, "key" varchar(255), "display_name" varchar(255), "hint" varchar(255), "has_user_changed" boolean DEFAULT 'f', "value" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "bs_admin_boolean_settings" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "type" varchar(255), "setting_group_id" integer, "key" varchar(255), "display_name" varchar(255), "hint" varchar(255), "has_user_changed" boolean DEFAULT 'f', "value" boolean, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20150701214842')[0m
+  [1m[35m (0.8ms)[0m  commit transaction
+Migrating to SeedMainBsAdminSettings (20150701214958)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (3.1ms)[0m  INSERT INTO "bs_admin_setting_groups" ("created_at", "display_name", "key", "main_group", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Sat, 13 Feb 2016 20:13:09 UTC +00:00], ["display_name", "General"], ["key", :general], ["main_group", "Main"], ["updated_at", Sat, 13 Feb 2016 20:13:09 UTC +00:00]]
+  [1m[36mBsAdmin::StringSetting Load (0.1ms)[0m  [1mSELECT "bs_admin_string_settings".* FROM "bs_admin_string_settings" WHERE "bs_admin_string_settings"."setting_group_id" = 1 AND "bs_admin_string_settings"."key" = 'website_title' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "bs_admin_string_settings" ("created_at", "display_name", "has_user_changed", "hint", "key", "setting_group_id", "type", "updated_at", "value") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)  [["created_at", Sat, 13 Feb 2016 20:13:10 UTC +00:00], ["display_name", "Website Title"], ["has_user_changed", false], ["hint", nil], ["key", :website_title], ["setting_group_id", 1], ["type", nil], ["updated_at", Sat, 13 Feb 2016 20:13:10 UTC +00:00], ["value", "Dummy"]]
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20150701214958')[0m
+  [1m[35m (0.8ms)[0m  commit transaction
+Migrating to CreateExamples (20160213201254)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "examples" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "string_attribute" varchar(255), "checkbox_attribute" boolean, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20160213201254')[0m
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Connecting to database specified by database.yml
+
+
+Started GET "/" for 127.0.0.1 at 2016-02-13 18:14:33 -0200
+
+ActionController::RoutingError (No route matches [GET] "/"):
+  actionpack (3.2.17) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.17) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.17) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.17) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.17) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.7) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.7) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.17) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.7) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.17) lib/rails/engine.rb:484:in `call'
+  railties (3.2.17) lib/rails/application.rb:231:in `call'
+  rack (1.4.7) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.17) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.7) lib/rack/handler/webrick.rb:59:in `service'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/gems/1.9.1/gems/actionpack-3.2.17/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (3.2ms)
+
+
+Started GET "/admin" for 127.0.0.1 at 2016-02-13 18:14:37 -0200
+Processing by BsAdmin::SessionsController#new as HTML
+Completed 500 Internal Server Error in 8.2ms
+
+ActionView::MissingTemplate - Missing template bs_admin/sessions/new, bs_admin_controller_base/new with {:locale=>[:en], :formats=>[:html], :handlers=>[:erb, :builder]}. Searched in:
+  * "/Users/uzon/dev-projects/_lib/bs_admin/test/dummy/app/views"
+  * "/Users/uzon/dev-projects/_lib/bs_admin/app/views"
+:
+  actionpack (3.2.17) lib/action_view/path_set.rb:58:in `find'
+  actionpack (3.2.17) lib/action_view/lookup_context.rb:122:in `find'
+  actionpack (3.2.17) lib/action_view/renderer/abstract_renderer.rb:3:in `find_template'
+  actionpack (3.2.17) lib/action_view/renderer/template_renderer.rb:34:in `determine_template'
+  actionpack (3.2.17) lib/action_view/renderer/template_renderer.rb:10:in `render'
+  actionpack (3.2.17) lib/action_view/renderer/renderer.rb:36:in `render_template'
+  actionpack (3.2.17) lib/action_view/renderer/renderer.rb:17:in `render'
+  actionpack (3.2.17) lib/abstract_controller/rendering.rb:110:in `_render_template'
+  actionpack (3.2.17) lib/action_controller/metal/streaming.rb:225:in `_render_template'
+  actionpack (3.2.17) lib/abstract_controller/rendering.rb:103:in `render_to_body'
+  actionpack (3.2.17) lib/action_controller/metal/renderers.rb:28:in `render_to_body'
+  actionpack (3.2.17) lib/action_controller/metal/compatibility.rb:50:in `render_to_body'
+  actionpack (3.2.17) lib/abstract_controller/rendering.rb:88:in `render'
+  actionpack (3.2.17) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (3.2.17) lib/action_controller/metal/instrumentation.rb:40:in `block (2 levels) in render'
+  activesupport (3.2.17) lib/active_support/core_ext/benchmark.rb:5:in `block in ms'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/benchmark.rb:295:in `realtime'
+  activesupport (3.2.17) lib/active_support/core_ext/benchmark.rb:5:in `ms'
+  actionpack (3.2.17) lib/action_controller/metal/instrumentation.rb:40:in `block in render'
+  actionpack (3.2.17) lib/action_controller/metal/instrumentation.rb:83:in `cleanup_view_runtime'
+  activerecord (3.2.17) lib/active_record/railties/controller_runtime.rb:24:in `cleanup_view_runtime'
+  actionpack (3.2.17) lib/action_controller/metal/instrumentation.rb:39:in `render'
+  actionpack (3.2.17) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (3.2.17) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (3.2.17) lib/abstract_controller/base.rb:167:in `process_action'
+  actionpack (3.2.17) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (3.2.17) lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:414:in `_run__1462085013368464698__process_action__4336114764637039749__callbacks'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:385:in `_run_process_action_callbacks'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.17) lib/abstract_controller/callbacks.rb:17:in `process_action'
+  actionpack (3.2.17) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (3.2.17) lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+  activesupport (3.2.17) lib/active_support/notifications.rb:123:in `block in instrument'
+  activesupport (3.2.17) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (3.2.17) lib/active_support/notifications.rb:123:in `instrument'
+  actionpack (3.2.17) lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+  actionpack (3.2.17) lib/action_controller/metal/params_wrapper.rb:207:in `process_action'
+  activerecord (3.2.17) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (3.2.17) lib/abstract_controller/base.rb:121:in `process'
+  actionpack (3.2.17) lib/abstract_controller/rendering.rb:45:in `process'
+  actionpack (3.2.17) lib/action_controller/metal.rb:203:in `dispatch'
+  actionpack (3.2.17) lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+  actionpack (3.2.17) lib/action_controller/metal.rb:246:in `block in action'
+  actionpack (3.2.17) lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+  actionpack (3.2.17) lib/action_dispatch/routing/route_set.rb:36:in `call'
+  journey (1.0.4) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.4) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.17) lib/action_dispatch/routing/route_set.rb:608:in `call'
+  railties (3.2.17) lib/rails/engine.rb:484:in `call'
+  railties (3.2.17) lib/rails/railtie/configurable.rb:30:in `method_missing'
+  journey (1.0.4) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.4) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.17) lib/action_dispatch/routing/route_set.rb:608:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.7) lib/rack/etag.rb:23:in `call'
+  rack (1.4.7) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.7) lib/rack/session/abstract/id.rb:210:in `context'
+  rack (1.4.7) lib/rack/session/abstract/id.rb:205:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/cookies.rb:341:in `call'
+  activerecord (3.2.17) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.17) lib/active_record/connection_adapters/abstract/connection_pool.rb:479:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:405:in `_run__3546645590785723087__call__140883923973951224__callbacks'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.17) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  better_errors (1.1.0) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (1.1.0) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (1.1.0) lib/better_errors/middleware.rb:56:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.17) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.17) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.17) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.17) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.7) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.7) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.17) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.7) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.17) lib/rails/engine.rb:484:in `call'
+  railties (3.2.17) lib/rails/application.rb:231:in `call'
+  rack (1.4.7) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.17) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.7) lib/rack/handler/webrick.rb:59:in `service'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+
+Started POST "/admin/__better_errors/70130714437000/variables" for 127.0.0.1 at 2016-02-13 18:14:37 -0200
+
+
+Started GET "/admin" for 127.0.0.1 at 2016-02-13 18:16:06 -0200
+Processing by BsAdmin::SessionsController#new as HTML
+Completed 500 Internal Server Error in 1.1ms
+
+ActionView::MissingTemplate - Missing template bs_admin/sessions/new, bs_admin_controller_base/new with {:locale=>[:en], :formats=>[:html], :handlers=>[:erb, :builder]}. Searched in:
+  * "/Users/uzon/dev-projects/_lib/bs_admin/test/dummy/app/views"
+  * "/Users/uzon/dev-projects/_lib/bs_admin/app/views"
+:
+  actionpack (3.2.17) lib/action_view/path_set.rb:58:in `find'
+  actionpack (3.2.17) lib/action_view/lookup_context.rb:122:in `find'
+  actionpack (3.2.17) lib/action_view/renderer/abstract_renderer.rb:3:in `find_template'
+  actionpack (3.2.17) lib/action_view/renderer/template_renderer.rb:34:in `determine_template'
+  actionpack (3.2.17) lib/action_view/renderer/template_renderer.rb:10:in `render'
+  actionpack (3.2.17) lib/action_view/renderer/renderer.rb:36:in `render_template'
+  actionpack (3.2.17) lib/action_view/renderer/renderer.rb:17:in `render'
+  actionpack (3.2.17) lib/abstract_controller/rendering.rb:110:in `_render_template'
+  actionpack (3.2.17) lib/action_controller/metal/streaming.rb:225:in `_render_template'
+  actionpack (3.2.17) lib/abstract_controller/rendering.rb:103:in `render_to_body'
+  actionpack (3.2.17) lib/action_controller/metal/renderers.rb:28:in `render_to_body'
+  actionpack (3.2.17) lib/action_controller/metal/compatibility.rb:50:in `render_to_body'
+  actionpack (3.2.17) lib/abstract_controller/rendering.rb:88:in `render'
+  actionpack (3.2.17) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (3.2.17) lib/action_controller/metal/instrumentation.rb:40:in `block (2 levels) in render'
+  activesupport (3.2.17) lib/active_support/core_ext/benchmark.rb:5:in `block in ms'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/benchmark.rb:295:in `realtime'
+  activesupport (3.2.17) lib/active_support/core_ext/benchmark.rb:5:in `ms'
+  actionpack (3.2.17) lib/action_controller/metal/instrumentation.rb:40:in `block in render'
+  actionpack (3.2.17) lib/action_controller/metal/instrumentation.rb:83:in `cleanup_view_runtime'
+  activerecord (3.2.17) lib/active_record/railties/controller_runtime.rb:24:in `cleanup_view_runtime'
+  actionpack (3.2.17) lib/action_controller/metal/instrumentation.rb:39:in `render'
+  actionpack (3.2.17) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (3.2.17) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (3.2.17) lib/abstract_controller/base.rb:167:in `process_action'
+  actionpack (3.2.17) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (3.2.17) lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:414:in `_run__1462085013368464698__process_action__4336114764637039749__callbacks'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:385:in `_run_process_action_callbacks'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.17) lib/abstract_controller/callbacks.rb:17:in `process_action'
+  actionpack (3.2.17) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (3.2.17) lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+  activesupport (3.2.17) lib/active_support/notifications.rb:123:in `block in instrument'
+  activesupport (3.2.17) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (3.2.17) lib/active_support/notifications.rb:123:in `instrument'
+  actionpack (3.2.17) lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+  actionpack (3.2.17) lib/action_controller/metal/params_wrapper.rb:207:in `process_action'
+  activerecord (3.2.17) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (3.2.17) lib/abstract_controller/base.rb:121:in `process'
+  actionpack (3.2.17) lib/abstract_controller/rendering.rb:45:in `process'
+  actionpack (3.2.17) lib/action_controller/metal.rb:203:in `dispatch'
+  actionpack (3.2.17) lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+  actionpack (3.2.17) lib/action_controller/metal.rb:246:in `block in action'
+  actionpack (3.2.17) lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+  actionpack (3.2.17) lib/action_dispatch/routing/route_set.rb:36:in `call'
+  journey (1.0.4) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.4) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.17) lib/action_dispatch/routing/route_set.rb:608:in `call'
+  railties (3.2.17) lib/rails/engine.rb:484:in `call'
+  railties (3.2.17) lib/rails/railtie/configurable.rb:30:in `method_missing'
+  journey (1.0.4) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.4) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.17) lib/action_dispatch/routing/route_set.rb:608:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.7) lib/rack/etag.rb:23:in `call'
+  rack (1.4.7) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.7) lib/rack/session/abstract/id.rb:210:in `context'
+  rack (1.4.7) lib/rack/session/abstract/id.rb:205:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/cookies.rb:341:in `call'
+  activerecord (3.2.17) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.17) lib/active_record/connection_adapters/abstract/connection_pool.rb:479:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:405:in `_run__3546645590785723087__call__140883923973951224__callbacks'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.17) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  better_errors (1.1.0) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (1.1.0) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (1.1.0) lib/better_errors/middleware.rb:56:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.17) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.17) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.17) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.17) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.7) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.7) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.17) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.7) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.17) lib/rails/engine.rb:484:in `call'
+  railties (3.2.17) lib/rails/application.rb:231:in `call'
+  rack (1.4.7) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.17) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.7) lib/rack/handler/webrick.rb:59:in `service'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+
+Started POST "/admin/__better_errors/70130714614680/variables" for 127.0.0.1 at 2016-02-13 18:16:06 -0200
+Connecting to database specified by database.yml
+
+
+Started GET "/admin" for 127.0.0.1 at 2016-02-13 18:16:18 -0200
+Processing by BsAdmin::SessionsController#new as HTML
+Completed 500 Internal Server Error in 46.7ms
+
+ActionView::MissingTemplate - Missing template bs_admin/sessions/new, bs_admin_controller_base/new with {:locale=>[:en], :formats=>[:html], :handlers=>[:erb, :builder]}. Searched in:
+  * "/Users/uzon/dev-projects/_lib/bs_admin/test/dummy/app/views"
+  * "/Users/uzon/dev-projects/_lib/bs_admin/app/views"
+:
+  actionpack (3.2.17) lib/action_view/path_set.rb:58:in `find'
+  actionpack (3.2.17) lib/action_view/lookup_context.rb:122:in `find'
+  actionpack (3.2.17) lib/action_view/renderer/abstract_renderer.rb:3:in `find_template'
+  actionpack (3.2.17) lib/action_view/renderer/template_renderer.rb:34:in `determine_template'
+  actionpack (3.2.17) lib/action_view/renderer/template_renderer.rb:10:in `render'
+  actionpack (3.2.17) lib/action_view/renderer/renderer.rb:36:in `render_template'
+  actionpack (3.2.17) lib/action_view/renderer/renderer.rb:17:in `render'
+  actionpack (3.2.17) lib/abstract_controller/rendering.rb:110:in `_render_template'
+  actionpack (3.2.17) lib/action_controller/metal/streaming.rb:225:in `_render_template'
+  actionpack (3.2.17) lib/abstract_controller/rendering.rb:103:in `render_to_body'
+  actionpack (3.2.17) lib/action_controller/metal/renderers.rb:28:in `render_to_body'
+  actionpack (3.2.17) lib/action_controller/metal/compatibility.rb:50:in `render_to_body'
+  actionpack (3.2.17) lib/abstract_controller/rendering.rb:88:in `render'
+  actionpack (3.2.17) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (3.2.17) lib/action_controller/metal/instrumentation.rb:40:in `block (2 levels) in render'
+  activesupport (3.2.17) lib/active_support/core_ext/benchmark.rb:5:in `block in ms'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/benchmark.rb:295:in `realtime'
+  activesupport (3.2.17) lib/active_support/core_ext/benchmark.rb:5:in `ms'
+  actionpack (3.2.17) lib/action_controller/metal/instrumentation.rb:40:in `block in render'
+  actionpack (3.2.17) lib/action_controller/metal/instrumentation.rb:83:in `cleanup_view_runtime'
+  activerecord (3.2.17) lib/active_record/railties/controller_runtime.rb:24:in `cleanup_view_runtime'
+  actionpack (3.2.17) lib/action_controller/metal/instrumentation.rb:39:in `render'
+  actionpack (3.2.17) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (3.2.17) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (3.2.17) lib/abstract_controller/base.rb:167:in `process_action'
+  actionpack (3.2.17) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (3.2.17) lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:414:in `_run__3398174151122401158__process_action__1350909372371053933__callbacks'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:385:in `_run_process_action_callbacks'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.17) lib/abstract_controller/callbacks.rb:17:in `process_action'
+  actionpack (3.2.17) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (3.2.17) lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+  activesupport (3.2.17) lib/active_support/notifications.rb:123:in `block in instrument'
+  activesupport (3.2.17) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (3.2.17) lib/active_support/notifications.rb:123:in `instrument'
+  actionpack (3.2.17) lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+  actionpack (3.2.17) lib/action_controller/metal/params_wrapper.rb:207:in `process_action'
+  activerecord (3.2.17) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (3.2.17) lib/abstract_controller/base.rb:121:in `process'
+  actionpack (3.2.17) lib/abstract_controller/rendering.rb:45:in `process'
+  actionpack (3.2.17) lib/action_controller/metal.rb:203:in `dispatch'
+  actionpack (3.2.17) lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+  actionpack (3.2.17) lib/action_controller/metal.rb:246:in `block in action'
+  actionpack (3.2.17) lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+  actionpack (3.2.17) lib/action_dispatch/routing/route_set.rb:36:in `call'
+  journey (1.0.4) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.4) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.17) lib/action_dispatch/routing/route_set.rb:608:in `call'
+  railties (3.2.17) lib/rails/engine.rb:484:in `call'
+  railties (3.2.17) lib/rails/railtie/configurable.rb:30:in `method_missing'
+  journey (1.0.4) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.4) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.17) lib/action_dispatch/routing/route_set.rb:608:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.7) lib/rack/etag.rb:23:in `call'
+  rack (1.4.7) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.7) lib/rack/session/abstract/id.rb:210:in `context'
+  rack (1.4.7) lib/rack/session/abstract/id.rb:205:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/cookies.rb:341:in `call'
+  activerecord (3.2.17) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.17) lib/active_record/connection_adapters/abstract/connection_pool.rb:479:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:405:in `_run__1148248579112013697__call__3839427253180026870__callbacks'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.17) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.17) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  better_errors (1.1.0) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (1.1.0) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (1.1.0) lib/better_errors/middleware.rb:56:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.17) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.17) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.17) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.17) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.7) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.7) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.17) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.7) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.17) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.17) lib/rails/engine.rb:484:in `call'
+  railties (3.2.17) lib/rails/application.rb:231:in `call'
+  rack (1.4.7) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.17) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.7) lib/rack/handler/webrick.rb:59:in `service'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/uzon/.rbenv/versions/1.9.3-p545/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+
+Started POST "/admin/__better_errors/70194337702460/variables" for 127.0.0.1 at 2016-02-13 18:16:18 -0200

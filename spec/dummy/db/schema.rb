@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150701214958) do
+ActiveRecord::Schema.define(:version => 20160213201254) do
 
   create_table "bs_admin_assets", :force => true do |t|
     t.string   "type"
@@ -70,6 +70,13 @@ ActiveRecord::Schema.define(:version => 20150701214958) do
     t.integer  "post_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "examples", :force => true do |t|
+    t.string   "string_attribute"
+    t.boolean  "checkbox_attribute"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
   create_table "posts", :force => true do |t|

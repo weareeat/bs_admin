@@ -10,6 +10,7 @@ module BsAdmin::Settings
       group = BsAdmin::SettingGroup.new key: key
       group.update_attributes(main_group: @main_group, key: key, display_name: display_name)
       yield BsAdmin::Settings::SettingBuilder.new(group)
+      group
     end
   end
 end

@@ -1,7 +1,8 @@
 ENV["RAILS_ENV"] ||= 'test'
-require File.expand_path("../dummy/config/environment", __FILE__)
-require 'rspec/rails'
 
+require File.expand_path("#{Rails.root}/spec/dummy/config/environment", __FILE__)
+
+require 'rspec/rails'
 require 'debugger'
 require 'json-schema'
 

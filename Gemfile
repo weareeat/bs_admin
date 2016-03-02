@@ -18,11 +18,11 @@ gem 'cms_base', :path => '~/dev-projects/_lib/cms_base'
 # # To use debugger
 # # gem 'debugger'
 
-# gem "slim"
-# gem "slim-rails"
+gem "slim"
+gem "slim-rails"
 # # gem 'bootstrap-sass', '~> 3.1.1'
 # gem 'sass', '3.2.10'
 # gem 'sass-rails'
-
+gem 'money-rails'
 # # group :assets do
 # # end

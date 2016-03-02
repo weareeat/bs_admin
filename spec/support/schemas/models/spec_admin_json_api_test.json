@@ -1,0 +1,9 @@
+{
+  "type": "object",
+  "properties": {        
+    "id": { "type": "integer" },
+    "non_required_param": { "type": "string" },    
+    "required_param": { "type": "string" },    
+    "view_type_param": { "type": "string" }
+  }
+}

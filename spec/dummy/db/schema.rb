@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160213201254) do
+ActiveRecord::Schema.define(:version => 20160302123303) do
 
   create_table "bs_admin_assets", :force => true do |t|
     t.string   "type"
@@ -84,6 +84,45 @@ ActiveRecord::Schema.define(:version => 20160213201254) do
     t.text     "content"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "spec_admin_json_api_tests", :force => true do |t|
+    t.string   "required_param"
+    t.string   "non_required_param"
+    t.string   "hidden_param"
+    t.string   "protected_param"
+    t.string   "view_type_param"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  create_table "spec_create_all_types_tests", :force => true do |t|
+    t.text     "custom_param"
+    t.boolean  "checkbox_param"
+    t.string   "email_param"
+    t.string   "password_param"
+    t.string   "string_param"
+    t.integer  "currency_param_cents",    :default => 0,     :null => false
+    t.string   "currency_param_currency", :default => "USD", :null => false
+    t.string   "permalink_param"
+    t.text     "text_param"
+    t.date     "date_param"
+    t.string   "image_param"
+    t.string   "radiogroup_param"
+    t.time     "time_param"
+    t.datetime "datetime_param"
+    t.float    "number_param"
+    t.string   "select_param"
+    t.text     "wysi_param"
+    t.string   "file_param"
+    t.integer  "money_param_cents",       :default => 0,     :null => false
+    t.string   "money_param_currency",    :default => "USD", :null => false
+    t.integer  "integer_param"
+    t.string   "color_picker_param"
+    t.string   "tags_param"
+    t.text     "view_param"
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
   end
 
 end

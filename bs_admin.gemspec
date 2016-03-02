@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.add_dependency "rails"
 
   # model helpers ============================================
-  s.add_dependency "kaminari"
+  s.add_dependency "kaminari"  
 
   # populate =================================================
   s.add_dependency "faker"  

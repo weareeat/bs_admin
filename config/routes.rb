@@ -8,25 +8,28 @@ BsAdmin::Engine.routes.draw do
   match 'logout' => 'sessions#destroy', as: :logout
 
   namespace :bs_admin_api, defaults: { format: :json } do
-    scope "/entity/:entity" do
-      get '/' => 'entity#index'
-      post '/' => 'entity#create'
-      scope '/:entity_id' do
-        get '/' => 'entity#show'    
-        put '/' => 'entity#update'
-        delete '/' => 'entity#destroy'
+    scope "/entities/:entities" do
+      get '/' => 'entities#index'
+      post '/' => 'entities#create'
+      scope '/:entities_id' do
+        get '/' => 'entities#show'    
+        put '/' => 'entities#update'
+        delete '/' => 'entities#destroy'
       end
     end
 
     namespace :settings do 
-      scope "/setting/" do
-        get '/' => 'group#index'
+      scope "/settings/" do
+        get '/' => 'settings#groups'
         scope "/:group_id" do
-          get '/' => 'setting#index'
-          scope '/:setting_id' do
-            get '/' => 'setting#show'    
-            put '/' => 'setting#update'            
-          end
+          get '/' => 'settings#subgroups'
+          scope "/:subgroup_id" do
+            get '/' => 'settings#index'
+              scope '/:setting_id' do
+                get '/' => 'settings#show'    
+                put '/' => 'settings#update'            
+              end
+            end
         end
       end
     end

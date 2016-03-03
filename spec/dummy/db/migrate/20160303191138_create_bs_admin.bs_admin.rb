@@ -13,6 +13,7 @@ class CreateBsAdmin < ActiveRecord::Migration
       t.string :key, :unique => true
       t.string :display_name, :unique => true
       t.string :main_group
+      t.text :hint
 
       t.timestamps
     end

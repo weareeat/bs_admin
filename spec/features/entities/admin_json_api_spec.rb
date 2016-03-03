@@ -4,18 +4,18 @@ describe "> admin_json_api", type: :request do
   before :each do     
     @created = []
     (1..3).each do |i|
-      @created << SpecAdminJsonApiTest.create {
+      @created << AdminJsonApiTest.create({
         protected_param: "protected_param #{i}",
         hidden_param: "hidden_param #{i}",
         non_required_param: "non_required_param #{i}",
         required_param: "required_param #{i}",
-        view_type_param: "view_type_param #{i}",
-      }
+        view_type_param: "view_type_param #{i}"
+      })
     end
 
     @first_created = @created[0]
 
-    @meta = SpecAdminJsonApiTest.meta
+    @meta = AdminJsonApiTest.meta
     @entity_path = @meta.path 
     @entity_name   
   end
@@ -46,7 +46,7 @@ describe "> admin_json_api", type: :request do
     expect(json_response[:non_required_param]).to not_be_nil
     expect(json_response[:required_param]).to not_be_nil
 
-    expect(SpecAdminJsonApiTest.all.count).to eq 4
+    expect(AdminJsonApiTest.all.count).to eq 4
   end
 
   it "> get" do
@@ -70,7 +70,7 @@ describe "> admin_json_api", type: :request do
     expect(response).to be_success
     expect(json_response).to match_model_schema :spec_admin_json_api_test
 
-    actual = SpecAdminJsonApiTest.find(@first_created.id)
+    actual = AdminJsonApiTest.find(@first_created.id)
 
     expect(actual.required_param).to eq changed_param
   end
@@ -80,17 +80,12 @@ describe "> admin_json_api", type: :request do
     expect(response).to be_success
     expect(json_response).to match_model_schema :spec_admin_json_api_test
 
-    actual = SpecAdminJsonApiTest.find(@first_created.id)
+    actual = AdminJsonApiTest.find(@first_created.id)
 
     expect(actual).to eq nil
   end
 
-  [:create, :update].each do |action|
-    url = "/entities/#{@entity_path}" if action == :create
-    url = "/entities/#{@entity_path}/#{@first_created.id}" if action == :update
-    http_action = :post if action == :create
-    http_action = :put if action == :update
-
+  [:create, :update].each do |action|    
     def execute_test input_params, error_params
       if action == :create
         post "/entities/#{@entity_path}", { @entity_name => input_params }
@@ -99,51 +94,49 @@ describe "> admin_json_api", type: :request do
       end
 
       expect(response).to have_json_error :unprocessable_entity, error_params
-      expect(SpecAdminJsonApiTest.all.count).to eq 3
+      expect(AdminJsonApiTest.all.count).to eq 3
     end
     
     it "> try #{action} with required param as nil" do
-      execute_test {      
+      execute_test({      
         non_required_param: "non_required_param created",
         required_param: nil
-      }, [:required_param]
+      }, [:required_param])
     end
 
     it "> try #{action} with required param as empty string" do
-      execute_test {      
+      execute_test({      
         non_required_param: "non_required_param created",
         required_param: ""
-      }, [:required_param]
+      }, [:required_param])
     end
 
     it "> try #{action} without required param" do
-      execute_test {      
-        non_required_param: "non_required_param created"      
-      }, [:required_param]
+      execute_test({ non_required_param: "non_required_param created" }, [:required_param])
     end
 
     it "> try #{action} passing protected param" do
-      execute_test {      
+      execute_test({      
         non_required_param: "non_required_param created",
         required_param: "required_param created",
         protected_param: nil
-      }, [:protected_param]
+      }, [:protected_param])
     end
 
     it "> try #{action} passing view type param" do
-      execute_test {      
+      execute_test({      
         non_required_param: "non_required_param created",
         required_param: "required_param created",
         view_type_param: nil
-      }, [:view_type_param]
+      }, [:view_type_param])
     end
 
     it "> try #{action} passing hidden param" do
-      execute_test {      
+      execute_test({      
         non_required_param: "non_required_param created",
         required_param: "required_param created",
         hidden_param: nil
-      }, [:hidden_param]
+      }, [:hidden_param])
     end
   end
 

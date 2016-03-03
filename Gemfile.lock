@@ -10,7 +10,6 @@ PATH
     bs_admin (1.0.4)
       carrierwave
       faker
-      kaminari
       rails
       rmagick
       sass (= 3.2.10)
@@ -304,6 +303,7 @@ DEPENDENCIES
   jasmine
   jazz_hands
   json-schema
+  kaminari
   launchy
   money-rails
   pry-alias

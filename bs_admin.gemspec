@@ -14,13 +14,13 @@ Gem::Specification.new do |s|
   s.description = s.summary
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
-  s.test_files = Dir["test/**/*"]
+  s.test_files = Dir["spec/**/*"]
 
   # core =====================================================
   s.add_dependency "rails"
 
   # model helpers ============================================
-  s.add_dependency "kaminari"  
+  # s.add_dependency "kaminari"  
 
   # populate =================================================
   s.add_dependency "faker"  
@@ -49,7 +49,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'carrierwave'
 
   s.add_development_dependency "sqlite3"
-  s.add_development_dependency "debugger"  
+  # s.add_development_dependency "debugger"  
   s.add_development_dependency 'better_errors', '1.1.0'
   s.add_development_dependency 'jazz_hands'
   s.add_development_dependency 'pry-alias'

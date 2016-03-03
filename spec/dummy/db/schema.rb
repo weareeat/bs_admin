@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160302123303) do
+ActiveRecord::Schema.define(:version => 20160303191139) do
 
   create_table "bs_admin_assets", :force => true do |t|
     t.string   "type"
@@ -23,67 +23,56 @@ ActiveRecord::Schema.define(:version => 20160302123303) do
 
   create_table "bs_admin_boolean_settings", :force => true do |t|
     t.string   "type"
-    t.integer  "setting_group_id"
+    t.integer  "setting_sub_group_id"
     t.string   "key"
     t.string   "display_name"
     t.string   "hint"
-    t.boolean  "has_user_changed", :default => false
+    t.boolean  "has_user_changed",     :default => false
     t.boolean  "value"
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
   end
 
   create_table "bs_admin_setting_groups", :force => true do |t|
     t.string   "key"
     t.string   "display_name"
-    t.string   "main_group"
+    t.text     "hint"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
 
+  create_table "bs_admin_setting_sub_groups", :force => true do |t|
+    t.string   "key"
+    t.string   "display_name"
+    t.string   "main_group"
+    t.text     "hint"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.integer  "setting_group_id"
+  end
+
   create_table "bs_admin_string_settings", :force => true do |t|
     t.string   "type"
-    t.integer  "setting_group_id"
+    t.integer  "setting_sub_group_id"
     t.string   "key"
     t.string   "display_name"
     t.string   "hint"
-    t.boolean  "has_user_changed", :default => false
+    t.boolean  "has_user_changed",     :default => false
     t.string   "value"
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
   end
 
   create_table "bs_admin_text_settings", :force => true do |t|
     t.string   "type"
-    t.integer  "setting_group_id"
+    t.integer  "setting_sub_group_id"
     t.string   "key"
     t.string   "display_name"
     t.string   "hint"
-    t.boolean  "has_user_changed", :default => false
+    t.boolean  "has_user_changed",     :default => false
     t.text     "value"
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
-  end
-
-  create_table "comments", :force => true do |t|
-    t.text     "content"
-    t.integer  "post_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "examples", :force => true do |t|
-    t.string   "string_attribute"
-    t.boolean  "checkbox_attribute"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
-  end
-
-  create_table "posts", :force => true do |t|
-    t.string   "title"
-    t.text     "content"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
   end
 
   create_table "spec_admin_json_api_tests", :force => true do |t|

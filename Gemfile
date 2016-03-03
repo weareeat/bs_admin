@@ -16,7 +16,7 @@ gem 'cms_base', :path => '~/dev-projects/_lib/cms_base'
 # # your gem to rubygems.org.
 
 # # To use debugger
-# # gem 'debugger'
+gem 'debugger'
 
 gem "slim"
 gem "slim-rails"
@@ -24,5 +24,6 @@ gem "slim-rails"
 # gem 'sass', '3.2.10'
 # gem 'sass-rails'
 gem 'money-rails'
+gem "kaminari"  
 # # group :assets do
 # # end

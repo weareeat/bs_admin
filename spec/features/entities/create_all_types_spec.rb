@@ -22,3 +22,8 @@ params = {
   tags_param:         "test value",
   view_param:         "test value"
 }
+
+# test create all at once
+# test sent json against recieved json
+# test validation of each type individualy
+# tests for relationship

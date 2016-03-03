@@ -1,6 +1,6 @@
 ENV["RAILS_ENV"] ||= 'test'
 
-require File.expand_path("#{Rails.root}/spec/dummy/config/environment", __FILE__)
+require File.expand_path("../dummy/config/environment", __FILE__)
 
 require 'rspec/rails'
 require 'debugger'
@@ -15,8 +15,6 @@ require 'json-schema'
 # Capybara.javascript_driver = :poltergeist
 # Capybara.javascript_driver = :webkit
 # Capybara.default_max_wait_time = 5
-
-# require 'factory_girl'
 
 app_base_path = Gem.loaded_specs['app_base'].full_gem_path
 Dir["#{app_base_path}/lib/support/matchers/**/*.rb"].sort.each { |f| require f }
@@ -78,7 +76,7 @@ RSpec.configure do |config|
 
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.
-=begin
+
   # These two settings work together to allow you to limit a spec run
   # to individual examples or groups you care about by tagging them with
   # `:focus` metadata. When nothing is tagged with `:focus`, all examples
@@ -119,7 +117,7 @@ RSpec.configure do |config|
   # test failures related to randomization by passing the same `--seed` value
   # as the one that triggered the failure.
   Kernel.srand config.seed
-=end
+
 end
 
 # MandrillDm.configure do |config|

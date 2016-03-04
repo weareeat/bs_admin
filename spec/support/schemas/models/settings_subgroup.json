@@ -2,8 +2,9 @@
   "type": "object",
   "properties": {        
     "id": { "type": "integer" },
-    "group_id": { "type": "integer" },    
-    "sort": { "type": "integer" },    
-    "name": { "type": "string" }
+    "setting_group_id": { "type": "integer" },    
+    "display_name": { "type": "string" },
+    "key": { "type": "string" },
+    "hint": { "type": ["string", null] }
   }
 }

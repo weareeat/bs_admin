@@ -16,6 +16,7 @@ class BsAdmin::SettingSubGroup < ActiveRecord::Base
   end
 
   def create_setting type, params
+    raise "A Setting with the key: '#{params[:key]}' already exists in this subgroup" if find_setting_by_key params[:key]
     if ["image", "file"].include?(type) and params[:value]
       params[:value] = File.open(File.join(Rails.root, "/db/seed-files/" + params[:value]))
     end
@@ -40,9 +41,19 @@ class BsAdmin::SettingSubGroup < ActiveRecord::Base
     end
   end
 
-  def self.find_sub_group sub_group_key
-    g = BsAdmin::SettingSubGroup.find_by_key(sub_group_key)
-    raise "SettingSubGroup '#{sub_group_key}' not found" unless g
-    g
+  def find_setting_by_key key
+    settings.select{ |s| s.key.to_s == key.to_s }.first
+  end
+
+  def find_setting_by_key! key
+    r = find_setting_by_key key    
+    raise "Setting '#{key}' not found." unless r
+    r
+  end
+
+
+  def as_json(options=nil)    
+    options = { except: [:created_at, :updated_at, :main_group] }.merge options
+    super(options)
   end
 end

@@ -12,10 +12,10 @@ module BsAdmin::Settings
         @group = BsAdmin::SettingGroup.create! options.merge({ key: key, display_name: display_name })
       end
 
-      def subgroup key, display_name, options=nil, &block        
+      def create_subgroup key, display_name, options=nil, &block
         builder = BsAdmin::Settings::Builder::SubGroup.new
         builder.create_subgroup key, display_name, options, @group
-        yield builder
+        yield builder if block_given?
         builder.subgroup
       end
 
@@ -44,9 +44,9 @@ module BsAdmin::Settings
 
       BsAdmin::SettingSubGroup.types.each do |type|
         define_method type do |*args|
-          display_name, key, value, params = args
+          key, display_name, value, params = args
           default_params = { display_name: display_name, key: key, value: value }
-          default_params = default_params.merge(params) if params
+          default_params = default_params.merge(params) if params          
           @subgroup.create_setting(type, default_params)
         end
       end

@@ -4,25 +4,25 @@ RSpec.describe "> api", type: :request do
   before :each do     
     BsAdmin::Settings.destroy_all
 
-    @group_1 = BsAdmin::Settings.group :group_1, "Group 1" do |m|
-      @subgroup_1 = m.subgroup :subgroup_1, "Sub-Group 1" do |g|
-        @subgroup_1_test_setting_1 = g.string "Test Setting 1", :test_setting_1, "Test Value 1"
-        @subgroup_1_test_setting_2 = g.string "Test Setting 2", :test_setting_2, "Test Value 2"
+    @group_1 = BsAdmin::Settings.create_group :group_1, "Group 1" do |g|
+      @subgroup_1 = g.create_subgroup :subgroup_1, "Sub-Group 1" do |s|
+        @subgroup_1_test_setting_1 = s.string :test_setting_1, "Test Setting 1", "Test Value 1"
+        @subgroup_1_test_setting_2 = s.string :test_setting_2, "Test Setting 2", "Test Value 2"
       end
-      @subgroup_2 = m.subgroup :subgroup_2, "Sub-Group 2" do |g|
-        @subgroup_2_test_setting_1 = g.string "Test Setting 1", :test_setting_1, "Test Value 1"
-        @subgroup_2_test_setting_2 = g.string "Test Setting 2", :test_setting_2, "Test Value 2"
+      @subgroup_2 = g.create_subgroup :subgroup_2, "Sub-Group 2" do |s|
+        @subgroup_2_test_setting_1 = s.string :test_setting_1, "Test Setting 1", "Test Value 1"
+        @subgroup_2_test_setting_2 = s.string :test_setting_2, "Test Setting 2", "Test Value 2"
       end
     end
     
-    @group_2 = BsAdmin::Settings.group :group_2, "Group 2" do |m|
-      @subgroup_3 = m.subgroup :subgroup_3, "Sub-Group 3" do |g|
-        @subgroup_3_test_setting_1 = g.string "Test Setting 1", :test_setting_1, "Test Value 1"
-        @subgroup_3_test_setting_2 = g.string "Test Setting 2", :test_setting_2, "Test Value 2"
+    @group_2 = BsAdmin::Settings.create_group :group_2, "Group 2" do |g|
+      @subgroup_3 = g.create_subgroup :subgroup_3, "Sub-Group 3" do |s|
+        @subgroup_3_test_setting_1 = s.string :test_setting_1, "Test Setting 1", "Test Value 1"
+        @subgroup_3_test_setting_2 = s.string :test_setting_2, "Test Setting 2", "Test Value 2"
       end
-      @subgroup_4 = m.subgroup :subgroup_4, "Sub-Group 4" do |g|
-        @subgroup_4_test_setting_1 = g.image "Test Setting 1", :test_setting_1, nil
-        @subgroup_4_test_setting_2 = g.image "Test Setting 2", :test_setting_2, nil
+      @subgroup_4 = g.create_subgroup :subgroup_4, "Sub-Group 4" do |s|
+        @subgroup_4_test_setting_1 = s.image :test_setting_1, "Test Setting 1", "spec_test_files/image_setting_value.jpg"
+        @subgroup_4_test_setting_2 = s.string :test_setting_2, "Test Setting 2", "Test Value 2"
       end
     end        
   end   
@@ -33,8 +33,8 @@ RSpec.describe "> api", type: :request do
   end
 
   it "> image setting" do
-    actual = BsAdmin::Settings.setting :group_2, :subgroup_4, :test_setting_1
-    expect(actual).to eq @subgroup_4_test_setting_1.value
+    actual = BsAdmin::Settings.image_setting :group_2, :subgroup_4, :test_setting_1
+    expect(actual.to_s).to eq @subgroup_4_test_setting_1.value.to_s
   end
 
   it "> try get unexistent settings" do
@@ -67,33 +67,38 @@ RSpec.describe "> api", type: :request do
   end
 
   it "add_to_group" do
-    BsAdmin::Settings.add_to_group :group_1 do |m|
-      @subgroup_5 = m.group :subgroup_5, "Sub-Group 5"
+    BsAdmin::Settings.add_to_group :group_1 do |g|
+      @subgroup_5 = g.create_subgroup :subgroup_5, "Sub-Group 5"
     end
-    expect(BsAdmin::SettingSubGroup.find_by_key(:subgroup_5)).to eq model_be_equal_to @subgroup_5
+    actual = BsAdmin::Settings.subgroup :group_1, :subgroup_5
+    expect(actual.key).to eq "subgroup_5"
+    expect(actual.display_name).to eq "Sub-Group 5"    
   end
 
   it "add_to_subgroup" do
-    BsAdmin::Settings.add_to_subgroup :group_1, :subgroup_2 do |m|
-      @subgroup_2_test_setting_5 = g.string "Test Setting 5", :test_setting_5, "Test Value 5"
-    end    
-    expected = BsAdmin::SettingSubGroup.find_by_key(:subgroup_2).settings.find_by_key(:test_setting_5)
-    expect(BsAdmin::StringSettings.find_by_key(:subgroup_2)).to eq model_be_equal_to @subgroup_5_test_setting_5
+    BsAdmin::Settings.add_to_subgroup :group_1, :subgroup_2 do |s|
+      @subgroup_2_test_setting_5 = s.string :test_setting_5, "Test Setting 5", "Test Value 5"
+    end
+
+    actual = BsAdmin::Settings.subgroup(:group_1, :subgroup_2).find_setting_by_key!(:test_setting_5)
+    expect(actual.key).to eq "test_setting_5"
+    expect(actual.display_name).to eq "Test Setting 5"
+    expect(actual.value).to eq "Test Value 5"
   end
 
   it "try create duplicated group" do
-    expect { BsAdmin::Settings.create :group_1, "Group 1" }.to raise_error      
+    expect { BsAdmin::Settings.create_group :group_1, "Group 1" }.to raise_error      
   end
 
   it "try create duplicated subgroup" do
-    BsAdmin::Settings.add_to_group :group_1 do |m|
-      expect { m.group :subgroup_4, "Sub-Group 4" }.to raise_error
+    BsAdmin::Settings.add_to_group :group_1 do |g|
+      expect { g.create_subgroup :subgroup_1, "Sub-Group 1" }.to raise_error
     end    
   end
 
   it "try create duplicated setting" do
-    BsAdmin::Settings.add_to_subgroup :group_1, :subgroup_1 do |m|
-      expect { g.string "Test Setting 1", :test_setting_1, "Test Value 1" }.to raise_error
+    BsAdmin::Settings.add_to_subgroup :group_1, :subgroup_1 do |s|
+      expect { s.string :test_setting_1, "Test Setting 1", "Test Value 1" }.to raise_error
     end        
   end
 end

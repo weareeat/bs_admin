@@ -1,32 +1,32 @@
 require "bs_admin/settings/builder"
 
 module BsAdmin::Settings
-  def self.group group_key, display_name, options=nil, &block
+  def self.create_group group_key, display_name, options=nil, &block
     builder = BsAdmin::Settings::Builder::Group.new
     builder.create_group group_key, display_name, options
-    yield builder
+    yield builder if block_given?
     builder.group
   end
 
   def self.add_to_group group_key, &block
-    group = get_group group_key
-    yield BsAdmin::Settings::Builder::Group.new(group)
-    group
+    match = group group_key
+    yield BsAdmin::Settings::Builder::Group.new match
+    match
   end
 
   def self.add_to_subgroup group_key, subgroup_key, &block
-    subgroup = get_subgroup group_key, subgroup_key
-    yield BsAdmin::Settings::Builder::SubGroup.new(subgroup)    
-    subgroup
+    match = subgroup group_key, subgroup_key
+    yield BsAdmin::Settings::Builder::SubGroup.new match  
+    match
   end
 
   def self.setting group_key, subgroup_key, key
-    subgroup = get_subgroup group_key, subgroup_key
+    match = subgroup group_key, subgroup_key
 
     setting = nil
-    if subgroup
+    if match
       ["strings", "files", "texts", "booleans"].each do |t|
-        setting = subgroup.send(t).find_by_key(key)
+        setting = match.send(t).find_by_key(key)
         break if setting
       end
 
@@ -39,10 +39,10 @@ module BsAdmin::Settings
   end
 
   def self.image_setting group_key, subgroup_key, key, format=nil    
-    subgroup = get_subgroup group_key, subgroup_key
+    match = subgroup group_key, subgroup_key
 
-    if subgroup
-      setting = subgroup.images.find_by_key(key)
+    if match
+      setting = match.images.find_by_key(key)
       if setting
         format ? f.value_url(format) : setting.value_url
       else        
@@ -55,39 +55,39 @@ module BsAdmin::Settings
     BsAdmin::StringSetting.destroy_all
     BsAdmin::BooleanSetting.destroy_all
     BsAdmin::TextSetting.destroy_all
+    BsAdmin::ImageSetting.destroy_all
+    BsAdmin::FileSetting.destroy_all
     BsAdmin::SettingGroup.destroy_all
     BsAdmin::SettingSubGroup.destroy_all
   end
 
   def self.destroy_group group_key
-    group = get_group group_key
-    group.destroy
+    match = group group_key
+    match.destroy
   end
 
   def self.destroy_subgroup group_key, subgroup_key
-    subgroup = get_subgroup group_key, subgroup_key
-    subgroup.destroy
+    match = subgroup group_key, subgroup_key
+    match.destroy
   end
 
   def self.destroy_setting group_key, subgroup_key, key
-    subgroup = get_subgroup group_key, subgroup_key    
-    setting = subgroup.settings.select{ |s| s.key == key }.first
+    match = subgroup group_key, subgroup_key    
+    setting = match.find_setting_by_key(key)
     raise "Setting '#{group_key}>#{subgroup_key}>#{key}' not found." unless setting
     setting.destroy
   end  
 
-  private
-
-  def self.get_group group_key    
-    group = BsAdmin::SettingGroup.find_by_key group_key
-    raise "SettingGroup '#{group_key}' not found." unless group
-    group
+  def self.group group_key    
+    match = BsAdmin::SettingGroup.find_by_key group_key
+    raise "SettingGroup '#{group_key}' not found." unless match
+    match
   end
 
-  def self.get_subgroup group_key, subgroup_key    
-    group = get_group group_key
-    subgroup = group.subgroups.find_by_key(subgroup_key)
-    raise "SettingSubGroup '#{group_key}>#{subgroup_key}' not found." unless subgroup
-    subgroup
+  def self.subgroup group_key, subgroup_key    
+    group_match = group group_key
+    subgroup_match = group_match.subgroups.find_by_key(subgroup_key)
+    raise "SettingSubGroup '#{group_key}>#{subgroup_key}' not found." unless subgroup_match
+    subgroup_match
   end
 end

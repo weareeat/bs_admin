@@ -5,10 +5,9 @@ class BsAdmin::SettingGroup < ActiveRecord::Base
   accepts_nested_attributes_for :subgroups, allow_destroy: true
 
   validates_uniqueness_of :key
-
-  def self.find_group group_key
-    g = BsAdmin::SettingGroup.find_by_key(group_key)
-    raise "SettingGroup '#{group_key}' not found" unless g
-    g
+  
+  def as_json(options=nil)    
+    options = { except: [:created_at, :updated_at] }.merge options
+    super(options)
   end
 end

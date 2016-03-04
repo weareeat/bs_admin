@@ -1,8 +1,9 @@
 {
   "type": "object",
   "properties": {        
-    "id": { "type": "integer" },
-    "sort": { "type": "integer" },    
-    "name": { "type": "string" }
+    "id": { "type": "integer" },    
+    "display_name": { "type": "string" },
+    "key": { "type": "string" },
+    "hint": { "type": ["string", null] }
   }
 }

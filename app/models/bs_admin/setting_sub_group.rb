@@ -3,6 +3,8 @@ class BsAdmin::SettingSubGroup < ActiveRecord::Base
   attr_accessible :display_name, :main_group, :key, :hint
   belongs_to :group, class_name: "BsAdmin::SettingGroup"
 
+  validates_uniqueness_of :key, scope: :setting_group_id
+
   def self.types
     ["string", "image", "file", "text", "boolean"]
   end
@@ -32,8 +34,8 @@ class BsAdmin::SettingSubGroup < ActiveRecord::Base
     if type
       self.send(type.pluralize)
     else
-      result = []
-      self.types.each { |t| result << self.send(t.pluralize).all }
+      result = []      
+      self.class.types.each { |t| result.push *self.send(t.pluralize).all }
       result
     end
   end

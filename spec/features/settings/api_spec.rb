@@ -1,8 +1,9 @@
 require 'spec_helper'
 
-describe "> api", type: :request do  
+RSpec.describe "> api", type: :request do  
   before :each do     
     BsAdmin::Settings.destroy_all
+
     @group_1 = BsAdmin::Settings.group :group_1, "Group 1" do |m|
       @subgroup_1 = m.subgroup :subgroup_1, "Sub-Group 1" do |g|
         @subgroup_1_test_setting_1 = g.string "Test Setting 1", :test_setting_1, "Test Value 1"
@@ -23,17 +24,17 @@ describe "> api", type: :request do
         @subgroup_4_test_setting_1 = g.image "Test Setting 1", :test_setting_1, nil
         @subgroup_4_test_setting_2 = g.image "Test Setting 2", :test_setting_2, nil
       end
-    end
+    end        
   end   
 
-  it "> setting with 3 params" do
+  it "> setting" do
     actual = BsAdmin::Settings.setting :group_2, :subgroup_3, :test_setting_1
-    expect(actual).be eq @subgroup_3_test_setting_1.value
+    expect(actual).to eq @subgroup_3_test_setting_1.value
   end
 
-  it "> image setting with 3 params" do
+  it "> image setting" do
     actual = BsAdmin::Settings.setting :group_2, :subgroup_4, :test_setting_1
-    expect(actual).be eq @subgroup_4_test_setting_1.value
+    expect(actual).to eq @subgroup_4_test_setting_1.value
   end
 
   it "> try get unexistent settings" do
@@ -44,12 +45,12 @@ describe "> api", type: :request do
 
   it "destroy group" do
     BsAdmin::Settings.destroy_group :group_1
-    expect(BsAdmin::SettingGroup.find_by_key(:group_1)).be eq nil
+    expect(BsAdmin::SettingGroup.find_by_key(:group_1)).to eq nil
   end
 
   it "destroy subgroup" do
     BsAdmin::Settings.destroy_subgroup :group_1, :subgroup_1
-    expect(BsAdmin::SettingSubGroup.find_by_key(:subgroup_1)).be eq nil
+    expect(BsAdmin::SettingSubGroup.find_by_key(:subgroup_1)).to eq nil
   end
 
   it "destroy setting" do
@@ -59,25 +60,25 @@ describe "> api", type: :request do
 
   it "destroy all" do
     BsAdmin::Settings.destroy_all
-    expect(BsAdmin::SettingGroup.all.count).be eq 0
-    expect(BsAdmin::SettingSubGroup.all.count).be eq 0
-    expect(BsAdmin::StringSetting.all.count).be eq 0
-    expect(BsAdmin::ImageSetting.all.count).be eq 0
+    expect(BsAdmin::SettingGroup.all.count).to eq 0
+    expect(BsAdmin::SettingSubGroup.all.count).to eq 0
+    expect(BsAdmin::StringSetting.all.count).to eq 0
+    expect(BsAdmin::ImageSetting.all.count).to eq 0
   end
 
   it "add_to_group" do
     BsAdmin::Settings.add_to_group :group_1 do |m|
       @subgroup_5 = m.group :subgroup_5, "Sub-Group 5"
     end
-    expect(BsAdmin::SettingSubGroup.find_by_key(:subgroup_5)).be eq model_be_equal_to @subgroup_5
+    expect(BsAdmin::SettingSubGroup.find_by_key(:subgroup_5)).to eq model_be_equal_to @subgroup_5
   end
 
   it "add_to_subgroup" do
-    BsAdmin::Settings.add_to_subgroup :group_1, :subgroup_5 do |m|
-      @subgroup_5_test_setting_1 = g.string "Test Setting 1", :test_setting_1, "Test Value 1"
+    BsAdmin::Settings.add_to_subgroup :group_1, :subgroup_2 do |m|
+      @subgroup_2_test_setting_5 = g.string "Test Setting 5", :test_setting_5, "Test Value 5"
     end    
-    expected = BsAdmin::SettingSubGroup.find_by_key(:subgroup_5).settings.find_by_key(:test_setting_1)
-    expect(BsAdmin::StringSettings.find_by_key(:subgroup_5)).be eq model_be_equal_to @subgroup_5_test_setting_1
+    expected = BsAdmin::SettingSubGroup.find_by_key(:subgroup_2).settings.find_by_key(:test_setting_5)
+    expect(BsAdmin::StringSettings.find_by_key(:subgroup_2)).to eq model_be_equal_to @subgroup_5_test_setting_5
   end
 
   it "try create duplicated group" do

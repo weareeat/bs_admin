@@ -9,13 +9,17 @@ BsAdmin::Engine.routes.draw do
 
   namespace :bs_admin_api, defaults: { format: :json } do
     
-    scope "/entities/:entities" do
+    scope "/entities/:entity" do
       get '/' => 'entities#index'
       post '/' => 'entities#create'
-      scope '/:entities_id' do
+      scope '/:entity_id' do
         get '/' => 'entities#show'    
         put '/' => 'entities#update'
         delete '/' => 'entities#destroy'
+        scope '/nested/:entity' do
+          get '/' => 'nested_entities#index'
+          post '/' => 'nested_entities#create'          
+        end
       end
     end
 

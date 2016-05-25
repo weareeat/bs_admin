@@ -80,33 +80,33 @@ module BsAdmin::FakerWrapper
     result.join(", ")
   end
 
-  def rand_string(type)
+  def rand_string(type, word_number=nil)
     case type
     when :title
-      Faker::Name.title
+      Faker::Name.title(word_number)
     when :name
-      Faker::Name.name
+      Faker::Name.name(word_number)
     when :email
       Faker::Internet.email
     when :link
       Faker::Internet.url
     when :permalink
-      Faker::Name.title.delete(' ').underscore.dasherize
+      Faker::Name.title(word_number).delete(' ').underscore.dasherize
     when :video_link
       rand_video_link
     when :summary
-      Faker::Lorem.sentence(rand_int(1, 3)).titleize.delete('.')
+      Faker::Lorem.sentence(word_number).titleize.delete('.')
     when :text
-      Faker::Lorem.paragraph(2)
+      Faker::Lorem.paragraph(word_number)
     when :wysi
-      Faker::Lorem.paragraph(2)
+      Faker::Lorem.paragraph(word_number)
     else
-      Faker::Lorem.sentence(rand_int(1, 3)).titleize.delete('.')
+      Faker::Lorem.sentence(word_number).titleize.delete('.')
     end
   end
 
   def rand_string_value_for_field(field)
-    field_to_s = field.name.to_s
+    field_to_s = field.name.to_s    
     type = :string
     if [:email, :permalink, :text, :wysi].include?(field.type)
       type = field.type
@@ -117,7 +117,14 @@ module BsAdmin::FakerWrapper
       type = :summary if field_to_s.include?('summary') or field_to_s.include?('description')
       type = :text if field_to_s.include?('content') or field_to_s.include?('message')
     end
-    rand_string(type)
+    word_number = nil
+    if field.options[:populate_word_number]
+      if field.options[:populate_word_number].is_a? Range
+      else
+        word_number = field.options[:populate_word_number]
+      end
+    end
+    rand_string(type, )
   end
 
   def rand_value_for_field(field)

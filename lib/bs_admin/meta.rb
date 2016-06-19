@@ -8,7 +8,7 @@ module BsAdmin
   class Meta
     attr_accessor :class, :name, :humanized_name, :humanized_name_plural, :symbol, :css_wrapper_class
     attr_accessor :sort, :base_path, :index_fields, :title_field
-    attr_accessor :fields, :relationships, :custom_pages, :filters, :links, :page_size
+    attr_accessor :fields, :relationships, :custom_pages, :filters, :links, :paginate_page_size
 
     def initialize hash
       initialize_class_based_args hash
@@ -74,8 +74,8 @@ module BsAdmin
 
       @title_field = :id
       @title_field = hash[:title_field] if hash[:title_field]
-      
-      @page_size = hash[:page_size]
+
+      @paginate_page_size = hash[:paginate_page_size]
     end
 
     def initialize_list_args hash
@@ -86,14 +86,23 @@ module BsAdmin
         @fields << Field.new({name: name, type: type, hidden: true, read_only: true}) if !@fields.any?{ |i| i.name == name }
       end
 
+      if hash[:guess_fields]
+        bypass_fields = ['id'].concat(hash[:fields].map{|i| i[:name] })
+
+        hash[:class].columns_hash.each do |key, value|
+          unless (bypass_fields.include?(key) or ['_currency', '_id'].any?{ |j| key.ends_with?(j) })
+            @fields << Field.guess_type_initialize(key.dup, value.type, hash[:guess_fields_default_args])
+          end
+        end        
+      end
+
       add_hidden_field :id, :integer
       add_hidden_field :created_at, :datetime
       add_hidden_field :updated_at, :datetime
 
       @relationships = []
       hash[:relationships].each do |f|
-        r = Relationship.new(f)
-        @relationships << r
+        @relationships << r = Relationship.new(f)
         add_hidden_field r.fk_field_name, :integer if r.type == :belongs_to
       end
 

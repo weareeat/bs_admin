@@ -14,6 +14,7 @@ module BsAdmin::Concern
     end
 
     m = meta
+    
     m.fields.each do |f|
       attr_accessible f.name
       mount_uploader(f.name, "#{m.name}#{f.name.to_s.camelize}Uploader".constantize) if f.type == :image or f.type == :file

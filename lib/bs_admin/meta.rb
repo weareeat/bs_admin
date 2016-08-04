@@ -87,13 +87,13 @@ module BsAdmin
       end
 
       if hash[:guess_fields]
-        bypass_fields = ['id'].concat(hash[:fields].map{|i| i[:name] })
+        bypass_fields = ['id'].concat(hash[:fields].map{|i| i[:name].to_s })
 
         hash[:class].columns_hash.each do |key, value|
-          unless (bypass_fields.include?(key) or ['_currency', '_id'].any?{ |j| key.ends_with?(j) })
+          unless (bypass_fields.include?(key.to_s) or ['_currency', '_id'].any?{ |j| key.ends_with?(j) })
             @fields << Field.guess_type_initialize(key.dup, value.type, hash[:guess_fields_default_args])
           end
-        end        
+        end
       end
 
       add_hidden_field :id, :integer

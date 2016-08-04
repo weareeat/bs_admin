@@ -2,7 +2,7 @@ require 'active_support/concern'
 
 module BsAdmin::Concern
   extend ActiveSupport::Concern
- 
+
   def bs_admin &block
     if class_variable_defined?("@@meta")
       meta = class_variable_get("@@meta")
@@ -14,6 +14,7 @@ module BsAdmin::Concern
     end
 
     m = meta
+    
     m.fields.each do |f|
       attr_accessible f.name
       mount_uploader(f.name, "#{m.name}#{f.name.to_s.camelize}Uploader".constantize) if f.type == :image or f.type == :file
@@ -32,7 +33,7 @@ module BsAdmin::Concern
       belongs_to r.field, r.class_declaration_options if r.type == :belongs_to
     end
 
-    paginates_per m.page_size if m.page_size
+    paginates_per m.paginate_page_size if m.paginate_page_size
 
     include BsAdmin
   end
@@ -44,7 +45,7 @@ module BsAdmin::Concern
     def meta
       class_variable_get("@@meta")
     end
-  end 
+  end
 end
 
 ActiveRecord::Base.extend(BsAdmin::Concern)

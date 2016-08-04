@@ -3,12 +3,20 @@ module BsAdmin::FakerWrapper
 
   def rand_color
     "#" + ("%06x" % (rand * 0xffffff))
-  end
+  end  
 
-  def rand_image
-    root_path = Gem.loaded_specs['bs_admin'].full_gem_path
+  def rand_image(custom_folder=nil)
+    unless custom_folder
+      root_path = Gem.loaded_specs['bs_admin'].full_gem_path
+      path = File.join(root_path, "/lib/tasks/random-images/")
+    else      
+      path = File.join(Rails.root, "db", "bs_admin_populate", custom_folder)
+    end
 
-    File.open(File.join(root_path, "/lib/tasks/random-images/" + rand(1..71).to_s + ".jpg"))
+    files = Dir.glob(File.join(path, "{*.jpg, *.jpeg, *.png, *.gif}"))
+    file = rand_in_array(files)
+
+    File.open(file)
   end
 
   def rand_file
@@ -159,7 +167,7 @@ module BsAdmin::FakerWrapper
         # when :file
         #   rand_file
       when :image
-        rand_image
+        rand_image field.options[:custom_populate_folder]
       when :number
         rand_int
       else

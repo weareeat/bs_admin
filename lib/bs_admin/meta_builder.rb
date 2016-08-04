@@ -7,7 +7,10 @@ module BsAdmin
       @hash[:relationships] = []
       @hash[:custom_pages] = []
       @hash[:links] = []
-      @hash[:page_size] = nil
+      @hash[:paginate_page_size] = nil
+
+      @hash[:guess_fields] = false
+      @hash[:guess_fields_default_args] = {}
     end
 
     def build
@@ -38,8 +41,8 @@ module BsAdmin
       @hash[:links] << { name: name, href: href, options: args }
     end
 
-    def paginate page_size
-      @hash[:page_size] = page_size
+    def paginate paginate_page_size
+      @hash[:paginate_page_size] = paginate_page_size
     end
 
     def fields
@@ -48,18 +51,20 @@ module BsAdmin
       @hash[:fields] = meta_field_builder.fields
     end
 
+    def guess_fields default_args={}
+      @hash[:guess_fields] = true
+      @hash[:guess_fields_default_args] = default_args
+    end
+
     class MetaFieldBuilder
-      attr_accessor :fields
+      attr_accessor :fields, :guess_fields
 
       def initialize
         @fields = []
+        @guess_fields = false
       end
 
-      field_types = %w(custom checkbox email password string currency)
-      field_types += %w(permalink text date image radiogroup time)
-      field_types += %w(datetime number select wysi file money integer)      
-      field_types += %w(color_picker tags view)
-      field_types.each do |type|
+      BsAdmin::Meta::Field::ALL_FIELD_TYPES.each do |type|
         define_method type do |name, args={}|
           @fields << { type: type.to_sym, name: name, options: args }
         end

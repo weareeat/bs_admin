@@ -1,4 +1,4 @@
-window.ng_bs_admin = {  
+window.ng_bs_admin = {
   entities: [{
     name: 'blog_post',
     relationships: [
@@ -22,15 +22,15 @@ loc = window.location.href
 index = loc.indexOf('#')
 window.location = loc.substring(0, index) if index > 0
 
-window.hasValue = (value) ->  
+window.hasValue = (value) ->
   (typeof value != "undefined") and value != null and value != ""
 
-@app = angular.module('BsAdmin', [  
+@app = angular.module('BsAdmin', [
   'ui.bootstrap'
   'ngResource'
   'file-model'
   'ui.router'
-  'ui.router.stateHelper'  
+  'ui.router.stateHelper'
   # 'xeditable'
   # 'ngStaticInclude'
   'ngSanitize'
@@ -41,25 +41,28 @@ window.hasValue = (value) ->
   'checklist-model'
 ])
 
-# @app.service 'C', () -> 
+# @app.service 'C', () ->
 #   r = window.constants
 #   r.getProjectType = (id) ->
 #     _.findWhere(r.PROJECT_TYPES, { id: id })
 #   r
 
-# @app.config (LightboxProvider, $locationProvider) ->  
-#   LightboxProvider.templateUrl = '/templates/lightbox'  
+# @app.config (LightboxProvider, $locationProvider) ->
+#   LightboxProvider.templateUrl = '/templates/lightbox'
 #   $locationProvider.html5Mode(true)
 
 @app.run ($rootScope, $http, $timeout) ->
   $rootScope.$on "$viewContentLoaded", (event) ->
     $http.post '/api/save_current_path', { current_path: window.location.pathname }
 
-
 @app.config ($httpProvider) ->
   $httpProvider.interceptors.push ($rootScope, $q) ->
     {
-      responseError: (response) ->        
+      responseError: (response) ->
         location = '/admin' if response.status == 401
         $q.reject(response)
     }
+
+main variables
+
+admin

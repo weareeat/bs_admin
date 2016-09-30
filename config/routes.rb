@@ -8,34 +8,34 @@ BsAdmin::Engine.routes.draw do
   match 'logout' => 'sessions#destroy', as: :logout
 
   namespace :bs_admin_api, defaults: { format: :json } do
-    
+
     scope "/entities/:entity" do
       get '/' => 'entities#index'
       post '/' => 'entities#create'
       scope '/:entity_id' do
-        get '/' => 'entities#show'    
+        get '/' => 'entities#show'
         put '/' => 'entities#update'
         delete '/' => 'entities#destroy'
-        scope '/nested/:entity' do
+        scope '/nested/:nested_entity' do
           get '/' => 'nested_entities#index'
-          post '/' => 'nested_entities#create'          
+          post '/' => 'nested_entities#create'
         end
       end
     end
 
     scope "/settings" do
-      get '/' => 'settings#groups'      
+      get '/' => 'settings#groups'
       scope "/:group_key" do
         get '/' => 'settings#subgroups'
         scope "/:subgroup_key" do
           get '/' => 'settings#index'
           scope '/:setting_key' do
-            get '/' => 'settings#show'    
-            put '/' => 'settings#update'            
-          end          
+            get '/' => 'settings#show'
+            put '/' => 'settings#update'
+          end
         end
       end
-    end    
+    end
   end
 
   # match 'settings-group(/:key)' => 'settings#index', as: :settings_group
@@ -70,5 +70,5 @@ BsAdmin::Engine.routes.draw do
 
   # get     ':base_path/:base_id/:nested_path/images/all'      => 'meta_image_upload#all',      as: :meta_nested_images_all
   # post    ':base_path/:base_id/:nested_path/images/create'   => 'meta_image_upload#create',   as: :meta_nested_images_create
-  # post    ':base_path/:base_id/:nested_path/images/destroy'  => 'meta_image_upload#destroy',  as: :meta_nested_images_destroy  
+  # post    ':base_path/:base_id/:nested_path/images/destroy'  => 'meta_image_upload#destroy',  as: :meta_nested_images_destroy
 end

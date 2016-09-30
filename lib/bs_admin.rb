@@ -8,7 +8,7 @@ module BsAdmin
     @@config.use_dashboard
   end
 
-  def self.find base_path      
+  def self.find base_path
     self.metas.find{ |m| m.base_path == base_path }
   end
 
@@ -23,7 +23,6 @@ module BsAdmin
   def self.classes_as_string
     @@config.classes.map{ |m| m }
   end
-
 
   def self.auto_populate_metas
     self.auto_populate_classes.map{ |m| m.meta }

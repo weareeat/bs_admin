@@ -1,11 +1,11 @@
 module BsAdmin
-  class Meta      
+  class Meta
     class Field
       attr_accessor :name, :type, :options
       attr_accessor :title, :hidden
       def initialize hash
         @name = hash[:name]
-        @type = hash[:type]        
+        @type = hash[:type]
         @options = {}
 
         @title = hash[:name].to_s.humanize
@@ -14,7 +14,7 @@ module BsAdmin
 
         if hash[:options]
           @options = hash[:options]
-          @title = hash[:options][:title] if hash[:options][:title]          
+          @title = hash[:options][:title] if hash[:options][:title]
         end
       end
     end

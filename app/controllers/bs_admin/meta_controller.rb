@@ -1,7 +1,7 @@
 class BsAdmin::MetaController < BsAdminLoggedControllerBase
   before_filter :bsadmin_initialize
 
-  def index
+  def index    
     @collection = @meta.class
     @filter_options = {}
 

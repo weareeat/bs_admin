@@ -1,11 +1,25 @@
 .page-header
   .row
-    .col-md-8
+    .col-md-4
       h1: a href="#{bs_admin.meta_index_url(@base_meta.base_path)}"= @base_meta.humanized_name_plural
-    .col-md-4.header-buttons
+    .col-md-8.header-buttons
+      -if @relationship.meta.can :delete
+        a.btn.btn-danger.btn-bulk-destroy data-url="#{bs_admin.meta_nested_bulk_destroy_path(@base_meta.base_path, @base_instance.id, @relationship.nested_path)}"
+          span.glyphicon.glyphicon-trash
+          | Remove selected
+        | &nbsp;
+        a.btn.btn-info.btn-bulk-check
+          span.glyphicon.glyphicon-check
+          | Check All
+        | &nbsp;
+        a.btn.btn-info.btn-bulk-uncheck style=("display: none;")
+          span.glyphicon.glyphicon-check
+          | Uncheck All
       -if @relationship.meta.can :create
-        = link_to "New #{@meta.humanized_name}", bs_admin.meta_nested_new_path(@base_meta.base_path, @base_instance.id, @relationship.nested_path), :class => 'btn btn-primary'        
-  .row: .col-md-12: ol.breadcrumb    
+        a.btn.btn-primary href="#{bs_admin.meta_nested_new_path(@base_meta.base_path, @base_instance.id, @relationship.nested_path)}"
+          span.glyphicon.glyphicon-plus
+          = "New #{@meta.humanized_name}"
+  .row: .col-md-12: ol.breadcrumb
     li: a href="#{bs_admin.meta_edit_path(@base_meta.base_path, @base_instance.id)}"= @base_instance.send(@base_meta.title_field)
     li= @meta.humanized_name_plural
 
@@ -19,6 +33,8 @@ table.table.table-striped
   tbody class="#{'sortable' if @meta.sort == :sort}" data-url="#{bs_admin.meta_nested_sort_path(@base_meta.base_path, @base_instance.id, @relationship.nested_path)}"
     - @collection.each_with_index do |m, index|
       tr id="#{@meta.symbol}_#{m.id}"
+        -if @relationship.meta.can :delete
+          =render partial: "bs_admin/meta_partials/td_checkbox", locals: { m: m, id: m.id }
         =render partial: "bs_admin/meta_partials/td_sort", locals: { m: m }
         =render partial: "bs_admin/meta_partials/index_fields", locals: { m: m, index: index }
         td.links

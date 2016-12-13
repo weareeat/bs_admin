@@ -3,11 +3,11 @@
     -unless mf.hidden
       -mf.options[:read_only] = true
       -if mf.type == :view
-        = bs_input f, mf.name, mf.options[:as], mf.options
+        = bs_input f, form_action, mf.name, mf.options[:as], mf.options
       -else
-        = bs_input f, mf.name, mf.type, mf.options
+        = bs_input f, form_action, mf.name, mf.type, mf.options
 
 -else
   -@meta.form_fields.each do |mf|
     -unless mf.hidden
-      = bs_input f, mf.name, mf.type, mf.options
+      = bs_input f, form_action, mf.name, mf.type, mf.options

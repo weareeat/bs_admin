@@ -9,7 +9,7 @@ class BsAdmin::MetaNestedController < BsAdminLoggedControllerBase
     else
       @meta = @base_meta
       @instance = @base_instance
-      
+
       render template: "bs_admin/#{@meta.base_path}/#{@custom_page.template}", layout: @custom_page.layout
     end
   end
@@ -30,12 +30,26 @@ class BsAdmin::MetaNestedController < BsAdminLoggedControllerBase
 
   def create
     if @meta.can :create
-      @model = @relationship_collection.new(params[@meta.symbol])
+      multiple_upload_field = @meta.multiple_upload_field
+      if multiple_upload_field and params[@meta.symbol][multiple_upload_field.name].is_a?(Array)
+        file_array = params[@meta.symbol][multiple_upload_field.name].dup
+        base_params = params[@meta.symbol].dup
+        save_count = 0
+        file_array.each do |i|
+          base_params[multiple_upload_field.name] = i
+          @relationship_collection.new(base_params).save!
+          save_count += 1
+        end
 
-      if @model.save
-        redirect_to index_url, notice: "#{@meta.humanized_name} was successfully created."
+        redirect_to index_url, notice: "#{save_count} #{@meta.humanized_name.pluralize} was successfully created."
       else
-        render action: "new"
+        @model = @relationship_collection.new(params[@meta.symbol])
+
+        if @model.save
+          redirect_to index_url, notice: "#{@meta.humanized_name} was successfully created."
+        else
+          render action: "new"
+        end
       end
     end
   end
@@ -67,6 +81,11 @@ class BsAdmin::MetaNestedController < BsAdminLoggedControllerBase
       m.save
     end
 
+    render :nothing => true
+  end
+
+  def bulk_destroy
+    params[:assets].each{ |p| @relationship_collection.find(p).destroy }
     render :nothing => true
   end
 

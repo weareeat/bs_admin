@@ -7,7 +7,7 @@ class BsAdmin::ImageSettingUploader < CarrierWave::Uploader::Base
   process :resize_to_limit => [2000, 2000]
 
   def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}".gsub('_', '-')
   end
 
   version :thumb do

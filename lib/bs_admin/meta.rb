@@ -45,6 +45,10 @@ module BsAdmin
       end
     end
 
+    def multiple_upload_field
+      @fields.find{ |f| f.multiple_upload == true }
+    end
+
     private
 
     def initialize_class_based_args hash
@@ -74,7 +78,7 @@ module BsAdmin
 
       @title_field = :id
       @title_field = hash[:title_field] if hash[:title_field]
-      
+
       @page_size = hash[:page_size]
     end
 

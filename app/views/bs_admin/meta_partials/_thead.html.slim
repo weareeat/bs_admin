@@ -1,5 +1,7 @@
 thead
   tr
+    -if @meta.can :delete
+      th
     -if @meta.sort == :sort
       th
     -@meta.index_fields.each do |f|

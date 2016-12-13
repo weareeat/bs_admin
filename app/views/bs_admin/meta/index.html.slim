@@ -1,10 +1,24 @@
 .page-header
   .row
-    .col-md-8
+    .col-md-4
       h1= @meta.humanized_name_plural
-    .col-md-4.header-buttons
+    .col-md-8.header-buttons
+      -if @meta.can :delete
+        a.btn.btn-danger.btn-bulk-destroy data-url="#{bs_admin.meta_bulk_destroy_path(@meta.base_path)}"
+          span.glyphicon.glyphicon-trash
+          | Remove selected
+        | &nbsp;
+        a.btn.btn-info.btn-bulk-check
+          span.glyphicon.glyphicon-check
+          | Check All
+        | &nbsp;
+        a.btn.btn-info.btn-bulk-uncheck style=("display: none;")
+          span.glyphicon.glyphicon-check
+          | Uncheck All        
       -if @meta.can :create
-        = link_to "New #{@meta.humanized_name}", bs_admin.meta_new_path(@meta.base_path), class: 'btn btn-primary'
+        a.btn.btn-primary href="#{bs_admin.meta_new_path(@meta.base_path)}"
+          span.glyphicon.glyphicon-plus
+          = "New #{@meta.humanized_name}"
 
 -if @meta.filters.any?
   .row.search-row.filters
@@ -12,7 +26,7 @@
       .panel.panel-info
         = form_tag bs_admin.meta_index_path(@meta.base_path), :method => 'get' do
           .panel-heading Filters
-          .panel-body            
+          .panel-body
             -@meta.filters.each do |f|
               =bs_filter f.type, f.field, f.options, @filter_options[f.field]
           .panel-footer
@@ -28,16 +42,17 @@ table.table.table-striped
   tbody class="#{'sortable' if @meta.sort == :sort}" data-url="#{bs_admin.meta_sort_path(@meta.base_path)}"
     - @collection.each_with_index do |m, index|
       tr id="#{@meta.symbol}_#{m.id}"
+        =render partial: "bs_admin/meta_partials/td_checkbox", locals: { m: m, id: m.id }
         =render partial: "bs_admin/meta_partials/td_sort", locals: { m: m }
         =render partial: "bs_admin/meta_partials/index_fields", locals: { m: m, index: index }
-        td.links                  
+        td.links
           -if @meta.can :view
             = link_to "View", bs_admin.meta_view_path(@meta.base_path, m), class: 'btn btn-primary'
           -if @meta.can :edit
             = link_to "Edit", bs_admin.meta_edit_path(@meta.base_path, m), class: 'btn btn-primary'
           -if @meta.can :delete
             = link_to "Delete", bs_admin.meta_destroy_path(@meta.base_path, m.id), method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-danger'
-          
+
           -@meta.relationships.select{|r| r.type == :has_many}.each do |r|
             = link_to "#{r.humanized_name_plural} (#{m.send(r.field).count})", bs_admin.meta_nested_index_path(@meta.base_path, m.id, r.nested_path), class: 'btn btn-primary'
 

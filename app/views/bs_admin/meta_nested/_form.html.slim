@@ -1,4 +1,3 @@
 = form_for [:admin, @model], url:  @url, html: { :class => 'form-horizontal' } do |f|
-  = render partial: "bs_admin/meta_partials/form_fields", locals: { f: f }  
+  = render partial: "bs_admin/meta_partials/form_fields", locals: { f: f, form_action: form_action }  
   = bs_actions f, bs_admin.meta_nested_index_path(@base_meta.base_path, @base_instance.id, @relationship.nested_path)
-  

@@ -11,5 +11,5 @@
   = hidden_field_tag  :type, @type
   = hidden_field_tag  :group_key, @group_key
   -@type = "checkbox" if @type == "boolean"
-  = bs_input f, :value, @type, { :hint => @setting.hint, :label => @setting.display_name }
+  = bs_input f, :edit, :value, @type, { :hint => @setting.hint, :label => @setting.display_name }
   = bs_actions f, bs_admin.settings_group_path(@setting.group.key)

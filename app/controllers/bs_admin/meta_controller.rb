@@ -70,10 +70,11 @@ class BsAdmin::MetaController < BsAdminLoggedControllerBase
   def create
     if @meta.can :create
       multiple_upload_field = @meta.multiple_upload_field
+
       if multiple_upload_field and params[@meta.symbol][multiple_upload_field.name].is_a?(Array)
         file_array = params[@meta.symbol][multiple_upload_field.name].dup
         base_params = params[@meta.symbol].dup
-        save_count = 0
+        save_count = 0        
         file_array.each do |i|
           base_params[multiple_upload_field.name] = i
           @meta.class.new(base_params).save!

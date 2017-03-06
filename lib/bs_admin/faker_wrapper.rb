@@ -3,13 +3,13 @@ module BsAdmin::FakerWrapper
 
   def rand_color
     "#" + ("%06x" % (rand * 0xffffff))
-  end  
+  end
 
   def rand_image(custom_folder=nil)
     unless custom_folder
       root_path = Gem.loaded_specs['bs_admin'].full_gem_path
       path = File.join(root_path, "/lib/tasks/random-images/")
-    else      
+    else
       path = File.join(Rails.root, "db", "bs_admin_populate", custom_folder)
     end
 
@@ -131,14 +131,14 @@ module BsAdmin::FakerWrapper
   def rand_value_for_field(field)
     if [:string, :email, :permalink, :text, :wysi].include?(field.type)
       rand_string_value_for_field(field)
-    elsif [:select, :radiogroup].include?(field.type)              
+    elsif [:select, :radiogroup].include?(field.type)
       options = field.options[:options]
       options = field.options[:options].call if options.is_a?(Proc)
-      
+
       if options.is_a?(Hash)
         rand_in_hash(options)
       else
-        r = rand_in_array(options)        
+        r = rand_in_array(options)
         r.is_a?(Array) ? r[1] : r
       end
     elsif [:date, :time, :datetime].include?(field.type)
@@ -188,10 +188,11 @@ module BsAdmin::FakerWrapper
 
   def create_object_from_meta meta, hash, parent=nil, relationship_field_on_parent=nil
     if parent != nil
+      print "create_object_from_met - #{relationship_field_on_parent})"
       parent.send(relationship_field_on_parent.to_sym).create(hash)
     else
       meta.class.create(hash)
-    end
+    end  
   end
 
   # def populate_model class_, count, parent=nil, relationship_field_on_parent=nil

@@ -4,7 +4,8 @@ module BsAdmin::ViewHelper
     options = {} unless options
     options[:field_name] = field_name
     locals = { f: f, field_name: field_name, options: options, type: type }
-    if options[:read_only]
+
+    if options[:read_only] or options[:view]      
       render partial: "bs_admin/fields/read_only_input", locals: locals
     else
       render partial: "bs_admin/fields/input/#{type}", locals: locals
@@ -14,12 +15,12 @@ module BsAdmin::ViewHelper
   def bs_actions f, back_path=nil
     render partial: "bs_admin/fields/actions", locals: { f: f, back_path: back_path }
   end
-  
+
   def bs_display type, value, options=nil
-    type = :string if [:email, :permalink].include? type    
+    type = :string if [:email, :permalink].include? type
     type = :boolean if type == :checkbox
     value = "" if value == nil
-    if type == :custom      
+    if type == :custom
       render partial: options[:templates][:display], locals: { value: value, options: options }
     else
       render partial: "bs_admin/fields/display/#{type}", locals: { value: value, options: options }
@@ -27,7 +28,7 @@ module BsAdmin::ViewHelper
   end
 
   def bs_table_header field_name, description=nil
-    description = field_name.to_s.humanize unless description          
+    description = field_name.to_s.humanize unless description
     render partial: "bs_admin/fields/table_header", locals: { field_name: field_name, description: description }
   end
 

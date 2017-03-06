@@ -20,6 +20,10 @@ module BsAdmin
       end
     end
 
+    def populate value
+      @hash[:populate_batch_count] = value
+    end
+
     %w(has_many has_one belongs_to).each do |type|
       define_method type do |field, args={}|
         @hash[:relationships] << { field: field, type: type.to_sym, options: args }
@@ -57,8 +61,9 @@ module BsAdmin
 
       field_types = %w(custom checkbox email password string currency)
       field_types += %w(permalink text date image radiogroup time)
-      field_types += %w(datetime number select wysi file money integer)      
+      field_types += %w(datetime number select wysi file money integer)
       field_types += %w(color_picker tags view)
+
       field_types.each do |type|
         define_method type do |name, args={}|
           @fields << { type: type.to_sym, name: name, options: args }

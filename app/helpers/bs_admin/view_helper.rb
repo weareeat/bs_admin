@@ -1,11 +1,10 @@
 module BsAdmin::ViewHelper
-  def bs_input f, field_name, type=:string, options={}
+  def bs_input f, form_action, field_name, type=:string, options={}
     type = :string if type == :email
     options = {} unless options
     options[:field_name] = field_name
-    locals = { f: f, field_name: field_name, options: options, type: type }
-
-    if options[:read_only] or options[:view]      
+    locals = { f: f, field_name: field_name, options: options, type: type, form_action: form_action }
+    if options[:read_only]
       render partial: "bs_admin/fields/read_only_input", locals: locals
     else
       render partial: "bs_admin/fields/input/#{type}", locals: locals

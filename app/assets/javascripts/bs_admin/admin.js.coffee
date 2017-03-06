@@ -1,4 +1,25 @@
-jQuery ->
+$ ->
+  $('.btn-bulk-destroy').click () ->
+    $checked = $('.check:checked')
+    url = $('.btn-bulk-destroy').data('url')
+    data = $checked.map ->
+      $(this).val()
+    data = data.get()
+
+    if data.length > 0
+      $.post url, { assets: data }, ->
+        window.location = window.location
+
+  $('.btn-bulk-check').click () ->
+    $('.btn-bulk-check').hide()
+    $('.btn-bulk-uncheck').show()
+    $('.check').prop('checked', true)
+
+  $('.btn-bulk-uncheck').click () ->
+    $('.btn-bulk-check').show()
+    $('.btn-bulk-uncheck').hide()
+    $('.check').prop('checked', false)
+
   $("a[rel=popover]").popover()
   $(".tooltip").tooltip()
   $("a[rel=tooltip]").tooltip()

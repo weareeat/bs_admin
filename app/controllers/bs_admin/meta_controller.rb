@@ -69,12 +69,27 @@ class BsAdmin::MetaController < BsAdminLoggedControllerBase
 
   def create
     if @meta.can :create
-      @model = @meta.class.new(params[@meta.symbol])
+      multiple_upload_field = @meta.multiple_upload_field
 
-      if @model.save
-        redirect_to bs_admin.meta_index_url(@meta.base_path), notice: "#{@meta.humanized_name} was successfully created."
+      if multiple_upload_field and params[@meta.symbol][multiple_upload_field.name].is_a?(Array)
+        file_array = params[@meta.symbol][multiple_upload_field.name].dup
+        base_params = params[@meta.symbol].dup
+        save_count = 0        
+        file_array.each do |i|
+          base_params[multiple_upload_field.name] = i
+          @meta.class.new(base_params).save!
+          save_count += 1
+        end
+
+        redirect_to index_url, notice: "#{save_count} #{@meta.humanized_name.pluralize} was successfully created."
       else
-        render action: "new"
+        @model = @meta.class.new(params[@meta.symbol])
+
+        if @model.save
+          redirect_to index_url, notice: "#{@meta.humanized_name} was successfully created."
+        else
+          render action: "new"
+        end
       end
     end
   end
@@ -109,9 +124,18 @@ class BsAdmin::MetaController < BsAdminLoggedControllerBase
     render :nothing => true
   end
 
+  def bulk_destroy
+    params[:assets].each{ |p| @meta.class.find(p).destroy }
+    render :nothing => true
+  end
+
   private
 
   def bsadmin_initialize
     @meta = BsAdmin.find params[:base_path]
+  end
+
+  def index_url
+    bs_admin.meta_index_url(@meta.base_path)
   end
 end

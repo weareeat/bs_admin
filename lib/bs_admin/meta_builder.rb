@@ -21,7 +21,7 @@ module BsAdmin
     end
 
     def populate value
-      @hash[:populate_batch_count] = value
+      populate_batch_count value
     end
 
     %w(has_many has_one belongs_to).each do |type|

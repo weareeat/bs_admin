@@ -7,6 +7,7 @@
 //= require jquery.iframe-transport
 //= require jquery.fileupload
 //= require select2
+//= require jquery.table2excel.min
 //= require bs_admin/imageUploadWrapper
 //= require bs_admin/imageUploadWrapper.initialize
 //= require bs_admin/summernote.custom

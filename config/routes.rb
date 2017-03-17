@@ -27,8 +27,9 @@ BsAdmin::Engine.routes.draw do
   get     ':base_path/:id/view' => 'meta#view',    as: :meta_view
   delete  ':base_path/:id'      => 'meta#destroy', as: :meta_destroy
   post    ':base_path/sort'     => 'meta#sort',    as: :meta_sort
-  post    ':base_path/bulk_destroy'     => 'meta#bulk_destroy',    as: :meta_bulk_destroy
-
+  post    ':base_path/bulk_destroy'     => 'meta#bulk_destroy',   as: :meta_bulk_destroy
+  get    ':base_path/export'           => 'meta#export',         as: :meta_export
+  
   get     ':base_path/:base_id/:nested_path/new'             => 'meta_nested#new',     as: :meta_nested_new
   post    ':base_path/:base_id/:nested_path'                 => 'meta_nested#create',  as: :meta_nested_create
   put     ':base_path/:base_id/:nested_path/:nested_id'      => 'meta_nested#update',  as: :meta_nested_update

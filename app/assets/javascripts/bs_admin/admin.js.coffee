@@ -115,4 +115,8 @@ $ ->
       $(this).closest('td').remove()
       return
 
+  $('.paginator.btn-group').each ->
+    $(this).html($($(this).text()))
+    return
+
   # $('.select2-tags').select2({ tags: true });

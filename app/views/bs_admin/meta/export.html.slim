@@ -1,0 +1,6 @@
+table.table.table-striped
+  =render "bs_admin/meta_partials/thead"
+  tbody
+    - @collection.each_with_index do |m, index|
+      tr id="#{@meta.symbol}_#{m.id}"
+        =render partial: "bs_admin/meta_partials/index_fields", locals: { m: m, index: index }

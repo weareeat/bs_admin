@@ -128,6 +128,12 @@ class BsAdmin::MetaController < BsAdminLoggedControllerBase
     render :nothing => true
   end
 
+  def export
+    @meta.page_size = false
+    index()
+    render :layout => false
+  end
+
   private
 
   def bsadmin_initialize

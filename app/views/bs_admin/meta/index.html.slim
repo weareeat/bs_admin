@@ -14,7 +14,7 @@
         | &nbsp;
         a.btn.btn-info.btn-bulk-uncheck style=("display: none;")
           span.glyphicon.glyphicon-check
-          | Uncheck All        
+          | Uncheck All
       -if @meta.can :create
         a.btn.btn-primary href="#{bs_admin.meta_new_path(@meta.base_path)}"
           span.glyphicon.glyphicon-plus
@@ -32,6 +32,12 @@
           .panel-footer
             button.pull-right.btn.btn-primary#meta-apply-filters type="submit" Apply
             .clearfix
+
+.row
+  .col-md-12
+    = form_tag bs_admin.meta_export_url(), :method => 'get' do
+      p
+        button.btn-block.btn.btn-success#meta-export type="submit" Export
 
 -if @meta.page_size
   .row: .col-md-12.pull-right= paginate @collection, :views_prefix => 'bs_admin'

@@ -116,7 +116,8 @@ $ ->
       return
 
   $('.paginator.btn-group').each ->
-    $(this).html($($(this).text()))
+    if ($(this).find('[rel="next"]').size() == 0)
+      $(this).html($($(this).text()))
     return
 
   # $('.select2-tags').select2({ tags: true });

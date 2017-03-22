@@ -109,4 +109,10 @@ $ ->
           filename: "Export_" + $('h1').text().trim() + " " + ((new Date()) * 1)
         });
     })
+
+  if $('.col-md-8.header-buttons .btn-bulk-destroy').size() == 0
+    $('.select.check').each ->
+      $(this).closest('td').remove()
+      return
+
   # $('.select2-tags').select2({ tags: true });

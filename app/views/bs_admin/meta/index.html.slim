@@ -36,7 +36,8 @@
 .row
   .col-md-12
     = form_tag bs_admin.meta_export_url(), :method => 'get' do
-      button.btn-block.btn.btn-success#meta-export type="submit" Export
+      p
+        button.btn-block.btn.btn-success#meta-export type="submit" Export
 
 -if @meta.page_size
   .row: .col-md-12.pull-right= paginate @collection, :views_prefix => 'bs_admin'

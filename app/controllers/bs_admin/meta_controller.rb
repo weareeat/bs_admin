@@ -82,7 +82,7 @@ class BsAdmin::MetaController < BsAdminLoggedControllerBase
 
         redirect_to index_url, notice: "#{save_count} #{@meta.humanized_name.pluralize} was successfully created."
       else
-        @model = @relationship_collection.new(params[@meta.symbol])
+        @model = @meta.class.new(params[@meta.symbol])
 
         if @model.save
           redirect_to index_url, notice: "#{@meta.humanized_name} was successfully created."

@@ -37,8 +37,10 @@ class BsAdmin::MetaNestedController < BsAdminLoggedControllerBase
         save_count = 0
         file_array.each do |i|
           base_params[multiple_upload_field.name] = i
-          @relationship_collection.new(base_params).save!
-          save_count += 1
+          m = @relationship_collection.new(base_params)
+          # save_count += 1
+          # m.sort = save_count
+          m.save
         end
 
         redirect_to index_url, notice: "#{save_count} #{@meta.humanized_name.pluralize} was successfully created."
